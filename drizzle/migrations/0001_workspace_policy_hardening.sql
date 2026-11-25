@@ -1,0 +1,2 @@
+DROP POLICY workspace_update ON public.workspaces;
+CREATE POLICY workspace_update ON public.workspaces FOR UPDATE TO authenticated USING(public.can_manage_workspace(id)) WITH CHECK(public.can_manage_workspace(id));
