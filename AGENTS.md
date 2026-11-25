@@ -28,3 +28,19 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project architecture rules
+
+- Read `docs/PROJECT_STATUS.md` and the approved phase scope before changing the project; phase gates prevent accidental implementation beyond the authorized deliverable.
+- Consult `docs/ZERO_COST_POLICY.md` before proposing infrastructure or providers; financial eligibility is a mandatory prerequisite, not a runtime fallback.
+- Preserve the managed block above and record conflicts in `docs/ARCHITECTURE.md`; unsupported platform assumptions must not become silent stack changes.
+- Keep TanStack Start file-based routing, React, TypeScript, Tailwind and reusable shadcn components; the existing application bootstrap is the supported platform boundary.
+- Use TanStack server functions for internal application operations and authenticated server routes for external callbacks; this environment does not use Supabase Edge Functions for application logic.
+- Model specialized agents as typed services coordinated by durable workflow records; this avoids autonomous processes with unbounded execution.
+- Scope community resources through workspace and community identifiers and enforce database authorization; UI filters are not a tenant security boundary.
+- Centralize inference admission and reservations by provider account, not modality; textual and visual work must not maintain independent allowance ledgers for one account.
+- Keep provider contracts independent of transport and use deterministic domain logic first; changing an eligible provider must not rewrite the community workflow.
+- Store long-running work in PostgreSQL with leases, idempotency keys and bounded retries; requests must not depend on in-memory state surviving serverless invocations.
+- Validate boundary inputs and outputs and keep credentials server-side; provider content and browser data are untrusted.
+- Implement incremental migrations, RLS and behavioral tests only in their authorized implementation phase; conceptual schemas are not deployed protections.
+- Treat local Node-based inference bridges as optional separate processes, never as dependencies of SSR; local resources are not guaranteed to be reachable from hosted execution.
