@@ -1,33 +1,41 @@
 # Status do projeto
 
-Referência: 25/11/2026 (UTC) · **Fase 0 documental** · Não avançar sem autorização expressa.
+Referência: 25/11/2026 (UTC) · **Fase 1 implementada com ressalvas de aceite** · Fases seguintes não autorizadas.
 
 ## Entrega
 
-Documentação inicial do produto, arquitetura multi-nicho, 14 agentes, workflows tipados em especificação, modelo conceitual de dados, segurança, controle de custos, provedores e matriz de capacidades. Regras técnicas registradas em AGENTS.md preservando o bloco gerenciado.
+Aplicação administrativa pt-BR com temas claro/escuro, sidebar recolhível/mobile, header, seletor global, dashboard, comunidades e configurações. Login e cadastro e-mail/senha, recuperação e logout implementados; Google/Lovable configurados. Perfil, preferências e workspace pessoal persistidos. CRUD atômico de comunidades com filtros e paginação real; Garagem de Ofertas criada por lifecycle de cadastro idempotente. Dashboard mostra contagens e atividade real, com métricas futuras indisponíveis.
+
+10 tabelas, UUIDs, timestamps, constraints, índices, FKs compostas, RLS e grants mínimos. Migrations gerenciadas 0000–0004. Papéis em tabela protegida; orçamento imutável zero; limites operacionais validados no banco e servidor. Documentação da Fase 0 preservada como referência histórica e atualizada nos pontos da fundação.
 
 ## Não implementado
 
-Interface do produto (a página permanece template), backend, banco, migrations, RLS, login, agentes executáveis, Cost Guardian operacional, geração de imagens/textos, APIs, importação, publicação, scheduler, worker local e integrações. Nenhum serviço ativado, token solicitado, inferência executada ou faturamento alterado.
+Agentes executáveis, Cost Guardian de inferência, geração por IA, ofertas, aprovações, publicações, cliques/comissões, scheduler, worker local e conexões de marketplace/canal. Nenhum mock apresentado como integração. Canais e marketplaces cadastrados são somente destinos planejados; modo automático não executa tarefas. Nenhum Realtime, polling ou cron instalado.
 
-Única alteração de apresentação: títulos/metadados específicos do projeto e idioma do documento ajustados para português; a interface e o funcionamento do template foram preservados.
-
-Consultas a páginas públicas oficiais não constituem integração do produto. Contratos e tabelas em Markdown são propostas. Testes existentes do template não demonstram regras de negócio futuras.
+Não há garantia financeira zero certificada para Cloud; não há teste ponta a ponta do recebimento/uso de e-mails de confirmação/recuperação nem roundtrip Google/Lovable. Não implementados convites, colaboração ou concessão de novos papéis pela interface.
 
 ## Evidências e validações
 
 | Verificação | Resultado |
 | --- | --- |
-| Inspeção de código | Router, layout, placeholder, componentes, scripts, CSRF e tratamento de erros inspecionados |
+| Inspeção de código | AGENTS.md e todos os documentos da Fase 0 lidos; rotas e controles de fundação inspecionados |
 | Preços/catálogo Cloudflare | Páginas oficiais de pricing, Schnell e Klein 4B responderam HTTP 200; franquia e tarifas documentadas |
 | Faturamento OpenAI | Página oficial respondeu HTTP 200; assinatura e API separadas, elegibilidade da conta não comprovada |
 | Plano gratuito de dados solicitado | Página oficial respondeu HTTP 200; limites públicos documentados, nenhuma conta vinculada |
 | Integridade da documentação | Os 13 documentos solicitados existem; referências locais verificadas sem links quebrados |
-| Teste de roteamento existente | `bunx vitest run src/test/app-routing.test.tsx`: 1 teste aprovado; valida somente roteamento do template |
-| Lint | `bun run lint`: 0 erros; 6 avisos existentes de Fast Refresh em componentes shadcn preservados |
+| Testes | 16 testes aprovados: 8 regras determinísticas, 7 integração real, 1 roteamento; contas temporárias limpas com resultado verificado |
+| Isolamento real | Duas contas: leitura/escrita cruzada recusada, associação FK inválida recusada, papéis não modificáveis, visitantes sem acesso |
+| Seed real | Nome/slug/nicho/idioma/moeda/fuso/limite/status/modo e 8 categorias, 3 marketplaces, 4 canais exatos; idempotência validada |
+| CRUD pela interface | Criar Clube de Leitura, recarregar, editar para active, confirmar contagem ativa no dashboard e excluir; perfil salvo/recarregado e tema escuro persistido |
+| Workspace e navegação | Nome e limite do workspace salvos e confirmados após recarregar; sidebar recolhida a 68 px e reaberta; seletor global refletido no dashboard; nenhum erro de runtime no fluxo final |
+| Login e logout | Login por senha de conta isolada confirmado; logout e acesso posterior a dashboard redirecionam a auth |
+| Cadastro/recuperação por e-mail | Serviço recusou domínio reservado example.com nos testes; mensagens de erro tratadas. Não enviada mensagem a pessoa real; confirmação e reset completos permanecem não verificados |
+| Linter de banco | 2 avisos intencionais de helpers booleanos autenticados SECURITY DEFINER; sem avisos anon nem índices pendentes após correção |
+| Interface | Desktop 1280×1800 e mobile 384×673; dashboard/formulário sem overflow horizontal, navegação mobile e página de login verificadas visualmente |
+| Lint | 0 erros; 8 avisos de Fast Refresh (6 existentes em shadcn e 2 contextos) |
 | Build | Telemetria do ambiente registrou `build OK` após as alterações; não executado manualmente |
-| Typecheck | Não executado manualmente; não há script dedicado no projeto nem evidência separada para certificar resultado |
-| Fluxo funcional do produto | Não aplicável: não implementado nesta fase |
+| Typecheck | Verificação automática do ambiente sem erros no último `build OK`; não executado manualmente |
+| Custos | Auto top-up desativado; nenhum limite Cloud encontrado. Serviço pode consumir créditos existentes após a franquia. Nenhuma compra, upgrade ou chamada de IA realizada |
 
 ## Riscos e decisões pendentes
 
@@ -35,7 +43,7 @@ Consultas a páginas públicas oficiais não constituem integração do produto.
 | --- | --- | --- |
 | Stack do briefing diverge da plataforma | Supabase Edge Functions não são a fronteira de servidor disponível | Preservar TanStack; revisar divergência antes de Fase 1 |
 | Gateway gerenciado não comprova caminho gratuito para os provedores desejados | Adaptadores Cloudflare/locais podem não ser habilitáveis neste ambiente | Validar transporte suportado e custo zero antes de IA; manter manual/templates se não houver |
-| Oferta gratuita de backend/hospedagem não certificada | Provisionar pode violar orçamento | Não ativar; administrador confirma opção gratuita e compatível |
+| Cloud não equivale ao plano externo Free e não tem hard cap confirmado | Pode consumir créditos existentes após franquia | Ressalva financeira explícita; não certificar custo zero nem avançar para produção/fases seguintes |
 | Modelos exigem pagamento ou mudam tarifa | Catálogo não garante gratuidade | Allowlist, fonte oficial e fail-closed |
 | Consumo fora do Hub na mesma conta | Ledger local pode superestimar saldo | Reconciliação da conta inteira, margem e pausa quando informação insuficiente |
 | Assinatura não inclui API genérica | ChatGPTPlanProvider pode não ser elegível | Importação manual; sem cookies/endpoints privados |
@@ -47,4 +55,4 @@ Consultas a páginas públicas oficiais não constituem integração do produto.
 
 ## Aceite e próxima fase
 
-Critérios completos em [PRD](PRD.md). A entrega técnica documental não representa aprovação do administrador. Fase 1 aguardará autorização explícita e definição verificável do backend gratuito compatível. Credenciais, contas afiliadas e canais serão solicitados somente quando sua fase for autorizada; não bloqueiam a documentação atual.
+Fundação funcional validada em contas de teste, não na conta pessoal do administrador. Seed fica disponível no workspace criado no seu cadastro. Aceite financeiro permanece pendente por inexistência de bloqueio Cloud confirmado. Validação de entrega e utilização de links de e-mail depende de uma caixa de e-mail real acessível ao administrador; não solicitamos senhas nem forjamos sessões de recuperação. Nenhuma Fase 2 foi iniciada. Critérios de produto e restrições permanecem no PRD e política financeira.

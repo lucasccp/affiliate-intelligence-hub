@@ -1,6 +1,17 @@
 # Arquitetura inicial
 
-**Status: proposta documental; nenhum módulo de domínio implementado.**
+**Status: arquitetura da Fase 0 preservada como referência; fundação da Fase 1 implementada conforme atualização abaixo.**
+
+## Atualização da Fase 1
+
+- Lovable Cloud conectado com PostgreSQL e Auth. Não é a oferta externa Supabase Free do briefing; o custo é baseado em créditos da plataforma. Nenhum hard cap Cloud foi encontrado, portanto o gate financeiro de custo zero continua não certificado.
+- Páginas de autenticação públicas e `/dashboard`, `/comunidades`, `/configuracoes` sob uma única fronteira `_authenticated`. Layout client-only valida usuário; server functions usam `requireSupabaseAuth`, sessão autenticada e RLS.
+- Funcionalidades isoladas em `src/components/hub`; schemas determinísticos e fronteiras em `src/lib/hub-schema.ts`, `hub.functions.ts` e `hub-query.ts`. TanStack Query carrega o workspace e invalida leituras após alterações.
+- Migrations geradas/aplicadas em `drizzle/migrations/` pelo mecanismo gerenciado. Cadastros criam perfil, associação protegida, workspace pessoal e seed literal idempotente do piloto. Nenhuma página cria seed.
+- Configurações relacionadas de uma comunidade são gravadas atomicamente por SQL invoker `save_community`. RLS protege cada tabela; FKs compostas impedem referências entre workspaces. Triggers validam limites e geram auditoria.
+- Apenas cadastro/configuração: modos automatic/assisted não executam jobs, canais e marketplaces não se conectam, agentes e Cost Guardian de inferência continuam futuros. Não há scheduler, polling, Realtime ou chamada de IA.
+
+As seções seguintes descrevem a inspeção e proposta originais da Fase 0; o estado executável atual consta de PROJECT_STATUS.md.
 
 ## Inspeção da base
 

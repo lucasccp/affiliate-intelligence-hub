@@ -1,6 +1,6 @@
-# Integrações — nenhuma ativada
+# Integrações — estado por fase
 
-Somente consultas HTTP de leitura a documentação oficial foram realizadas. Nenhuma API de inferência, OAuth, backend, canal ou marketplace foi conectado.
+Na Fase 0, somente documentação pública foi consultada. Na Fase 1, Lovable Cloud foi conectado para Auth/PostgreSQL e login por e-mail/senha, Google e Lovable foi habilitado. Marketplaces, canais e IA continuam sem conexões reais. OAuth social está configurado, mas roundtrip externo de Google/Lovable não foi testado.
 
 ## Registro obrigatório de capacidades
 
@@ -10,7 +10,7 @@ Não registrar endpoint presumido. Endpoint, SDK, licença, autenticação e for
 
 | Integração planejada | Gate / estado atual |
 | --- | --- |
-| PostgreSQL, auth e storage gratuitos | Não conectados; confirmar oferta gratuita e compatibilidade antes de provisionar |
+| PostgreSQL, auth e storage | Lovable Cloud conectado na Fase 1; nenhuma garantia de equivalência ao plano externo Free; limite Cloud não certificado |
 | Cloudflare Workers AI | Catálogo/preços públicos consultados; plano real, acesso, transporte e quotas da conta não validados |
 | ChatGPT/Codex | Assinatura informada; elegibilidade oficial não confirmada; nenhum login ou API automatizados |
 | GitHub | Não verificar/vincular conta por suposição; repositório da plataforma não comprova integração de automação |

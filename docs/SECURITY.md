@@ -1,6 +1,12 @@
 # Segurança — plano inicial
 
-**Controles de domínio aqui descritos são planejados, não instalados.** A base possui proteção CSRF de server functions e tratamento de erros; isso não fornece autenticação ou isolamento do produto.
+**Fase 1:** autenticação, autorização de RPC, RLS/grants mínimos nas 10 tabelas e isolamento por workspace instalados e testados. O plano de agentes/integrações das seções abaixo permanece futuro.
+
+Funções de autorização booleanas usam a identidade autenticada; associação protegida não aceita elevação pelo browser. Helpers de trigger não são executáveis por visitantes/usuários via RPC. Owner/workspace imutáveis e FKs compostas impedem troca de escopo. Dados de alteração passam Zod, constraints e triggers; logs não incluem segredos. Exclusão em cascata foi testada e corrigida para não criar auditoria órfã.
+
+Sign-out cancela queries, limpa o cache, encerra a sessão e substitui a navegação por `/auth`; acesso posterior a `/dashboard` redireciona. Confirmação de e-mail permanece habilitada. A entrega implementa recuperação, mas não comprova recebimento de e-mail/link ou redefinição ponta a ponta; testes com domínio reservado são recusados pelo serviço, e o aplicativo mostra essa limitação claramente.
+
+Linter final: somente 2 avisos intencionais de helpers de autorização SECURITY DEFINER disponíveis para usuários autenticados; nenhum visitante pode executá-los. Não há findings de tabelas sem RLS nem FKs sem índice após as correções.
 
 ## Ameaças e controles
 

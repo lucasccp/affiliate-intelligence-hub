@@ -44,3 +44,10 @@ use the editor.
 - Validate boundary inputs and outputs and keep credentials server-side; provider content and browser data are untrusted.
 - Implement incremental migrations, RLS and behavioral tests only in their authorized implementation phase; conceptual schemas are not deployed protections.
 - Treat local Node-based inference bridges as optional separate processes, never as dependencies of SSR; local resources are not guaranteed to be reachable from hosted execution.
+- Keep signed-in routes under the single `_authenticated` layout and protect every RPC with the generated bearer middleware; the layout is only navigation protection, not the data security boundary.
+- Create personal workspaces and their pilot data through the idempotent signup lifecycle function in migrations; never seed from a page, loader or ordinary application RPC.
+- Store workspace roles in the protected membership table, not profiles or editable auth metadata; direct role changes are not part of the personal-workspace interface.
+- Save community and child configurations through one invoker SQL transaction; partial writes must roll back without losing the previous configuration.
+- Enforce operational ceilings and immutable workspace ownership in database triggers as well as input schemas; direct authenticated Data API calls must preserve the same invariants.
+- Exclude platform-generated integration and migration artifacts from source linting rather than editing them; the platform owns their formatting and generation.
+- Run integration tests only with explicit test accounts and clean them up with checked results; no end-to-end test may alter an existing person's data.

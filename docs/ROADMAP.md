@@ -5,7 +5,7 @@ Nenhuma fase seguinte começa automaticamente. Ordem abaixo é proposta; não re
 | Fase | Entrega | Gate de entrada / aceite |
 | --- | --- | --- |
 | 0 — Arquitetura | Documentos, decisões, riscos e critérios | Briefing recebido; revisão humana do pacote |
-| 1 — Fundação | Backend gratuito confirmado, autenticação, comunidades, migrations, RLS | Autorização expressa; custos/stack resolvidos; isolamento entre dois nichos testado |
+| 1 — Fundação | Interface, autenticação, comunidades, migrations e RLS implementados; testes aprovados | Autorizada pelo briefing; aceite com ressalvas: custo Cloud não certificado e e-mails não verificados ponta a ponta |
 | 2 — Execução determinística | Workflows, jobs, aprovações, auditoria, manual/templates e Cost Guardian | Fase 1 aceita; reserva concorrente e bloqueio financeiro testados sem APIs externas |
 | 3 — IA gratuita | Provedores Cloudflare elegíveis; modelos/local opcionais | Política da conta, acesso oficial, tarifa e credenciais validados; nenhuma inferência antes do gate |
 | 4 — Ofertas piloto | Importação e capacidades oficiais de marketplaces | Programa afiliado autorizado; fontes gratuitas aprovadas; preços/links com origem |

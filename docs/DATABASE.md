@@ -1,6 +1,20 @@
 # Modelo de dados conceitual
 
-**Nenhuma tabela, migration, policy RLS, função SQL ou dado piloto foi criado.** Este documento orienta migrations incrementais futuras.
+**Fase 1: 10 tabelas implementadas com migrations, grants, RLS e seed.** O restante deste documento mantém o modelo futuro da Fase 0.
+
+## Modelo implementado na Fase 1
+
+Tabelas: `profiles`, `workspaces`, `workspace_members`, `communities`, `community_categories`, `community_settings`, `marketplace_connections`, `channels`, `automation_rules`, `audit_logs`.
+
+Identidade de perfil referencia `auth.users` com cascata; demais referências a usuários usam profiles/UUID. Papéis owner/admin/viewer pertencem à associação protegida workspace_members, sem escrita direta por usuários autenticados. Interface desta fase tem workspace pessoal; colaboração/convites não foram implementados.
+
+Comunidades têm nicho livre, campos do briefing, slug único por workspace, 6 estados e modo assistido por padrão. Categorias/canais/marketplaces possuem FK composta para comunidade e workspace; canais/marketplaces permitem apenas unconfigured/disabled. Regras de automação obrigatoriamente desativadas.
+
+Limite por comunidade não pode ultrapassar o teto do workspace; redução de teto abaixo de uma comunidade existente é recusada. Orçamento do workspace possui constraint `zero_cost_budget=0`. Ownership/workspace de uma comunidade são imutáveis. Audit logs são somente leitura para membros; triggers internos registram criação, edição e exclusão de comunidades.
+
+Seed é literal dentro de função de lifecycle criada na migration 0000, chamada no cadastro e idempotente por usuário/workspace/slug. Garagem de Ofertas tem 20 ofertas únicas/dia, assisted, draft, pt-BR, BRL, America/Sao_Paulo, 8 categorias, 3 marketplaces e 4 canais exatos do briefing; nenhuma conexão externa real.
+
+Migrations 0001–0004 ajustam policy, permissões, índices, validações e limpeza de auditoria em cascata. Testes reais com contas isoladas validam seed/idempotência, leitura/escrita entre workspaces, grants, FKs, segundo nicho e constraints. Os 2 avisos de linter restantes são funções booleanas de autorização autenticadas, intencionais e sem parâmetro de usuário arbitrário.
 
 ## Hierarquia
 

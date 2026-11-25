@@ -2,6 +2,10 @@
 
 Versão documental 0.1 · referência: briefing V3.0, Fase 0 · 25/11/2026 (UTC).
 
+## Atualização da Fase 1
+
+Briefing da fundação autorizou autenticação, perfil, workspace pessoal, dashboard real, comunidades e configurações. Esses módulos foram implementados com persistência e isolamento; módulos de IA/marketplace/publicação continuam indisponíveis. Critérios e evidências atuais estão em PROJECT_STATUS.md. As seções de escopo abaixo documentam a Fase 0, não limitam retroativamente a Fase 1 autorizada.
+
 ## Produto e usuários
 
 Plataforma para um administrador criar e operar comunidades de ofertas afiliadas a partir de um nicho. Arquitetura multi-nicho desde a origem; automotivo será apenas o piloto. O administrador é o usuário inicial. Papéis adicionais são proposta de arquitetura, não requisito já implementado.

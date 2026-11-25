@@ -1,6 +1,12 @@
 # Política de custo adicional zero
 
-**Orçamento adicional autorizado: R$ 0,00.** Este limite prevalece sobre conveniência e grau de automação. Nenhum faturamento, crédito, serviço ou provedor foi ativado nesta fase.
+**Orçamento adicional autorizado: R$ 0,00.** Este limite prevalece sobre conveniência e grau de automação. Nenhuma compra de crédito, upgrade, IA paga ou fallback foi ativado. Lovable Cloud foi conectado na Fase 1 e sua operação não é financeiramente equivalente ao plano externo Free solicitado.
+
+## Ressalva financeira da Fase 1
+
+Consulta das ferramentas: auto top-up desativado (nunca configurado); nenhum limite mensal de bloqueio Cloud encontrado, e nenhum limite foi criado/alterado. A plataforma fornece 20 créditos mensais de Cloud por workspace, mas após a franquia pode descontar créditos existentes. Não há comprovação de consumo zero nem controle da aplicação capaz de interromper automaticamente a cobrança do backend gerenciado.
+
+Portanto **a garantia de custo operacional adicional zero não foi certificada**. Nenhuma despesa ou valor de consumo foi estimado a partir da tabela de tarifas; compras automáticas desativadas não significam uso gratuito ilimitado. Esta divergência precisa ser resolvida antes de aceite financeiro/produção e de fases posteriores. Cost Guardian de IA permanece não implementado nesta fase; constraint de orçamento zero protege apenas a configuração do aplicativo, não a cobrança da plataforma.
 
 ## Proibições
 

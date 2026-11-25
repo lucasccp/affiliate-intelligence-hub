@@ -7,7 +7,10 @@ import { AppShell } from "@/components/hub/app-shell";
 import { LoadingPage, ErrorPage } from "@/components/hub/shared";
 export const Route = createFileRoute("/_authenticated")({
   ssr: false,
-  beforeLoad: async () => { const { data, error } = await supabase.auth.getUser(); if (error || !data.user) throw redirect({ to: "/auth" }); },
+  beforeLoad: async () => {
+    const { data, error } = await supabase.auth.getUser();
+    if (error || !data.user) throw redirect({ to: "/auth" });
+  },
   loader: ({ context }) => context.queryClient.ensureQueryData(hubQuery),
   component: AuthenticatedLayout,
   pendingComponent: LoadingPage,
@@ -15,5 +18,11 @@ export const Route = createFileRoute("/_authenticated")({
 });
 function AuthenticatedLayout() {
   const { data } = useSuspenseQuery(hubQuery);
-  return <AppProvider data={data}><AppShell><Outlet /></AppShell></AppProvider>;
+  return (
+    <AppProvider data={data}>
+      <AppShell>
+        <Outlet />
+      </AppShell>
+    </AppProvider>
+  );
 }
