@@ -66,3 +66,9 @@ A main em `85ff565` contém a fundação e a consolidação documental DivulgaLi
 - **Checkpoint do piloto:** 15 testes locais, build, TypeScript e lint com zero erros e oito avisos no Codex. O Lovable relatou 28 testes com contas isoladas e removidas. O Codex excluiu a suíte de banco. Validação autenticada em navegador e incorporação à main seguem pendentes. [Relatório do piloto](https://github.com/lucasccp/affiliate-intelligence-hub/blob/793bdab/docs/PHASE_02_VALIDATION.md)
 - **Fase 2.1 — APPROVED_WITH_WARNINGS para pesquisa.** Matriz oficial, comparação, contratos e plano de POC documentados. Capturas sanitizadas do trial DivulgaLinks e verificação de credenciais, custos e capacidades por conta ainda pendentes. [Checkpoint](PHASE_02_1_VALIDATION.md)
 - **Fase 3 — BLOCKED.** Próxima ação no Codex é verificar entrada: consolidar evidências, validar piloto autorizado e confirmar transporte oficial e custo adicional zero. Sem ativação de IA. O administrador controla o Lovable existente e o orçamento adicional segue em R$ 0,00.
+
+## Checkpoint de entrada da Fase 3 — 26/11/2026
+
+**BLOCKED.** No piloto `793bdab`, o Codex reproduziu 15 testes locais, instalação congelada, build e verificação TypeScript. Lint com zero erros e oito avisos. O fluxo autenticado e as suítes de banco ficaram pendentes por ausência de ambiente e contas de teste autorizados nesta sessão. Simulação da integração das branches apontou conflitos em AGENTS.md e PROJECT_STATUS.md. Nenhum merge foi efetuado.
+
+A documentação oficial registra limites bloqueantes por projeto ou workspace em planos pagos, com possibilidade de ultrapassar o limiar antes do bloqueio. A rota Cloudflare via conector sob gestão do Lovable é candidata a avaliação. Compatibilidade com o gateway exigido pelo repositório, elegibilidade da conta, custo completo e bloqueio antes de cobrança permanecem sem comprovação. [Relatório e handoff](PHASE_03_ENTRY_CHECKPOINT.md)
