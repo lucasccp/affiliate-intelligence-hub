@@ -77,6 +77,7 @@ function Studio({
 
   const [channel, setChannel] = useState("whatsapp");
   const [messageTemplate, setMessageTemplate] = useState<keyof typeof whatsappTemplates>("direct");
+  const [messageVariant, setMessageVariant] = useState(0);
   const [affiliateLink, setAffiliateLink] = useState("");
   const [details, setDetails] = useState({
     marketplace: "",
@@ -101,8 +102,8 @@ function Studio({
     offerSource && link.success && parsedDetails.success
       ? makeWhatsappMessage({
           offer: { ...offerSource, sourceUrl: link.data },
-          community,
           template: messageTemplate,
+          variant: messageVariant,
           affiliate: affiliate || Boolean(affiliateLink.trim()),
           details: parsedDetails.data,
         })
@@ -246,12 +247,27 @@ function Studio({
                 <select
                   className="block w-full rounded-md border bg-background px-3 py-2"
                   value={messageTemplate}
-                  onChange={(event) =>
-                    setMessageTemplate(event.target.value as keyof typeof whatsappTemplates)
-                  }
+                  onChange={(event) => {
+                    setMessageTemplate(event.target.value as keyof typeof whatsappTemplates);
+                    setMessageVariant(0);
+                  }}
                 >
-                  {Object.entries(whatsappTemplates).map(([key, label]) => (
+                  {Object.entries(whatsappTemplates).map(([key, { label }]) => (
                     <option key={key} value={key}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="block space-y-1">
+                Variação
+                <select
+                  className="block w-full rounded-md border bg-background px-3 py-2"
+                  value={messageVariant}
+                  onChange={(event) => setMessageVariant(Number(event.target.value))}
+                >
+                  {whatsappTemplates[messageTemplate].variants.map((label, index) => (
+                    <option key={label} value={index}>
                       {label}
                     </option>
                   ))}

@@ -110,12 +110,72 @@ export function simulateSharedAllowance(now: Date) {
 }
 
 export const whatsappTemplates = {
-  direct: "Direto",
-  community: "Seleção da comunidade",
-  short: "Resumo curto",
-  market: "Compra em pacote",
-  deadline: "Com prazo",
+  direct: {
+    label: "Oferta direta",
+    variants: ["Produto em destaque", "De / por", "Convite para conferir"],
+  },
+  urgent: {
+    label: "Urgente",
+    variants: [
+      "Vale olhar agora",
+      "Preço em destaque",
+      "Achado da vez",
+      "Vale conferir",
+      "Em destaque",
+    ],
+  },
+  casual: {
+    label: "Casual",
+    variants: [
+      "Você viu?",
+      "Olha esse achado",
+      "Passando para avisar",
+      "Achei uma boa",
+      "Dica de oferta",
+    ],
+  },
+  simple: {
+    label: "Simples",
+    variants: ["Pacote", "Só o essencial", "Com marcador", "Carrinho", "Preço em negrito"],
+  },
 } as const;
+
+const whatsappLayouts = {
+  direct: [
+    { title: "🔥 *{produto}*", price: "{preço} 👊", link: "{loja}:\n{link}" },
+    { heading: "🏷️ *Confira esta oferta*", title: "{produto}", link: "{loja}: {link}" },
+    {
+      heading: "💡 Você viu essa oferta?",
+      title: "*{produto}*",
+      price: "{preço} 👊",
+      link: "{loja} 👉 {link}",
+    },
+  ],
+  urgent: [
+    { heading: "👀 *Vale olhar agora!*", title: "{produto}", link: "🔗 {link}" },
+    { heading: "🚨 *Preço em destaque*", title: "*{produto}*", link: "👉 {link}" },
+    { heading: "⚡ Achado da vez!", title: "{produto}", link: "{link}" },
+    { heading: "⏰ *Vale conferir!*", title: "*{produto}*", link: "🔗 {link}" },
+    { heading: "📣 *Oferta em destaque*", title: "{produto}", link: "👉 {link}" },
+  ],
+  casual: [
+    { heading: "💡 Você viu essa oferta?", title: "*{produto}*", link: "👉 {link}" },
+    { heading: "👀 Olha esse achado:", title: "{produto}", link: "🔗 {link}" },
+    { heading: "✨ Passando para avisar:", title: "*{produto}*", link: "{link}" },
+    { heading: "🛍️ Achei uma boa!", title: "{produto}", link: "👉 {link}" },
+    { heading: "💬 Dica de oferta do dia:", title: "*{produto}*", link: "🔗 {link}" },
+  ],
+  simple: [
+    { title: "📦 *{produto}*", link: "🔗 {link}" },
+    { title: "*{produto}*", price: "💰 {preço}", link: "{link}" },
+    { title: "📌 {produto}", link: "🔗 {link}" },
+    { title: "🛒 *{produto}*", link: "👉 {link}" },
+    { title: "{produto}", price: "💵 {preço}", link: "{link}" },
+  ],
+} satisfies Record<
+  keyof typeof whatsappTemplates,
+  Array<{ heading?: string; title: string; price?: string; link: string }>
+>;
 
 export const announcementUrlSchema = z
   .url({ protocol: /^https$/ })
@@ -147,18 +207,18 @@ export const whatsappDetailsSchema = z.object({
 
 export function makeWhatsappMessage({
   offer,
-  community,
   template,
+  variant = 0,
   affiliate,
   details,
 }: {
   offer: AssistedOfferSource;
-  community: string;
   template: keyof typeof whatsappTemplates;
+  variant?: number;
   affiliate: boolean;
   details?: z.infer<typeof whatsappDetailsSchema>;
 }) {
-  const { name, priceCents, sourceUrl, expiresAt } = offerSourceSchema.parse(offer);
+  const { name, priceCents, sourceUrl } = offerSourceSchema.parse(offer);
   const url = announcementUrlSchema.parse(sourceUrl);
   const money = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
   const price = money.format(priceCents / 100);
@@ -168,36 +228,36 @@ export function makeWhatsappMessage({
     previous > priceCents ? Math.floor(((previous - priceCents) * 100) / previous) : 0;
   const priceLine =
     previous > priceCents
-      ? `💰 De ~${money.format(previous / 100)}~ por *${price}*${discount ? ` · ${discount}% de desconto` : ""}`
-      : `💰 *${price}*`;
+      ? `De ~${money.format(previous / 100)}~ por *${price}*${discount ? ` (${discount}% OFF)` : ""}`
+      : `Por *${price}*`;
   const quantity = Number(extra?.quantity || 0);
-  const validity = new Intl.DateTimeFormat("pt-BR", {
-    dateStyle: "short",
-    timeStyle: "short",
-    timeZone: "America/Sao_Paulo",
-  }).format(new Date(expiresAt));
-  const headings = {
-    direct: "🏷️ *Destaque de preço*",
-    community: `✨ *Seleção de ${community}*`,
-    short: "",
-    market: "🛒 *Para a próxima compra*",
-    deadline: "🗓️ *Confira o prazo da oferta*",
+  const layouts: Array<{ heading?: string; title: string; price?: string; link: string }> =
+    whatsappLayouts[template];
+  const layout = layouts[variant] ?? layouts[0]!;
+  const slots = {
+    "{produto}": name,
+    "{preço}": priceLine,
+    "{loja}": extra?.marketplace || "Ver anúncio",
+    "{link}": url,
   };
+  const fill = (line: string) =>
+    line.replace(/\{(?:produto|preço|loja|link)\}/gu, (key) => slots[key as keyof typeof slots]);
 
   const detailsLines = [
-    priceLine,
+    fill(layout.price ?? "{preço}"),
     ...(quantity > 1
       ? [`📦 ${quantity} unidades · ${money.format(priceCents / quantity / 100)} por unidade`]
       : []),
     ...(extra?.coupon ? [`🎟️ Cupom: *${extra.coupon}*`] : []),
     ...(extra?.installments ? [`💳 ${extra.installments}`] : []),
-    ...(extra?.marketplace ? [`🏪 ${extra.marketplace}`] : []),
+    ...(extra?.marketplace && !layout.link.includes("{loja}") ? [`🏪 ${extra.marketplace}`] : []),
   ];
 
   return [
-    [headings[template], `*${name}*`].filter(Boolean).join("\n"),
+    ...(layout.heading ? [layout.heading] : []),
+    fill(layout.title),
     detailsLines.join("\n"),
-    `⏱️ Validade informada: ${validity} (horário de Brasília)\n🔗 ${url}`,
+    fill(layout.link),
     ...(affiliate ? ["Link de afiliado. Podemos receber comissão pela compra."] : []),
   ].join("\n\n");
 }

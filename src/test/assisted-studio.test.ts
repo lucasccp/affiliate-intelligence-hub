@@ -75,11 +75,10 @@ it("builds a WhatsApp message using the supplied link and affiliate disclosure",
       expiresAt: "2026-11-29T16:00:00Z",
       version: 1,
     },
-    community: "Garagem de Ofertas",
-    template: "community",
+    template: "direct",
     affiliate: true,
   });
-  expect(message).toContain("Seleção de Garagem de Ofertas");
+  expect(message).toContain("🔥 *Suporte*");
   expect(message).toContain("39,90");
   expect(message).toContain("https://example.com/link");
   expect(message).toContain("Link de afiliado");
@@ -94,8 +93,7 @@ it("formats verified optional promotion details and omits empty lines", () => {
       expiresAt: "2026-11-29T16:00:00Z",
       version: 1,
     },
-    community: "Garagem de Ofertas",
-    template: "market",
+    template: "simple",
     affiliate: false,
   } as const;
   expect(makeWhatsappMessage(options)).not.toMatch(/Cupom|desconto|por unidade/);
@@ -109,9 +107,26 @@ it("formats verified optional promotion details and omits empty lines", () => {
       quantity: "3",
     },
   });
-  expect(message).toContain("40% de desconto");
+  expect(message).toContain("40% OFF");
   expect(message).toMatch(/10,00 por unidade/);
   expect(message).toContain("*KIT10*");
   expect(message).toContain("3× de R$ 10,00");
   expect(message).toContain("Shopee");
+});
+
+it("uses the selected casual variation without inventing a discount or storefront", () => {
+  const message = makeWhatsappMessage({
+    offer: {
+      name: "Kit",
+      priceCents: 3000,
+      sourceUrl: "https://example.com/kit",
+      expiresAt: "2026-11-29T16:00:00Z",
+      version: 1,
+    },
+    template: "casual",
+    variant: 2,
+    affiliate: false,
+  });
+  expect(message).toContain("Passando para avisar");
+  expect(message).not.toMatch(/% OFF|Loja oficial|Validade informada|\{produto\}/);
 });
