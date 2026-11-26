@@ -1,28 +1,34 @@
-# Roadmap sujeito a autorização
+# Roadmap V4.0 — ordem autorizável
 
-Nenhuma fase seguinte começa automaticamente. Ordem abaixo é proposta; não representa compromisso de capacidade das APIs.
+Atualização 26/11/2026. Fonte de prompts e aceite: [PROJECT_MASTER_GUIDE.md](PROJECT_MASTER_GUIDE.md). Benchmark: [COMPETITIVE_BENCHMARK.md](COMPETITIVE_BENCHMARK.md). Fase 1 com ressalvas; próxima Fase 2. Nenhuma fase futura autorizada automaticamente. Gate financeiro obrigatório; pesquisa documental pode ser autorizada separadamente.
 
-| Fase | Entrega | Gate de entrada / aceite |
-| --- | --- | --- |
-| 0 — Arquitetura | Documentos, decisões, riscos e critérios | Briefing recebido; revisão humana do pacote |
-| 1 — Fundação | Interface, autenticação, comunidades, migrations e RLS implementados; testes aprovados | Autorizada pelo briefing; aceite com ressalvas: custo Cloud não certificado e e-mails não verificados ponta a ponta |
-| 2 — Execução determinística | Workflows, jobs, aprovações, auditoria, manual/templates e Cost Guardian | Fase 1 aceita; reserva concorrente e bloqueio financeiro testados sem APIs externas |
-| 3 — IA gratuita | Provedores Cloudflare elegíveis; modelos/local opcionais | Política da conta, acesso oficial, tarifa e credenciais validados; nenhuma inferência antes do gate |
-| 4 — Ofertas piloto | Importação e capacidades oficiais de marketplaces | Programa afiliado autorizado; fontes gratuitas aprovadas; preços/links com origem |
-| 5 — Conteúdo e canais | Materiais, landing, agenda e publicação autorizada | Canal com permissões; divulgação afiliada; confirmação de entrega e idempotência |
-| 6 — Métricas e otimização | Indicadores reais e sugestões versionadas | Fonte disponível; privacidade e limites preservados; nenhuma receita inventada |
+| Fase | Entrega | Ferramenta | Estado |
+|---|---|---|---|
+| 0 | Governança e arquitetura | Lovable. | Concluída |
+| 1 | Fundação | Lovable. | Com ressalvas |
+| 2 | Integration Discovery e viabilidade | Codex. | Próxima, não iniciada |
+| 2.1 | Marketplace Integration Research e benchmark | Codex. | Planejada |
+| 3 | AI Core e Cost Guardian | Lovable + Codex. | Planejada |
+| 4 | Cloudflare Workers AI — textos | Codex + Lovable. | Planejada |
+| 5 | Image Generation Engine | Lovable + Codex. | Planejada |
+| 6 | OpenAI e AI Worker Local | Codex. | Planejada |
+| 7 | Community Factory | Lovable + Codex. | Planejada |
+| 8 | Brand Studio | Lovable + Codex. | Planejada |
+| 9 | Landing Page Builder | Lovable + Codex. | Planejada |
+| 10 | Channel Hub | Lovable + Codex. | Planejada |
+| 10.1 | Affiliate Capture Extension (antecipada) | Codex + Lovable se backend gerenciado necessário. | Planejada |
+| 11 | Offer Hunter | Codex + Lovable. | Planejada |
+| 12 | Affiliate Intelligence | Lovable + Codex. | Planejada |
+| 13 | Content Engine | Lovable + Codex. | Planejada |
+| 14 | Automation & Publisher | Codex + Lovable. | Planejada |
+| 15 | Growth Analytics e Orquestrador | Codex + Lovable. | Planejada |
+| 16 | Affiliate Capture Extension: evolução | Codex + Lovable se necessário. | Planejada |
+| 17 | Video Studio | Codex + Lovable. | Planejada |
+| 18 | Mobile PWA | Codex. | Planejada |
+| 19 | Expansão de marketplaces | Codex + Lovable. | Planejada |
+| 20 | WordPress e integrações externas | Codex + Lovable. | Planejada |
 
-## Testes de aceite a implementar nas fases correspondentes
+Fases 2.1 e 10.1 inseridas sem renumerar IDs; executar na ordem da tabela. Fase 16 amplia extensão já criada em 10.1. Fases híbridas começam no Codex, Lovable somente para recursos gerenciados. Critérios detalhados no manual. Após cada fase, checkpoint e autorização humana.
 
-- Política financeira: operação que exige qualquer valor acima de R$ 0,00 é negada sem chamar o provedor.
-- Franquia compartilhada: texto reserva 6.000 e imagem tenta 5.000 Neurons em bucket de 10.000; segunda reserva é negada (margem zero no cenário de teste).
-- Margem: com teto 10.000 e margem proposta de 10%, 9.000 é teto operacional, não franquia adicional.
-- Concorrência: duas reservas concorrentes não ultrapassam saldo; timeout de inferência incerta não libera consumo presumido.
-- Conta externa: consumo fora do Hub reduz saldo; informação desatualizada bloqueia novo trabalho.
-- Segurança: usuário da comunidade A não lê/altera B nem vincula oferta A ao canal B; visitante não acessa dados privados.
-- Nichos: piloto automotivo e uma segunda comunidade usam as mesmas estruturas sem condicionais automotivos genéricos.
-- Workflow: aprovação vale somente para versão aprovada; retomada não duplica artefato/publicação.
-- Integrações: link afiliado real/importado tem origem; publicação sem confirmação fica desconhecida, não bem-sucedida.
-- Provedores: Gemini e modelos pagos não são invocados, nem como fallback.
-
-Os números de cenário servem para testes futuros concretos. Nenhuma reserva, RLS ou integração é exercitada pela entrega documental da Fase 0.
+## Critérios transversais
+R$0 adicional, quotas compartilhadas com reserva/margem/reconciliação, RLS e isolamento, idempotência, proveniência, aprovação versionada, nenhuma API paga ou não autorizada. Cenários de teste históricos continuam válidos: duas reservas 6000+5000 em teto 10000 não cabem; margem reduz teto, não aumenta franquia. Testar concorrência, consumo externo, entrega incerta, links reais e fallback manual. Margem inicial de planejamento V4: 20%, ajustável somente com evidência e autorização.
