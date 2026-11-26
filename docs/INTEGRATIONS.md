@@ -37,3 +37,7 @@ Webhooks futuros usam fronteira de servidor com assinatura oficial e proteção 
 
 ## V4.0 — pesquisa por capacidade
 Fase 2.1 valida Shopee Affiliate API, ML afiliados/developers e Amazon Creators API/links oficiais independentemente para busca, ranking, preço, cupom, comissão, geração de link, retenção e distribuição. Todos permanecem não verificados para a conta. Extensão concorrente é pista funcional, não autorização; extensão própria somente captura assistida permitida e importação de link oficial, sem exportar sessão/cookies ou endpoints privados. Instagram comentário→DM somente oficial e consentido; WhatsApp manual/oficial elegível; redirecionamento afiliado somente se permitido. WordPress e novas redes em fases futuras. Ver COMPETITIVE_BENCHMARK.md.
+
+## Consolidação V4.0 — SenaFlow (26/11/2026)
+
+Interfaces SenaFlow indicam Shopee AppID/Secret, Amazon tag e cookies opcionais, WhatsApp QR/código e Telegram bot. Somente AppID/Secret, tag e bot entram como candidatos após verificação oficial de capacidade/conta/custo. Não importar cookies ou parear sessão WhatsApp não oficial. ML coleta anunciada não comprova endpoint. Guia de Filtros usa registry oficial e estados de compatibilidade por capacidade. Fase 2.1 registra evidência e alternativa manual.
