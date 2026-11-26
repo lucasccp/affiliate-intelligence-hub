@@ -37,3 +37,7 @@ Contrato de geração separa prompt, parâmetros limitados, dimensão, formato e
 Logotipo final preferencialmente vetorial com texto verificável, inclusive via template SVG; imagem gerativa pode não produzir tipografia correta ou unicidade de marca. Material de produto usa fotos oficiais licenciadas ou upload autorizado quando fidelidade for necessária. Imagem ilustrativa gerada não substitui evidência do produto real.
 
 SVG importado deve ser sanitizado contra scripts, eventos, referências externas e recursos ativos; Canvas/template exportado tem dimensões máximas estáveis. Revisar contraste, direitos, marcas e aprovações. Uploads e artefatos respeitam quota de storage e egress além da franquia de IA.
+
+## Consolidação V4.0 — SenaFlow (26/11/2026)
+
+Kit de convite e páginas ponte reutilizam Brand Studio/Image Studio, com upload licenciado e composição determinística. Referência UI SenaFlow aceita JPG/PNG/WebP até 5 MB; limite próprio deve respeitar storage e segurança, configurável após validação. Reutilizar mesma arte em múltiplos destinos autorizados sem nova inferência. Vídeo Studio futuro usa ativos autorizados e FFmpeg local quando viável, sem custo pago.
