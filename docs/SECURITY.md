@@ -40,3 +40,7 @@ Aprovação se vincula à versão/hash do conteúdo e ao canal; edição invalid
 Definir finalidade, base legal, retenção, exclusão e contato do controlador antes de coletar dados pessoais. Não colher membros de grupos por scraping. Métricas preferencialmente agregadas. Conteúdo importado exige direitos de uso e revisão.
 
 Incidente: pausar jobs afetados, revogar tokens, preservar evidência sanitizada, reconciliar consumo/efeitos externos e retomar somente após autorização apropriada. Backup/exportação gratuitos e restauração precisam ser verificados; não prometer disponibilidade ou recuperação não contratadas.
+
+## Consolidação V4.0 — SenaFlow (26/11/2026)
+
+Extensão MV3: permissões opcionais por domínio, captura explícita permitida, token restrito do Hub revogável, nenhum cookie/site session ou segredo de marketplace. Não copiar QR, sessões WhatsApp, SiteStripe cookies ou mecanismos de reconexão para contornar sanções. Telegram/WhatsApp/Instagram somente capacidades oficiais verificadas ou operação humana; consentimento, destinos autorizados, pausa e limites não garantem ausência de bloqueio. Convites somente em destinos próprios autorizados, sem DM não solicitada; placeholder {link} validado, sem open redirect. Fila e aprovação revalidam versão da regra, preço, link e canal antes do envio; resultado ambíguo exige reconciliação. Páginas ponte públicas apenas projeção publicada, sem dados de membros ou credenciais. Upload validar MIME/conteúdo/tamanho/licença. Testar isolamento entre grupos/workspaces, revogação e replay.
