@@ -1,6 +1,6 @@
 # Status do projeto
 
-Referência: 25/11/2026 (UTC) · **Fase 1 implementada com ressalvas de aceite** · Fases seguintes não autorizadas.
+Referência: 25/11/2026 (UTC) · **Fundação implementada na main, com ressalvas registradas**. Consulte a seção V4.0 para o estado das branches.
 
 ## Entrega
 
@@ -55,11 +55,14 @@ Não há garantia financeira zero certificada para Cloud; não há teste ponta a
 
 ## Aceite e próxima fase
 
-Fundação funcional validada em contas de teste, não na conta pessoal do administrador. Seed fica disponível no workspace criado no seu cadastro. Aceite financeiro permanece pendente por inexistência de bloqueio Cloud confirmado. Validação de entrega e utilização de links de e-mail depende de uma caixa de e-mail real acessível ao administrador; não solicitamos senhas nem forjamos sessões de recuperação. Nenhuma Fase 2 foi iniciada. Critérios de produto e restrições permanecem no PRD e política financeira.
+Fundação funcional validada em contas de teste, não na conta pessoal do administrador. Seed fica disponível no workspace criado no seu cadastro. O administrador controla o Lovable existente. A ausência de bloqueio Cloud confirmado segue registrada para o gate de novas integrações. Validação de entrega e utilização de links de e-mail depende de uma caixa de e-mail real acessível ao administrador; não solicitamos senhas nem forjamos sessões de recuperação. O estado mais recente da Fase 2 consta na seção V4.0 abaixo. Critérios de produto e restrições permanecem no PRD e política financeira.
 
-## Atualização de planejamento V4.0 — 26/11/2026
-Fase 1 permanece implementada com ressalvas; Fase 2 não iniciada conforme estado registrado. Revisão documental autorizada pelo usuário para incorporar benchmark DivulgaLinks. Trial de 14 dias informado pelo usuário; prints ainda pendentes. Roadmap alinhado ao manual mestre, Fase 2.1 pesquisa de marketplaces e benchmark após Fase 2, Fase 10.1 extensão antecipada antes de Offer Hunter, fases 16–20 expansão. Novos requisitos: cupons, links, vitrine, engagement, fila e tracking, vídeo, PWA, expansão e WordPress. Nenhuma implementação, teste novo, conexão, mudança financeira ou migration nesta revisão. Próxima ação: Codex, diagnóstico via PROMPTS.md e autorização explícita da Fase 2; pesquisa 2.1 em seguida após gate. Hard cap Cloud e e-mails continuam pendentes. Ver COMPETITIVE_BENCHMARK.md para checklist de prints.
+## Consolidação V4.0 e conclusão da pesquisa — 26/11/2026
 
-## Consolidação V4.0 — SenaFlow (26/11/2026)
+A main em `85ff565` contém a fundação e a consolidação documental DivulgaLinks Pro/SenaFlow. A Fase 1 foi aceita pelo administrador. Confirmação e recuperação por e-mail e login Google/Lovable ponta a ponta continuam pendentes.
 
-Consolidação documental SenaFlow incorporada aos 15 documentos de planejamento, incluindo benchmark, prompts e instruções de continuidade. Nenhuma implementação, migration, integração ou cobrança autorizada. Fase 1 com ressalvas; próxima Fase 2 de pesquisa mediante autorização. Testes de aplicação não reexecutados por alteração exclusivamente documental. Páginas ponte são hipótese de aquisição; capacidades concorrentes não são confirmação oficial.
+- **Fase 2 — descoberta documentada** na [branch de viabilidade](https://github.com/lucasccp/affiliate-intelligence-hub/tree/c33e3f7/docs). O parecer para inferência real continua bloqueado.
+- **Fase 2 — piloto determinístico** na [branch do piloto](https://github.com/lucasccp/affiliate-intelligence-hub/commit/793bdabf59b10644ba87d8ffc08c069464ce4246), com migrations 0005–0006 do Lovable, cadastro, edição, template, aprovação por versão e exportação em Comunidades. O banco tem jobs de exportação e franquia simulada. A evidência se limita à branch até integração explícita.
+- **Checkpoint do piloto:** 15 testes locais, build, TypeScript e lint com zero erros e oito avisos no Codex. O Lovable relatou 28 testes com contas isoladas e removidas. O Codex excluiu a suíte de banco. Validação autenticada em navegador e incorporação à main seguem pendentes. [Relatório do piloto](https://github.com/lucasccp/affiliate-intelligence-hub/blob/793bdab/docs/PHASE_02_VALIDATION.md)
+- **Fase 2.1 — APPROVED_WITH_WARNINGS para pesquisa.** Matriz oficial, comparação, contratos e plano de POC documentados. Capturas sanitizadas do trial DivulgaLinks e verificação de credenciais, custos e capacidades por conta ainda pendentes. [Checkpoint](PHASE_02_1_VALIDATION.md)
+- **Fase 3 — BLOCKED.** Próxima ação no Codex é verificar entrada: consolidar evidências, validar piloto autorizado e confirmar transporte oficial e custo adicional zero. Sem ativação de IA. O administrador controla o Lovable existente e o orçamento adicional segue em R$ 0,00.

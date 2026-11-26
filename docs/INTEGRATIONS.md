@@ -41,3 +41,24 @@ Fase 2.1 valida Shopee Affiliate API, ML afiliados/developers e Amazon Creators 
 ## Consolidação V4.0 — SenaFlow (26/11/2026)
 
 Interfaces SenaFlow indicam Shopee AppID/Secret, Amazon tag e cookies opcionais, WhatsApp QR/código e Telegram bot. Somente AppID/Secret, tag e bot entram como candidatos após verificação oficial de capacidade/conta/custo. Não importar cookies ou parear sessão WhatsApp não oficial. ML coleta anunciada não comprova endpoint. Guia de Filtros usa registry oficial e estados de compatibilidade por capacidade. Fase 2.1 registra evidência e alternativa manual.
+
+## Contratos propostos — Fase 2.1
+
+Os contratos abaixo delimitam a futura prova local. Cada chamada recebe contexto validado de workspace, comunidade, marketplace BR e capacidade autorizada. O registro de capacidades vincula conta, finalidade, mídia/destino, fonte, data da verificação, escopos, custo, quota e retenção. Credenciais entram por referência opaca no servidor em fase autorizada.
+
+| Contrato | Entrada → saída |
+| --- | --- |
+| `DiscoveryProvider.discover` | Consulta por termo, URL pública ou ranking com período quando suportado → candidatos paginados com identidade e proveniência. Ranking e vendas têm campos distintos. |
+| `ProductProvider.lookup` | Identificador oficial e variante → observação de preço em centavos/BRL, disponibilidade, desconto verificável e evidência, com instante, validade e licença. |
+| `AffiliateLinkProvider.resolve` | Produto e destino autorizado, mais conta elegível ou link oficial já gerado → URL de origem oficial/importada com finalidade e proveniência. Sem geração presumida, reescrita de tag ou encurtamento obrigatório. |
+| `CouponProvider.lookup` | Produto/campanha com escopo permitido → cupom, termos, elegibilidade, origem e expiração. Capacidade opcional independente. |
+
+Saídas versionadas distinguem sucesso, revisão humana, indisponibilidade, limite e bloqueio financeiro. Campos ausentes incluem motivo e permanecem nulos. Identidade estável para dedupe inclui marketplace, produto, variante e workspace/comunidade. Aprovação se vincula à versão da oferta e ao destino. Caminho manual usa dados e links de origem autorizada, mantendo a mesma validação.
+
+### POC local proposta
+
+Usar fixtures JSON sintéticas e relógio fixo, sem credenciais, HTTP, dependência paga, migration ou execução agendada. Simular busca que retorna itens repetidos, preço de outra variante, desconto sem referência, comissão ausente, categoria com ranking sem vendas, cupom vencido e URL oficial sintética. Exercitar: normalização e dedupe, isolamento de escopo, regra versionada idêntica para gatilho manual/simulado, palavras obrigatórias OR e proibidas, motivo de ausência, expiração, aprovação e revalidação por destino. Conta não elegível, tarifa desconhecida, quota e permissão revogada devem produzir bloqueio ou opção manual explícita. O artefato final previsto é um rascunho exportável com proveniência. Esta etapa documenta o plano.
+
+### Manifest V3 na Fase 10.1
+
+Propor captura local por clique explícito em página autorizada, começando por URL pública e entrada manual. Quando os termos permitirem leitura de campos visíveis, usar `activeTab` para acesso temporário e `scripting` apenas para essa leitura. Permissões de host opcionais e específicas, solicitadas somente se necessárias. Mostrar campos e origem em preview, selecionar grupo/comunidade autorizado e confirmar antes de importar. Sem acesso permanente a todas as páginas, cookies, sessões, storage do marketplace, endpoints privados, QR ou observação em segundo plano. Sem disparo. Se houver integração posterior com o Hub, token próprio restrito/revogável, servidor autenticado, RLS, schemas e dedupe. Fallback se a página ou permissão for inadequada é colar URL oficial manualmente. Sem publicação ou instalação neste checkpoint. [Permissão activeTab](https://developer.chrome.com/docs/extensions/develop/concepts/activeTab/) · [Matriz](MARKETPLACE_CAPABILITIES.md)

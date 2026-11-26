@@ -1,14 +1,14 @@
 # Roadmap V4.0 — ordem autorizável
 
-Atualização 26/11/2026. Fonte de prompts e aceite: [PROJECT_MASTER_GUIDE.md](PROJECT_MASTER_GUIDE.md). Benchmark: [COMPETITIVE_BENCHMARK.md](COMPETITIVE_BENCHMARK.md). Fase 1 com ressalvas; próxima Fase 2. Nenhuma fase futura autorizada automaticamente. Gate financeiro obrigatório; pesquisa documental pode ser autorizada separadamente.
+Atualização 26/11/2026. Fonte de prompts e aceite: [PROJECT_MASTER_GUIDE.md](PROJECT_MASTER_GUIDE.md). Benchmark: [COMPETITIVE_BENCHMARK.md](COMPETITIVE_BENCHMARK.md). Fase 1 aceita. Fase 2 e pesquisa 2.1 documentadas em branches de trabalho. Próxima fase numerada: 3, com entrada bloqueada. Nenhuma fase futura autorizada automaticamente. Gate financeiro obrigatório; pesquisa documental pode ser autorizada separadamente.
 
 | Fase | Entrega | Ferramenta | Estado |
 |---|---|---|---|
 | 0 | Governança e arquitetura | Lovable. | Concluída |
 | 1 | Fundação | Lovable. | Com ressalvas |
-| 2 | Integration Discovery e viabilidade | Codex. | Próxima, não iniciada |
-| 2.1 | Marketplace Integration Research e benchmark | Codex. | Planejada |
-| 3 | AI Core e Cost Guardian | Lovable + Codex. | Planejada |
+| 2 | Integration Discovery e viabilidade | Codex. | Descoberta publicada em branch. Piloto em branch com ressalva de validação autenticada. |
+| 2.1 | Marketplace Integration Research e benchmark | Codex. | Pesquisa concluída com ressalvas. |
+| 3 | AI Core e Cost Guardian | Codex → Lovable se necessário → GitHub → Codex. | BLOCKED na entrada. |
 | 4 | Cloudflare Workers AI — textos | Codex + Lovable. | Planejada |
 | 5 | Image Generation Engine | Lovable + Codex. | Planejada |
 | 6 | OpenAI e AI Worker Local | Codex. | Planejada |
