@@ -31,3 +31,7 @@ Executadas em checkout limpo de `a26e779` com Bun 1.4.5.
 ## Dependência
 
 O bloco gerenciado de AGENTS.md reserva ao Lovable as migrations e os tipos gerados. O conector do Lovable está indisponível nesta sessão. A definição para o editor está em [Solicitação ao Lovable](PHASE_02_PILOT.md#solicitação-ao-lovable). Após a entrega gerenciada, deve-se conectar o fluxo e validar isolamento, aprovação por revisão, retomada e concorrência em ambiente autorizado. Para inferência real continua necessário comprovar transporte permitido e custo adicional zero. O teto de R$ 50 discutido anteriormente permanece uma possibilidade futura.
+
+## Parte gerenciada aplicada (Lovable)
+
+Migration `0005_phase2_pilot_offers_workflow_quota.sql` aplicada no banco único do projeto com autorização explícita do administrador (app não publicado). Tabelas `pilot_*` têm somente SELECT para membros. Mutações ocorrem apenas por funções transacionais que verificam o papel de gestão: `pilot_save_offer`, `pilot_approve_offer`, `pilot_export_offer`, `pilot_enqueue_job`, `pilot_claim_job`, `pilot_complete_job` e `pilot_reserve_quota`. `pilot_record_quota_snapshot` e `pilot_settle_reservation` são exclusivas do servidor. Revisões, eventos e artefatos não aceitam edição. O provedor está restrito a `simulated`. Os testes de `src/test/pilot-db.integration.test.ts` foram aprovados com contas isoladas e removidas. Interface e Server Functions não foram alterados.

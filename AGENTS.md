@@ -51,3 +51,4 @@ use the editor.
 - Enforce operational ceilings and immutable workspace ownership in database triggers as well as input schemas; direct authenticated Data API calls must preserve the same invariants.
 - Exclude platform-generated integration and migration artifacts from source linting rather than editing them; the platform owns their formatting and generation.
 - Run integration tests only with explicit test accounts and clean them up with checked results; no end-to-end test may alter an existing person's data.
+- Mutate pilot offers, jobs and quota only through SECURITY DEFINER pilot_* functions that check management role; tables grant members SELECT only so the Data API cannot forge approval, audit or balance.
