@@ -32,3 +32,7 @@ Fases 2.1 e 10.1 inseridas sem renumerar IDs; executar na ordem da tabela. Fase 
 
 ## Critérios transversais
 R$0 adicional, quotas compartilhadas com reserva/margem/reconciliação, RLS e isolamento, idempotência, proveniência, aprovação versionada, nenhuma API paga ou não autorizada. Cenários de teste históricos continuam válidos: duas reservas 6000+5000 em teto 10000 não cabem; margem reduz teto, não aumenta franquia. Testar concorrência, consumo externo, entrega incerta, links reais e fallback manual. Margem inicial de planejamento V4: 20%, ajustável somente com evidência e autorização.
+
+## Consolidação V4.0 — SenaFlow (26/11/2026)
+
+Complementos: 2/2.1 pesquisa SenaFlow; 7 grupos; 9 páginas ponte; 10 destinos; 10.1 captura; 11 regras, guia e coleta; 12 filtros e aprovação; 13 convite; 14 Produção, fila e agenda; 15 métricas. Aceite no manual mestre. Ordem inalterada.
