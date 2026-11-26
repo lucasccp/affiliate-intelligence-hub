@@ -16,3 +16,7 @@ A simulação reutiliza a avaliação de saldo do piloto. Texto e imagem disputa
 ## Próxima ação
 
 Codex para checkpoint de aceitação do escopo assistido após validação visual no preview do Lovable. Nenhuma alteração de schema é necessária para o escopo entregue. Fases 4 e 5 permanecem bloqueadas para inferência real por falta de transporte oficial e custo zero verificável. [Parecer de gateway](https://github.com/lucasccp/affiliate-intelligence-hub/blob/2fdf9f7/docs/PHASE_03_ENTRY_CHECKPOINT.md)
+
+## Teste do WhatsApp no celular — 26/11/2026
+
+O administrador informou que executou no celular o teste de abertura do WhatsApp a partir do preview, no fluxo de oferta aprovada e mensagem por template. O relato não especifica a versão do preview, o resultado de cada verificação ou envio ao grupo. Não houve reprodução independente pelo Codex nesta rodada. A Fase 4 segue bloqueada para inferência real, e uma eventual reordenação do roadmap aguarda autorização.
