@@ -84,3 +84,34 @@ it("builds a WhatsApp message using the supplied link and affiliate disclosure",
   expect(message).toContain("https://example.com/link");
   expect(message).toContain("Link de afiliado");
 });
+
+it("formats verified optional promotion details and omits empty lines", () => {
+  const options = {
+    offer: {
+      name: "Kit de panos",
+      priceCents: 3000,
+      sourceUrl: "https://example.com/kit",
+      expiresAt: "2026-11-29T16:00:00Z",
+      version: 1,
+    },
+    community: "Garagem de Ofertas",
+    template: "market",
+    affiliate: false,
+  } as const;
+  expect(makeWhatsappMessage(options)).not.toMatch(/Cupom|desconto|por unidade/);
+  const message = makeWhatsappMessage({
+    ...options,
+    details: {
+      marketplace: "Shopee",
+      coupon: "KIT10",
+      previousPrice: "50,00",
+      installments: "3× de R$ 10,00",
+      quantity: "3",
+    },
+  });
+  expect(message).toContain("40% de desconto");
+  expect(message).toMatch(/10,00 por unidade/);
+  expect(message).toContain("*KIT10*");
+  expect(message).toContain("3× de R$ 10,00");
+  expect(message).toContain("Shopee");
+});

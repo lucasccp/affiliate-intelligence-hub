@@ -10,6 +10,7 @@ import {
   announcementUrlSchema,
   makeWhatsappMessage,
   whatsappTemplates,
+  whatsappDetailsSchema,
   briefSchema,
   importedTextSchema,
   makeAssistedDrafts,
@@ -77,6 +78,14 @@ function Studio({
   const [channel, setChannel] = useState("whatsapp");
   const [messageTemplate, setMessageTemplate] = useState<keyof typeof whatsappTemplates>("direct");
   const [affiliateLink, setAffiliateLink] = useState("");
+  const [details, setDetails] = useState({
+    marketplace: "",
+    coupon: "",
+    installments: "",
+    previousPrice: "",
+    quantity: "",
+  });
+  const parsedDetails = whatsappDetailsSchema.safeParse(details);
   const [affiliate, setAffiliate] = useState(false);
   const link = announcementUrlSchema.safeParse(affiliateLink.trim() || offer?.revision.source_url);
   const approved = Boolean(offer && current?.approved_version === offer.current_version);
@@ -89,12 +98,13 @@ function Studio({
     version: offer.current_version,
   };
   const message =
-    offerSource && link.success
+    offerSource && link.success && parsedDetails.success
       ? makeWhatsappMessage({
           offer: { ...offerSource, sourceUrl: link.data },
           community,
           template: messageTemplate,
           affiliate: affiliate || Boolean(affiliateLink.trim()),
+          details: parsedDetails.data,
         })
       : "";
   const canShare = Boolean(message && approved && !warning);
@@ -271,6 +281,43 @@ function Studio({
                   A fonte da oferta é um link de afiliado
                 </label>
               )}
+              <details className="rounded-md border p-3">
+                <summary className="cursor-pointer text-sm font-medium">
+                  Detalhes da oferta (opcionais)
+                </summary>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Informe apenas condições confirmadas no anúncio. Os campos valem para esta sessão.
+                </p>
+                <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                  {(
+                    [
+                      ["marketplace", "Marketplace", "Ex.: Shopee", "text", 60],
+                      ["previousPrice", "Preço anterior (R$)", "Ex.: 49,90", "decimal", 15],
+                      ["coupon", "Cupom", "Ex.: GARAGEM10", "text", 50],
+                      ["installments", "Parcelamento", "Ex.: 3× de R$ 13,30", "text", 100],
+                      ["quantity", "Unidades no pacote", "Ex.: 3", "numeric", 4],
+                    ] as const
+                  ).map(([key, label, placeholder, inputMode, maxLength]) => (
+                    <label key={key} className="block space-y-1">
+                      {label}
+                      <Input
+                        value={details[key]}
+                        inputMode={inputMode}
+                        maxLength={maxLength}
+                        placeholder={placeholder}
+                        onChange={(event) =>
+                          setDetails({ ...details, [key]: event.currentTarget.value })
+                        }
+                      />
+                    </label>
+                  ))}
+                </div>
+                {!parsedDetails.success && (
+                  <p role="alert" className="mt-2 text-sm">
+                    Confira o preço anterior e a quantidade do pacote.
+                  </p>
+                )}
+              </details>
               {message && (
                 <label className="block space-y-1">
                   Mensagem para o grupo

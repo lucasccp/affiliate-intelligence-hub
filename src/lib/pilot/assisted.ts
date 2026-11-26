@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { parseOfferPrice } from "./offer";
 import { evaluateReservation } from "./cost";
 
 const offerSourceSchema = z.object({
@@ -112,6 +113,8 @@ export const whatsappTemplates = {
   direct: "Direto",
   community: "Seleção da comunidade",
   short: "Resumo curto",
+  market: "Compra em pacote",
+  deadline: "Com prazo",
 } as const;
 
 export const announcementUrlSchema = z
@@ -122,36 +125,79 @@ export const announcementUrlSchema = z
     return !url.username && !url.password;
   });
 
+const singleLine = (maximum: number) =>
+  z
+    .string()
+    .trim()
+    .max(maximum)
+    .regex(/^[^\r\n]*$/u);
+export const whatsappDetailsSchema = z.object({
+  marketplace: singleLine(60),
+  coupon: singleLine(50),
+  installments: singleLine(100),
+  previousPrice: z
+    .string()
+    .trim()
+    .regex(/^(?:\d{1,7}(?:[,.]\s*\d{1,2})?)?$/),
+  quantity: z
+    .string()
+    .trim()
+    .regex(/^(?:[1-9]\d{0,3})?$/),
+});
+
 export function makeWhatsappMessage({
   offer,
   community,
   template,
   affiliate,
+  details,
 }: {
   offer: AssistedOfferSource;
   community: string;
   template: keyof typeof whatsappTemplates;
   affiliate: boolean;
+  details?: z.infer<typeof whatsappDetailsSchema>;
 }) {
   const { name, priceCents, sourceUrl, expiresAt } = offerSourceSchema.parse(offer);
   const url = announcementUrlSchema.parse(sourceUrl);
-  const price = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
-    priceCents / 100,
-  );
+  const money = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+  const price = money.format(priceCents / 100);
+  const extra = details && whatsappDetailsSchema.parse(details);
+  const previous = extra?.previousPrice ? parseOfferPrice(extra.previousPrice) : 0;
+  const discount =
+    previous > priceCents ? Math.floor(((previous - priceCents) * 100) / previous) : 0;
+  const priceLine =
+    previous > priceCents
+      ? `💰 De ~${money.format(previous / 100)}~ por *${price}*${discount ? ` · ${discount}% de desconto` : ""}`
+      : `💰 *${price}*`;
+  const quantity = Number(extra?.quantity || 0);
   const validity = new Intl.DateTimeFormat("pt-BR", {
     dateStyle: "short",
     timeStyle: "short",
     timeZone: "America/Sao_Paulo",
   }).format(new Date(expiresAt));
-  const heading = template === "community" ? [`Seleção de ${community}`] : [];
-  const details =
-    template === "short" ? [`${name} — ${price}`] : [name, `Preço observado: ${price}`];
+  const headings = {
+    direct: "🏷️ *Destaque de preço*",
+    community: `✨ *Seleção de ${community}*`,
+    short: "",
+    market: "🛒 *Para a próxima compra*",
+    deadline: "🗓️ *Confira o prazo da oferta*",
+  };
+
+  const detailsLines = [
+    priceLine,
+    ...(quantity > 1
+      ? [`📦 ${quantity} unidades · ${money.format(priceCents / quantity / 100)} por unidade`]
+      : []),
+    ...(extra?.coupon ? [`🎟️ Cupom: *${extra.coupon}*`] : []),
+    ...(extra?.installments ? [`💳 ${extra.installments}`] : []),
+    ...(extra?.marketplace ? [`🏪 ${extra.marketplace}`] : []),
+  ];
 
   return [
-    ...heading,
-    ...details,
-    `Validade informada: ${validity} (horário de Brasília)`,
-    url,
+    [headings[template], `*${name}*`].filter(Boolean).join("\n"),
+    detailsLines.join("\n"),
+    `⏱️ Validade informada: ${validity} (horário de Brasília)\n🔗 ${url}`,
     ...(affiliate ? ["Link de afiliado. Podemos receber comissão pela compra."] : []),
-  ].join("\n");
+  ].join("\n\n");
 }
