@@ -1,15 +1,19 @@
-# Prompts rápidos do Codex
+# Prompts rápidos — Affiliate Intelligence Hub V4.0
 
-Use os dois prompts abaixo no Codex. Consulte o [manual mestre](docs/PROJECT_MASTER_GUIDE.md) e o [status](docs/PROJECT_STATUS.md).
+Use os prompts abaixo no Codex como ponto de entrada. Consulte o [manual mestre](docs/PROJECT_MASTER_GUIDE.md) e o [status](docs/PROJECT_STATUS.md).
 
 ## 1. Recuperar contexto — executar no Codex
 
 ```text
-Leia AGENTS.md, docs/PROJECT_MASTER_GUIDE.md e docs/PROJECT_STATUS.md. Execute o prompt de recuperação de contexto e siga o roteamento obrigatório de execução do manual mestre.
+Atue como engenheiro de software sênior e arquiteto responsável pela continuidade do Affiliate Intelligence Hub V4.0.
 
-Identifique a fase atual, funcionalidades reais, pendências, riscos e próxima fase. Informe explicitamente onde executar a próxima etapa: Codex, Lovable ou ambos, em qual ordem e por quê. Se houver bloqueio, indique como resolvê-lo e em qual ferramenta.
+Recupere todo o contexto diretamente do repositório, considerando a última consolidação documental e os benchmarks da DivulgaLinks Pro e da SenaFlow.
 
-Forneça o prompt exato pronto para copiar na ferramenta indicada. Não altere nada. Aguarde minha autorização.
+1. Leia AGENTS.md, README.md e os documentos em docs/: PROJECT_MASTER_GUIDE.md, PROJECT_STATUS.md, ROADMAP.md, ARCHITECTURE.md, PRD.md, DATABASE.md, COMPETITIVE_BENCHMARK.md, INTEGRATIONS.md, MARKETPLACE_CAPABILITIES.md, ZERO_COST_POLICY.md, SECURITY.md, AI_PROVIDERS.md e IMAGE_GENERATION.md.
+2. Analise branch, commits recentes, código e alterações pendentes. Identifique última fase efetivamente implementada, funcionalidades reais, pendências, ressalvas dos checkpoints, divergências, riscos técnicos e financeiros e próxima fase.
+3. Preserve arquitetura e funcionalidades existentes, aplique a consolidação V4.0, mantenha orçamento adicional R$ 0,00, respeite recursos gerenciados pelo Lovable e não habilite serviços pagos ou integrações não autorizadas. Não confunda planejamento com implementação.
+4. Apresente objetivo, escopo, entregáveis, critérios de aceite e dependências da próxima fase. Informe ferramenta (Codex, Lovable ou ambos), ordem e motivo. Forneça prompts separados e prontos para copiar quando híbrida.
+5. Não altere arquivos neste diagnóstico. Aguarde autorização explícita. Após cada fase autorizada, execute checkpoint, atualize PROJECT_STATUS.md, reporte testes e indique ferramenta e prompt exato da próxima etapa. Nunca avance automaticamente.
 ```
 
 ## 2. Autorizar a próxima fase — executar no Codex
@@ -33,4 +37,10 @@ Checkpoint e recuperação de contexto: Codex. Revisão técnica após Lovable: 
 
 
 ## V4.0
-Siga a ordem de ROADMAP.md (inclui 2.1 e 10.1). Leia COMPETITIVE_BENCHMARK.md para pesquisa e prints sanitizados. Próxima fase registrada: 2, Codex; não presumir conclusão.
+Siga a ordem de ROADMAP.md (inclui 2.1 e 10.1). Leia COMPETITIVE_BENCHMARK.md para pesquisa e prints sanitizados. A consolidação SenaFlow de 26/11/2026 está nos 15 documentos de planejamento; aplicar os complementos do manual mestre, sem presumir integração oficial ou implementação. Páginas ponte são hipótese de aquisição. Fase 1 com ressalvas; gate financeiro pendente. Próxima fase registrada: 2, Codex; não presumir conclusão.
+
+## 3. Retomar após Lovable — executar no Codex
+
+```text
+Sincronizei as alterações autorizadas do Lovable com GitHub. Leia AGENTS.md, PROJECT_MASTER_GUIDE.md e PROJECT_STATUS.md (os dois últimos em docs/). Confira branch, diff, recursos gerenciados e critérios da fase vigente. Execute apenas o trabalho não gerenciado restante e o checkpoint quando aplicável. Reporte testes, bloqueios e status; forneça ferramenta, ordem e prompt exato da próxima etapa. Não avance sem autorização.
+```
