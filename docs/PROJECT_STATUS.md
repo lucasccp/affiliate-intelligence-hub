@@ -4,7 +4,7 @@ Referência: 25/11/2026 (UTC) · **Fase 1 aceita pelo administrador em 26/11/202
 
 ## Piloto determinístico da Fase 2
 
-Regras locais de oferta, template, versão de aprovação e avaliação de franquia compartilhada preparadas. Persistência, interface e testes transacionais aguardam schema gerenciado. O administrador controla o Lovable existente. O piloto usa R$ 0,00 de custo adicional. IA real segue fora desta etapa. [Escopo e solicitação ao Lovable](PHASE_02_PILOT.md)
+Regras locais de oferta, template, versão de aprovação e avaliação de franquia compartilhada preparadas. A migration 0005 e os tipos do piloto foram sincronizados pelo Lovable. A interface e a validação transacional aguardam correções gerenciadas. O administrador controla o Lovable existente. O piloto usa R$ 0,00 de custo adicional. IA real segue fora desta etapa. [Escopo e solicitação ao Lovable](PHASE_02_PILOT.md)
 
 ## Checkpoint de 26/11/2026
 

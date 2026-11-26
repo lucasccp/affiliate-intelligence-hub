@@ -35,3 +35,15 @@ O bloco gerenciado de AGENTS.md reserva ao Lovable as migrations e os tipos gera
 ## Parte gerenciada aplicada (Lovable)
 
 Migration `0005_phase2_pilot_offers_workflow_quota.sql` aplicada no banco único do projeto com autorização explícita do administrador (app não publicado). Tabelas `pilot_*` têm somente SELECT para membros. Mutações ocorrem apenas por funções transacionais que verificam o papel de gestão: `pilot_save_offer`, `pilot_approve_offer`, `pilot_export_offer`, `pilot_enqueue_job`, `pilot_claim_job`, `pilot_complete_job` e `pilot_reserve_quota`. `pilot_record_quota_snapshot` e `pilot_settle_reservation` são exclusivas do servidor. Revisões, eventos e artefatos não aceitam edição. O provedor está restrito a `simulated`. Os testes de `src/test/pilot-db.integration.test.ts` foram aprovados com contas isoladas e removidas. Interface e Server Functions não foram alterados.
+
+## Revisão Codex após sincronização Lovable
+
+Base revisada: `3598c8e` na branch `phase-02/piloto-deterministico`. A migration 0005 e os tipos correspondentes estão no GitHub. **Aceite operacional da Fase 2: BLOCKED.**
+
+- A migration declara RLS para os oito objetos de dados do piloto, leitura por membro, RPCs de mutação com autorização de gestor, funções de snapshot/liquidação restritas a service role e FKs compostas nas relações principais. A autoria das operações humanas usa `auth.uid()`. A reserva de texto/imagem trava a mesma conta simulada antes de conferir saldo.
+- `pilot_complete_job` cria `text_export` sem assegurar que a revisão do job ainda é a atual, está aprovada e está vigente. A suíte entregue verifica criação do artefato sem registrar aprovação antes do job. A interface depende de uma correção transacional gerenciada. A exportação direta também precisa coordenar a leitura da revisão com edições concorrentes.
+- `pilot_reserve_quota` retorna uma reserva existente antes de validar a política monetária e sem conferir que o retry representa a mesma comunidade, modalidade e quantidade. A regra de idempotência deve distinguir repetição exata de conflito.
+- Validade e lease usam `now()`, que fica fixo desde o início da transação. Em operações que aguardam lock, revalidar com o relógio corrente do banco após obter o lock. Testar em ambiente autorizado, incluindo revisão alterada ou expirada antes da conclusão e colisão de chave de reserva.
+- O checkpoint local passou em instalação congelada, build, TypeScript e 15 testes. O lint inicialmente encontrou um erro de formatação na suíte de banco. Correção exclusiva de formatação aplicada, com lint final de zero erros e oito avisos existentes. As duas suítes de banco foram excluídas desta execução. A aprovação anterior relatada pelo Lovable não foi reproduzida nesta sessão.
+
+Próxima ação: Lovable deve entregar migration incremental e tipos se o contrato mudar. Depois da sincronização, Codex revisa o diff, valida o banco em ambiente autorizado e conecta a interface. Sem alteração de faturamento, serviço externo ou avanço à Fase 3.
