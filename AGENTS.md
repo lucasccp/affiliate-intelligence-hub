@@ -53,3 +53,7 @@ use the editor.
 - Run integration tests only with explicit test accounts and clean them up with checked results; no end-to-end test may alter an existing person's data.
 
 - Before any project task, read `docs/PROJECT_MASTER_GUIDE.md`, `docs/PROJECT_STATUS.md`, `docs/ROADMAP.md` and relevant phase documents. Follow the V4 execution routing and explicit phase authorization; report the next tool and copy-ready prompt. For marketplace research read `docs/COMPETITIVE_BENCHMARK.md`; never treat competitor behavior as official API permission or export marketplace sessions.
+
+## Consolidação V4.0 — SenaFlow (26/11/2026)
+
+- Aplicar complemento SenaFlow do manual mestre em cada fase pertinente. Não confundir grupo operacional com destino de mensagens. Não implementar cookies SiteStripe, exportação de sessões, pareamento não oficial ou bypass de bloqueio. Regras de coleta/publicação versionadas e determinísticas. Preservar bloco Lovable e atualizar status/checkpoint após cada fase autorizada.
