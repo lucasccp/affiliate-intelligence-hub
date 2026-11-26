@@ -29,9 +29,9 @@ function CommunityWorkspace() {
   const canManage = data.role === "owner" || data.role === "admin";
 
   return (
-    <Tabs value={tab} onValueChange={setTab} className="community-workspace min-w-0 space-y-5">
+    <Tabs value={tab} onValueChange={setTab} className="min-w-0 space-y-5">
       <header className="community-workspace-header rounded-2xl border p-4 shadow-sm sm:p-6">
-        <h1 className="community-display text-2xl font-semibold tracking-tight sm:text-3xl">
+        <h1 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
           Comunidades
         </h1>
         <p className="mt-1 text-sm text-muted-foreground">
