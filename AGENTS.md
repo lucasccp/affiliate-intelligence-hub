@@ -54,6 +54,8 @@ use the editor.
 
 - Before any project task, read `docs/PROJECT_MASTER_GUIDE.md`, `docs/PROJECT_STATUS.md`, `docs/ROADMAP.md` and relevant phase documents. Follow the V4 execution routing and explicit phase authorization; report the next tool and copy-ready prompt. For marketplace research read `docs/COMPETITIVE_BENCHMARK.md`; never treat competitor behavior as official API permission or export marketplace sessions.
 
+- Mutate pilot offers, jobs and quota only through SECURITY DEFINER pilot_* functions that check management role. Pilot tables grant members read access only.
+
 ## Consolidação V4.0 — SenaFlow (26/11/2026)
 
 - Aplicar complemento SenaFlow do manual mestre em cada fase pertinente. Não confundir grupo operacional com destino de mensagens. Não implementar cookies SiteStripe, exportação de sessões, pareamento não oficial ou bypass de bloqueio. Regras de coleta/publicação versionadas e determinísticas. Preservar bloco Lovable e atualizar status/checkpoint após cada fase autorizada.

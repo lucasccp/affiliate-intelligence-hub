@@ -2,9 +2,15 @@
 
 Fábrica inteligente de comunidades de ofertas para programas de afiliados, com configuração independente por nicho e controle central de consumo.
 
-**Estado: Fase 1 — fundação implementada.** Login, perfil, workspace pessoal, dashboard, CRUD de comunidades e configurações utilizam persistência real. Módulos posteriores estão indisponíveis; não há inferência de IA, publicação ou conexão com marketplaces/canais.
+**Fundação implementada na main. Piloto e Fase 3 assistida disponíveis em develop.** Login, perfil, workspace pessoal, dashboard, CRUD de comunidades e configurações utilizam persistência real. A automação de fases futuras segue pendente; não há inferência de IA, publicação ou conexão com marketplaces/canais.
 
 **Orçamento adicional autorizado: R$ 0,00.** Lovable Cloud foi conectado nesta fase. Compras automáticas estão desativadas, mas o serviço pode consumir créditos existentes após a franquia; nenhum limite de bloqueio Cloud foi encontrado. Não há garantia de custo operacional zero certificada. A assinatura ChatGPT/Codex não é uma API gratuita presumida. Consulte a [política financeira](docs/ZERO_COST_POLICY.md).
+
+## Branch de desenvolvimento
+
+Use `develop` como referência única para código, documentação e preview no Lovable. As branches de fase preservam o histórico das entregas. Para testar, confirme a sincronização da branch e o ambiente do banco. Em Comunidades, selecione Garagem de Ofertas com uma conta de teste proprietária ou administradora. O painel Conteúdo assistido aparece acima do Piloto de ofertas.
+
+[Status atual](docs/PROJECT_STATUS.md) · [Checkpoint da Fase 3 assistida](docs/PHASE_03_ASSISTED_VALIDATION.md)
 
 ## Documentação
 

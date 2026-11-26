@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Communities } from "@/components/hub/communities";
 import { PilotOffers } from "@/components/hub/pilot-offers";
+import { AssistedStudio } from "@/components/hub/assisted-studio";
 import { hubQuery, communityPageQuery } from "@/lib/hub-query";
 import { pageHead } from "@/lib/page-head";
 export const Route = createFileRoute("/_authenticated/comunidades")({
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/_authenticated/comunidades")({
   component: () => (
     <>
       <Communities />
+      <AssistedStudio />
       <PilotOffers />
     </>
   ),

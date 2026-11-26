@@ -2,6 +2,15 @@
 
 Referência: 25/11/2026 (UTC) · **Fundação implementada na main, com ressalvas registradas**. Consulte a seção V4.0 para o estado das branches.
 
+## Estado integrado em develop — 26/11/2026
+
+`develop` é a branch de trabalho e preview no Lovable. Integra os requisitos V4.0, a descoberta da Fase 2, a pesquisa 2.1, o piloto e a Fase 3 assistida. Os artefatos gerenciados do piloto foram incorporados como entregues pelo Lovable. A main permanece como referência da fundação e do planejamento.
+
+- **Fase 2:** piloto de ofertas em Comunidades com criação, template, edição versionada, aprovação e exportação autenticada. O administrador relatou aceite do roteiro no preview, sem SHA informado. [Checkpoint do piloto](PHASE_02_VALIDATION.md) · [Aceite reportado](PHASE_03_ENTRY_CHECKPOINT.md)
+- **Fase 2.1:** pesquisa de marketplaces e benchmark concluída com ressalvas. [Checkpoint](PHASE_02_1_VALIDATION.md)
+- **Fase 3 assistida:** templates, prompts copiáveis, importação local e simulação de franquia. Painel acima do Piloto de ofertas. Materiais importados ficam na sessão. Validação autenticada do painel aguarda execução no preview. [Checkpoint](PHASE_03_ASSISTED_VALIDATION.md)
+- **Inferência real:** Fases 4 e 5 bloqueadas até comprovação de rota e custo zero. [Parecer de gateway](PHASE_03_GATEWAY_FEASIBILITY.md)
+
 ## Entrega
 
 Aplicação administrativa pt-BR com temas claro/escuro, sidebar recolhível/mobile, header, seletor global, dashboard, comunidades e configurações. Login e cadastro e-mail/senha, recuperação e logout implementados; Google/Lovable configurados. Perfil, preferências e workspace pessoal persistidos. CRUD atômico de comunidades com filtros e paginação real; Garagem de Ofertas criada por lifecycle de cadastro idempotente. Dashboard mostra contagens e atividade real, com métricas futuras indisponíveis.
@@ -63,7 +72,7 @@ A main em `85ff565` contém a fundação e a consolidação documental DivulgaLi
 
 - **Fase 2 — descoberta documentada** na [branch de viabilidade](https://github.com/lucasccp/affiliate-intelligence-hub/tree/c33e3f7/docs). O parecer para inferência real continua bloqueado.
 - **Fase 2 — piloto determinístico** na [branch do piloto](https://github.com/lucasccp/affiliate-intelligence-hub/commit/793bdabf59b10644ba87d8ffc08c069464ce4246), com migrations 0005–0006 do Lovable, cadastro, edição, template, aprovação por versão e exportação em Comunidades. O banco tem jobs de exportação e franquia simulada. A evidência se limita à branch até integração explícita.
-- **Checkpoint do piloto:** 15 testes locais, build, TypeScript e lint com zero erros e oito avisos no Codex. O Lovable relatou 28 testes com contas isoladas e removidas. O Codex excluiu a suíte de banco. Validação autenticada em navegador e incorporação à main seguem pendentes. [Relatório do piloto](https://github.com/lucasccp/affiliate-intelligence-hub/blob/793bdab/docs/PHASE_02_VALIDATION.md)
+- **Checkpoint do piloto:** 15 testes locais, build, TypeScript e lint com zero erros e oito avisos no Codex. O Lovable relatou 28 testes com contas isoladas e removidas. O Codex excluiu a suíte de banco. O relatório abaixo registra o aceite autenticado posteriormente informado pelo administrador. [Relatório do piloto](https://github.com/lucasccp/affiliate-intelligence-hub/blob/793bdab/docs/PHASE_02_VALIDATION.md)
 - **Fase 2.1 — APPROVED_WITH_WARNINGS para pesquisa.** Matriz oficial, comparação, contratos e plano de POC documentados. Capturas sanitizadas do trial DivulgaLinks e verificação de credenciais, custos e capacidades por conta ainda pendentes. [Checkpoint](PHASE_02_1_VALIDATION.md)
 - **Fase 3 — BLOCKED.** Próxima ação no Codex é verificar entrada: consolidar evidências, validar piloto autorizado e confirmar transporte oficial e custo adicional zero. Sem ativação de IA. O administrador controla o Lovable existente e o orçamento adicional segue em R$ 0,00.
 
@@ -75,4 +84,4 @@ A documentação oficial registra limites bloqueantes por projeto ou workspace e
 
 ## Retorno do Lovable sobre gateway — 26/11/2026
 
-A rota Cloudflare para inferência permanece **NÃO COMPROVADA**. O Lovable relatou workspace Free e recarga automática desligada, sem confirmação oficial do uso do conector para modelos, faturamento por camada ou bloqueio prévio. A validação autenticada do piloto continua pendente. Qualquer execução da Fase 3 restrita a templates, importação manual e testes simulados requer autorização explícita e revisão do gate. [Relatório do Lovable](https://github.com/lucasccp/affiliate-intelligence-hub/blob/fb05439e1394d91e9a1ee9f3035dfb1af3154a57/docs/PHASE_03_GATEWAY_FEASIBILITY.md) · [Checkpoint](PHASE_03_ENTRY_CHECKPOINT.md)
+A rota Cloudflare para inferência permanece **NÃO COMPROVADA**. O Lovable relatou workspace Free e recarga automática desligada, sem confirmação oficial do uso do conector para modelos, faturamento por camada ou bloqueio prévio. O administrador posteriormente relatou o aceite autenticado do piloto. A Fase 3 assistida foi autorizada e seu estado integrado consta no início deste documento. [Relatório do Lovable](https://github.com/lucasccp/affiliate-intelligence-hub/blob/fb05439e1394d91e9a1ee9f3035dfb1af3154a57/docs/PHASE_03_GATEWAY_FEASIBILITY.md) · [Checkpoint](PHASE_03_ENTRY_CHECKPOINT.md)
