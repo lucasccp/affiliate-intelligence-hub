@@ -28,6 +28,9 @@ O Codex é o ponto de entrada para diagnóstico, autorização, revisão e acomp
 
 Em todo diagnóstico, autorização e checkpoint, informar: fase atual e status; próxima fase e gate; ferramenta de início (Codex ou Lovable); sequência de ferramentas e motivo; ação do usuário; prompt exato pronto para copiar na ferramenta indicada, limitado ao escopo autorizado. Se a próxima etapa exigir Lovable, parar antes da alteração gerenciada e fornecer prompt específico para o editor, com critérios de aceite e instrução de sincronização. Depois da sincronização, fornecer prompt de retomada no Codex. Não executar outra fase sem autorização. Se bloqueado, indicar ferramenta e prompt para resolver o bloqueio, sem habilitar serviços pagos.
 
-Checkpoint e recuperação de contexto: Codex. Revisão técnica após Lovable: Codex. Fases 0 e 1 são históricas (Lovable); não reexecutar sem autorização. Fase 2 e 6: Codex. Fases 3–5 e 7–15: híbridas, com Codex como ponto de entrada e Lovable somente quando necessário. Esta regra detalha a ordem das linhas Ferramenta, não altera os requisitos de produto.
+Checkpoint e recuperação de contexto: Codex. Revisão técnica após Lovable: Codex. Fases 0 e 1 são históricas (Lovable); não reexecutar sem autorização. Fases 2, 2.1, 6 e 18: Codex. Fases 3–5, 7–10, 10.1, 11–17 e 19–20: híbridas, com Codex como ponto de entrada e Lovable somente quando necessário. Esta regra detalha a ordem das linhas Ferramenta, não altera os requisitos de produto.
 
 
+
+## V4.0
+Siga a ordem de ROADMAP.md (inclui 2.1 e 10.1). Leia COMPETITIVE_BENCHMARK.md para pesquisa e prints sanitizados. Próxima fase registrada: 2, Codex; não presumir conclusão.
