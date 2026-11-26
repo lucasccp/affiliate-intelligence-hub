@@ -432,3 +432,41 @@
     transition: none !important;
   }
 }
+
+/* The community workspace has its own warm accent and preserves both app themes. */
+.community-workspace {
+  --primary: oklch(0.83 0.14 80);
+  --primary-foreground: oklch(0.23 0.035 60);
+  --ring: oklch(0.55 0.13 63);
+  --accent: oklch(0.96 0.035 84);
+  --accent-foreground: oklch(0.31 0.07 61);
+  --workspace-wash: oklch(0.96 0.042 85);
+}
+
+.dark .community-workspace {
+  --primary: oklch(0.83 0.14 80);
+  --primary-foreground: oklch(0.23 0.035 60);
+  --ring: oklch(0.78 0.12 78);
+  --accent: oklch(0.32 0.054 67);
+  --accent-foreground: oklch(0.91 0.078 84);
+  --card: oklch(0.24 0.017 260);
+  --workspace-wash: oklch(0.31 0.043 66);
+}
+
+.community-workspace-header {
+  background: linear-gradient(120deg, var(--card) 30%, var(--workspace-wash));
+}
+
+.community-workspace-tabs {
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+.community-workspace-tabs [data-state="active"] {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.community-display {
+  font-family: "Poppins", var(--font-sans);
+}

@@ -121,7 +121,7 @@ function OfferPanel({
         }}
       >
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-lg font-semibold" id="pilot-offers-heading">
+          <h2 className="community-display text-lg font-semibold" id="pilot-offers-heading">
             Piloto de ofertas
           </h2>
           {canManage && (
@@ -134,9 +134,11 @@ function OfferPanel({
           )}
         </div>
         {canManage && (
-          <DialogContent className="max-h-[85dvh] overflow-y-auto">
+          <DialogContent className="community-workspace max-h-[85dvh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>{editing ? "Editar oferta" : "Nova oferta"}</DialogTitle>
+              <DialogTitle className="community-display">
+                {editing ? "Editar oferta" : "Nova oferta"}
+              </DialogTitle>
               <DialogDescription>
                 Informe o preço observado, a fonte e a validade.
               </DialogDescription>
@@ -214,7 +216,7 @@ function OfferPanel({
           <article key={id} className="space-y-2 rounded-xl border bg-card p-4">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <h3 className="min-w-0 break-words font-medium">{revision.name}</h3>
-              <p className="shrink-0 font-semibold tabular-nums">
+              <p className="community-display shrink-0 font-semibold tabular-nums">
                 {priceFormatter.format(revision.price_cents / 100)}
               </p>
             </div>

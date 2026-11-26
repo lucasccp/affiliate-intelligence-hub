@@ -29,15 +29,17 @@ function CommunityWorkspace() {
   const canManage = data.role === "owner" || data.role === "admin";
 
   return (
-    <Tabs value={tab} onValueChange={setTab} className="min-w-0 space-y-5">
-      <header className="rounded-2xl border bg-card p-4 sm:p-6">
-        <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">Comunidades</h1>
+    <Tabs value={tab} onValueChange={setTab} className="community-workspace min-w-0 space-y-5">
+      <header className="community-workspace-header rounded-2xl border p-4 shadow-sm sm:p-6">
+        <h1 className="community-display text-2xl font-semibold tracking-tight sm:text-3xl">
+          Comunidades
+        </h1>
         <p className="mt-1 text-sm text-muted-foreground">
           {selected ? selected.name : "Todas as comunidades"}
         </p>
         <TabsList
           aria-label="Áreas de trabalho"
-          className="mt-4 grid h-auto w-full auto-cols-fr grid-flow-col gap-1 sm:w-fit"
+          className="community-workspace-tabs mt-5 grid h-auto w-full auto-cols-fr grid-flow-col gap-1 sm:w-fit"
         >
           <TabsTrigger value="communities" className="min-h-11 gap-2 px-2 sm:px-4">
             <Layers3 className="hidden size-4 sm:block" aria-hidden="true" />
