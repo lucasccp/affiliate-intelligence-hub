@@ -85,3 +85,7 @@ A documentação oficial registra limites bloqueantes por projeto ou workspace e
 ## Retorno do Lovable sobre gateway — 26/11/2026
 
 A rota Cloudflare para inferência permanece **NÃO COMPROVADA**. O Lovable relatou workspace Free e recarga automática desligada, sem confirmação oficial do uso do conector para modelos, faturamento por camada ou bloqueio prévio. O administrador posteriormente relatou o aceite autenticado do piloto. A Fase 3 assistida foi autorizada e seu estado integrado consta no início deste documento. [Relatório do Lovable](https://github.com/lucasccp/affiliate-intelligence-hub/blob/fb05439e1394d91e9a1ee9f3035dfb1af3154a57/docs/PHASE_03_GATEWAY_FEASIBILITY.md) · [Checkpoint](PHASE_03_ENTRY_CHECKPOINT.md)
+
+## Teste do WhatsApp no celular — 26/11/2026
+
+O administrador informou que executou no celular o teste de abertura do WhatsApp a partir do preview, no fluxo de oferta aprovada e mensagem por template. O relato não especifica a versão do preview, o resultado de cada verificação ou envio ao grupo. Não houve reprodução independente pelo Codex nesta rodada. A Fase 4 segue bloqueada para inferência real, e uma eventual reordenação do roadmap aguarda autorização.
