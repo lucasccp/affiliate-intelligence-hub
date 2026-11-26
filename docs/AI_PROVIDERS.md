@@ -31,3 +31,7 @@ Futuro catálogo allowlist registra ID oficial, licença, tamanho de contexto, l
 ## Qualidade e segurança
 
 Tratar fontes como dados não confiáveis. Não permitir que um prompt altere orçamento, autoridade ou ferramentas. Saída estruturada precisa passar schema; análise separa fato, hipótese e fonte. Erros de schema recebem retry limitado somente quando há saldo; depois revisão manual/pausa. Cache respeita escopo, versão de configurações e expiração.
+
+## Consolidação V4.0 — SenaFlow (26/11/2026)
+
+Filtros de ofertas, palavras obrigatórias/proibidas, descontos, comissões, fila, horários, convites e links são lógica determinística; IA opcional para sugestão de palavras, classificação e copy, nunca inventa dados comerciais nem decide autorização. Usar AI Core/Cost Guardian e cache compartilhado. Vídeo posterior via composição local determinística quando viável, não habilitar API paga.
