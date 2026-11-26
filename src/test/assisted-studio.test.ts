@@ -1,3 +1,5 @@
+import { makeWhatsappMessage } from "@/lib/pilot/assisted";
+import { parseOfferPrice } from "@/lib/pilot/offer";
 import { describe, expect, it } from "vitest";
 import {
   makeAssistedDrafts,
@@ -56,4 +58,29 @@ describe("assisted content", () => {
     expect(result.text).toEqual({ allowed: true, units: 6000 });
     expect(result.image).toEqual({ allowed: false, reason: "quota" });
   });
+});
+
+it("accepts spaces after the decimal separator in the mobile offer form", () => {
+  expect(parseOfferPrice(" 39, 90 ")).toBe(3990);
+  expect(parseOfferPrice("39.90")).toBe(3990);
+  expect(parseOfferPrice("39, 900")).toBeNaN();
+});
+
+it("builds a WhatsApp message using the supplied link and affiliate disclosure", () => {
+  const message = makeWhatsappMessage({
+    offer: {
+      name: "Suporte",
+      priceCents: 3990,
+      sourceUrl: "https://example.com/link",
+      expiresAt: "2026-11-29T16:00:00Z",
+      version: 1,
+    },
+    community: "Garagem de Ofertas",
+    template: "community",
+    affiliate: true,
+  });
+  expect(message).toContain("Seleção de Garagem de Ofertas");
+  expect(message).toContain("39,90");
+  expect(message).toContain("https://example.com/link");
+  expect(message).toContain("Link de afiliado");
 });

@@ -11,7 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { canExportOffer, manualOfferSchema } from "@/lib/pilot/offer";
+import { canExportOffer, manualOfferSchema, parseOfferPrice } from "@/lib/pilot/offer";
 import { approvePilotOffer, exportPilotOffer, savePilotOffer } from "@/lib/pilot/offer.functions";
 import { useHub } from "./app-context";
 
@@ -65,20 +65,25 @@ function OfferPanel({
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const fields = new FormData(event.currentTarget);
-    const price = String(fields.get("price") ?? "");
-    const [whole, fraction = ""] = price.replace(",", ".").split(".");
     const validity = new Date(String(fields.get("expires")));
     const parsed = manualOfferSchema.safeParse({
       name: fields.get("name"),
       sourceUrl: fields.get("source"),
-      priceCents: /^\d+(?:[.,]\d{1,2})?$/.test(price)
-        ? Number(whole) * 100 + Number(fraction.padEnd(2, "0"))
-        : NaN,
+      priceCents: parseOfferPrice(String(fields.get("price") ?? "")),
       observedAt: new Date().toISOString(),
       expiresAt: Number.isFinite(validity.getTime()) ? validity.toISOString() : "",
     });
     if (!parsed.success) {
-      setFeedback("Informe nome, fonte HTTPS, preço válido e validade futura.");
+      const field = parsed.error.issues[0]?.path[0];
+      const message =
+        field === "priceCents"
+          ? "Informe um preço válido, como 39,90."
+          : field === "sourceUrl"
+            ? "Informe um link HTTPS válido para a fonte."
+            : field === "expiresAt"
+              ? "Informe uma validade futura."
+              : "Informe o nome da oferta.";
+      setFeedback(message);
       return;
     }
     action.mutate(async () => {

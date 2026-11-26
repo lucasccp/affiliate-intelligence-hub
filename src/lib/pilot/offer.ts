@@ -57,3 +57,10 @@ export function canExportOffer(revision: OfferRevision, now: Date) {
     timestamp < Date.parse(revision.expiresAt)
   );
 }
+
+export function parseOfferPrice(value: string) {
+  const match = /^(\d+)(?:[,.]\s*(\d{1,2}))?$/.exec(value.trim());
+  if (!match) return NaN;
+  const [, whole, fraction = ""] = match;
+  return Number(whole) * 100 + Number(fraction.padEnd(2, "0"));
+}

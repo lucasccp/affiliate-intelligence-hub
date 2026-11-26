@@ -107,3 +107,51 @@ export function simulateSharedAllowance(now: Date) {
   );
   return { text, image };
 }
+
+export const whatsappTemplates = {
+  direct: "Direto",
+  community: "Seleção da comunidade",
+  short: "Resumo curto",
+} as const;
+
+export const announcementUrlSchema = z
+  .url({ protocol: /^https$/ })
+  .max(2048)
+  .refine((value) => {
+    const url = new URL(value);
+    return !url.username && !url.password;
+  });
+
+export function makeWhatsappMessage({
+  offer,
+  community,
+  template,
+  affiliate,
+}: {
+  offer: AssistedOfferSource;
+  community: string;
+  template: keyof typeof whatsappTemplates;
+  affiliate: boolean;
+}) {
+  const { name, priceCents, sourceUrl, expiresAt } = offerSourceSchema.parse(offer);
+  const url = announcementUrlSchema.parse(sourceUrl);
+  const price = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
+    priceCents / 100,
+  );
+  const validity = new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "short",
+    timeStyle: "short",
+    timeZone: "America/Sao_Paulo",
+  }).format(new Date(expiresAt));
+  const heading = template === "community" ? [`Seleção de ${community}`] : [];
+  const details =
+    template === "short" ? [`${name} — ${price}`] : [name, `Preço observado: ${price}`];
+
+  return [
+    ...heading,
+    ...details,
+    `Validade informada: ${validity} (horário de Brasília)`,
+    url,
+    ...(affiliate ? ["Link de afiliado. Podemos receber comissão pela compra."] : []),
+  ].join("\n");
+}
