@@ -6,6 +6,10 @@ Referência: 25/11/2026 (UTC) · **Fase 1 aceita pelo administrador em 26/11/202
 
 Regras locais de oferta, template, versão de aprovação e avaliação de franquia compartilhada preparadas. Persistência, interface e testes transacionais aguardam schema gerenciado. O administrador controla o Lovable existente. O piloto usa R$ 0,00 de custo adicional. IA real segue fora desta etapa. [Escopo e solicitação ao Lovable](PHASE_02_PILOT.md)
 
+## Checkpoint de 26/11/2026
+
+**Fase 3: BLOCKED.** Autorização recebida. A descoberta da Fase 2 está documentada em branch própria. O piloto permanece parcial, com regras TypeScript e testes locais. O checkout revisado passou em instalação congelada, build, TypeScript e 15 testes. Lint com zero erros e oito avisos. Integração com banco excluída. Faltam migrations e tipos gerenciados, interface e validação das transações e do isolamento do piloto. O acesso ao Lovable e a elegibilidade de custo e transporte da IA continuam pendentes. [Relatório do checkpoint](PHASE_02_VALIDATION.md)
+
 ## Entrega
 
 Aplicação administrativa pt-BR com temas claro/escuro, sidebar recolhível/mobile, header, seletor global, dashboard, comunidades e configurações. Login e cadastro e-mail/senha, recuperação e logout implementados; Google/Lovable configurados. Perfil, preferências e workspace pessoal persistidos. CRUD atômico de comunidades com filtros e paginação real; Garagem de Ofertas criada por lifecycle de cadastro idempotente. Dashboard mostra contagens e atividade real, com métricas futuras indisponíveis.
@@ -59,4 +63,5 @@ Não há garantia financeira zero certificada para Cloud; não há teste ponta a
 
 ## Aceite e próxima fase
 
-Fundação funcional validada em contas de teste, não na conta pessoal do administrador. Seed fica disponível no workspace criado no seu cadastro. O administrador aceitou a fundação e controla o Lovable existente. A falta de bloqueio Cloud confirmado permanece registrada. Validação de entrega e utilização de links de e-mail depende de uma caixa de e-mail real acessível ao administrador; não solicitamos senhas nem forjamos sessões de recuperação. O piloto da Fase 2 está em implementação conforme a seção acima. Critérios de produto e restrições permanecem no PRD e política financeira.
+Fundação funcional validada em contas de teste, não na conta pessoal do administrador. Seed fica disponível no workspace criado no seu cadastro. O administrador aceitou a fundação e controla o Lovable existente. A falta de bloqueio Cloud confirmado permanece registrada. Validação de entrega e utilização de links de e-mail depende de uma caixa de e-mail real acessível ao administrador; não solicitamos senhas nem forjamos sessões de recuperação. O piloto da Fase 2 está em implementação conforme a seção acima. Critérios de produto e restrições permanecem no PRD e política financeira.The plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the resolve.tsconfigPaths option. You can remove the plugin and set resolve.tsconfigPaths: true in your Vite config instead.
+[2Ktransforming...[plugin tanstack-start-core::server-fn:client] /tmp/affiliate-review.Xb15jO/checkpoint/src/lib/hub.functions.ts:81:33 createServerFn().inputValidator() is deprecated. Use createServerFn().validator() instead.
