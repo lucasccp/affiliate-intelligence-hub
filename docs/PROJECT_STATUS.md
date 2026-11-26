@@ -88,4 +88,12 @@ A rota Cloudflare para inferência permanece **NÃO COMPROVADA**. O Lovable rela
 
 ## Teste do WhatsApp no celular — 26/11/2026
 
-O administrador informou que executou no celular o teste de abertura do WhatsApp a partir do preview, no fluxo de oferta aprovada e mensagem por template. O relato não especifica a versão do preview, o resultado de cada verificação ou envio ao grupo. Não houve reprodução independente pelo Codex nesta rodada. A Fase 4 segue bloqueada para inferência real, e uma eventual reordenação do roadmap aguarda autorização.
+O administrador informou que executou no celular o teste de abertura do WhatsApp a partir do preview, no fluxo de oferta aprovada e mensagem por template. O relato não especifica a versão do preview, o resultado de cada verificação ou envio ao grupo. Não houve reprodução independente pelo Codex nesta rodada. A Fase 4 segue bloqueada para inferência real, e a priorização do fluxo assistido foi autorizada.
+
+## Prioridade operacional — 26/11/2026
+
+O administrador priorizou o fluxo de ofertas para WhatsApp e adiou integrações de IA. A próxima etapa é a Fase 3.1, captura assistida por URL e preparação de ofertas, com R$ 0,00 de custo adicional. A aprovação desta ordem não inicia a implementação. Os IDs e escopos das fases posteriores continuam como referência.
+
+A entrega começa pela entrada de uma URL HTTPS de anúncio e preenchimento assistido dos dados confirmados pelo operador, usando a fundação do piloto. O objetivo é reduzir a digitação e reutilizar os templates de WhatsApp ligados à revisão aprovada. A captura de campos em páginas, extensão, API de marketplace, busca automática e envio direto a grupos dependem de capacidade oficial e autorização própria.
+
+[Roadmap](ROADMAP.md) · [Prompt da Fase 3.1](PROJECT_MASTER_GUIDE.md#fase-31--captura-assistida-por-url-e-preparo-para-whatsapp)

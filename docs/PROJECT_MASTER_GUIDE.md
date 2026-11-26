@@ -42,7 +42,7 @@ O Codex é o ponto de entrada para diagnóstico, autorização, revisão e acomp
 
 Em todo diagnóstico, autorização e checkpoint, informar: fase atual e status; próxima fase e gate; ferramenta de início (Codex ou Lovable); sequência de ferramentas e motivo; ação do usuário; prompt exato pronto para copiar na ferramenta indicada, limitado ao escopo autorizado. Se a próxima etapa exigir Lovable, parar antes da alteração gerenciada e fornecer prompt específico para o editor, com critérios de aceite e instrução de sincronização. Depois da sincronização, fornecer prompt de retomada no Codex. Não executar outra fase sem autorização. Se bloqueado, indicar ferramenta e prompt para resolver o bloqueio, sem habilitar serviços pagos.
 
-Checkpoint e recuperação de contexto: Codex. Revisão técnica após Lovable: Codex. Fases 0 e 1 são históricas (Lovable); não reexecutar sem autorização. Fases 2, 2.1, 6 e 18: Codex. Fases 3–5, 7–10, 10.1, 11–17 e 19–20: híbridas, com Codex como ponto de entrada e Lovable somente quando necessário. Esta regra detalha a ordem das linhas Ferramenta, não altera os requisitos de produto.
+Checkpoint e recuperação de contexto: Codex. Revisão técnica após Lovable: Codex. Fases 0 e 1 são históricas (Lovable); não reexecutar sem autorização. Fases 2, 2.1, 3.1, 6 e 18: Codex. Fases 3–5, 7–10, 10.1, 11–17 e 19–20: híbridas, com Codex como ponto de entrada e Lovable somente quando necessário. Esta regra detalha a ordem das linhas Ferramenta, não altera os requisitos de produto.
 
 ## Prompts de implementação (usar com regras comuns e roteamento obrigatório)
 
@@ -89,6 +89,14 @@ Ferramenta: Lovable + Codex.
 
 **Aceite:** Testar concorrência, quota compartilhada, reserva, cancelamento, retry, cache, isolamento, falha fechada e fallback sem custo.
 
+
+### Fase 3.1 — Captura assistida por URL e preparo para WhatsApp
+
+Ferramenta: Codex. Lovable somente se uma mudança gerenciada for indispensável. Se necessário, seguir Codex → Lovable → GitHub → Codex.
+
+**Prompt:** Na develop, implemente somente a captura assistida de uma oferta por URL HTTPS. Reutilize Comunidades, o piloto, suas revisões e o Conteúdo de WhatsApp. Valide a URL e permita ao operador preencher e revisar produto, preço observado, validade interna e fonte antes de salvar. Identifique a origem como manual/assistida na interface. Preserve a aprovação por revisão, o isolamento por workspace/comunidade e o bloqueio quando a oferta mudar ou vencer. Após aprovação, reutilize os modelos e o compartilhamento manual no WhatsApp. Preserve o objetivo de R$ 0,00 adicional. Sem chamadas à página do anúncio, scraping, IA, API de marketplace, extensão ou disparo automático. Se faltar mudança gerenciada, pare nessa dependência e entregue a solicitação ao Lovable. Rode o checkpoint e aguarde nova autorização.
+
+**Aceite:** Uma URL válida inicia o cadastro. URL inválida é rejeitada. O operador revisa os campos e salva no escopo selecionado. Uma oferta aprovada e vigente abre o WhatsApp com a mensagem e o link corretos. Uma revisão antiga ou vencida continua bloqueada. Verificar build, lint, TypeScript, testes locais e preview autorizado, registrando o que não for testado.
 
 ### Fase 4 — Cloudflare Workers AI — textos
 
@@ -276,4 +284,4 @@ MVP 1 fases 0–3 (inclui 2.1): base e controle de custo; MVP 2 fases 4–6: IA 
 
 ## Consolidação V4.0 — SenaFlow (26/11/2026)
 
-Complemento obrigatório dos prompts: Fases 2/2.1 validar capacidades SenaFlow separando evidência UI de documentação oficial; 7 blueprint de grupos operacionais; 9 páginas ponte como landing pages de aquisição (hipótese); 10 múltiplos destinos e saúde; 10.1 extensão assistida seleciona grupos sem disparar; 11 Grupos de Disparo e regras versionadas, Puxar Produtos usa configuração vigente, mesma pipeline da agenda, Guia de Filtros por capacidade, keywords obrigatórias OR e proibidas, preço/desconto/vendas/comissão e política explícita de ausentes; 12 filtros antes do score e revisão de dados ausentes; 13 convite com {link}, imagem licenciada e preview; 14 Produção e Fila de Disparo com contadores reais, grid/lista, filtros, busca, reordenação/embaralhar, negativas, exclusão confirmada, limpar enviados sem apagar auditoria, Disparar agora apenas após gates, agenda de convites e pausa; 15 métricas de coleta/filtros/fila/convites. Checkpoint testa paridade manual/agenda, versão, ausentes, isolamento, dedupe, contadores, link por destino, limites e revalidação. Sem cookies, sessões privadas ou custos pagos. Ler COMPETITIVE_BENCHMARK.md e complementos dos documentos. Ordem e autorização inalteradas.
+Complemento obrigatório dos prompts: Fases 2/2.1 validar capacidades SenaFlow separando evidência UI de documentação oficial; 7 blueprint de grupos operacionais; 9 páginas ponte como landing pages de aquisição (hipótese); 10 múltiplos destinos e saúde; 10.1 extensão assistida seleciona grupos sem disparar; 11 Grupos de Disparo e regras versionadas, Puxar Produtos usa configuração vigente, mesma pipeline da agenda, Guia de Filtros por capacidade, keywords obrigatórias OR e proibidas, preço/desconto/vendas/comissão e política explícita de ausentes; 12 filtros antes do score e revisão de dados ausentes; 13 convite com {link}, imagem licenciada e preview; 14 Produção e Fila de Disparo com contadores reais, grid/lista, filtros, busca, reordenação/embaralhar, negativas, exclusão confirmada, limpar enviados sem apagar auditoria, Disparar agora apenas após gates, agenda de convites e pausa; 15 métricas de coleta/filtros/fila/convites. Checkpoint testa paridade manual/agenda, versão, ausentes, isolamento, dedupe, contadores, link por destino, limites e revalidação. Sem cookies, sessões privadas ou custos pagos. Ler COMPETITIVE_BENCHMARK.md e complementos dos documentos. A prioridade operacional consta no ROADMAP.
