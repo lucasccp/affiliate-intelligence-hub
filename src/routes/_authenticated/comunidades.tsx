@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Communities } from "@/components/hub/communities";
+import { PilotOffers } from "@/components/hub/pilot-offers";
 import { hubQuery, communityPageQuery } from "@/lib/hub-query";
 import { pageHead } from "@/lib/page-head";
 export const Route = createFileRoute("/_authenticated/comunidades")({
@@ -12,5 +13,10 @@ export const Route = createFileRoute("/_authenticated/comunidades")({
     const hub = await context.queryClient.ensureQueryData(hubQuery);
     return context.queryClient.ensureQueryData(communityPageQuery(hub.workspace.id));
   },
-  component: Communities,
+  component: () => (
+    <>
+      <Communities />
+      <PilotOffers />
+    </>
+  ),
 });

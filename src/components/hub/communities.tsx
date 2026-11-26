@@ -29,7 +29,7 @@ import { PageHeading, StatusBadge, CommunityEmpty } from "./shared";
 import { CommunityForm } from "./community-form";
 
 export function Communities() {
-  const { data, selectedId } = useHub();
+  const { data, selectedId, setSelectedId } = useHub();
   const queryClient = useQueryClient();
   const [search, setSearch] = useState("");
   const deferredSearch = useDeferredValue(search);
@@ -161,7 +161,21 @@ export function Communities() {
                           <Layers3 size={18} />
                         </span>
                         <div>
-                          <div className="font-medium">{c.name}</div>
+                          <button
+                            type="button"
+                            className="font-medium text-left underline-offset-4 hover:underline"
+                            aria-label={`Abrir ${c.name}`}
+                            onClick={() => {
+                              setSelectedId(c.id);
+                              requestAnimationFrame(() =>
+                                document
+                                  .getElementById("pilot-offers-heading")
+                                  ?.scrollIntoView({ behavior: "smooth" }),
+                              );
+                            }}
+                          >
+                            {c.name}
+                          </button>
                           <div className="text-[11px] text-muted-foreground mt-1">{c.niche}</div>
                           <div className="text-[10px] text-muted-foreground mt-0.5">/{c.slug}</div>
                         </div>
