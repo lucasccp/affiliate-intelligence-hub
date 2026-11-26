@@ -312,7 +312,7 @@ describe.skipIf(!enabled)("Phase 2 pilot database chain", () => {
       _valid_until: new Date(Date.now() - 1000).toISOString(),
     });
     expect((await reserve("stale", 1)).error?.message).toContain("unverified_allowance");
-    acc = (await userA.from("pilot_quota_accounts").select("accounted").eq("id", account).single())
+    acc = (await userA.from("pilot_quota_accounts").select("*").eq("id", account).single())
       .data;
     expect(acc?.accounted).toBe(50);
   });
