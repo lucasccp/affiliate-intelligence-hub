@@ -6,7 +6,11 @@
 
 Consulta das ferramentas: auto top-up desativado (nunca configurado); nenhum limite mensal de bloqueio Cloud encontrado, e nenhum limite foi criado/alterado. A plataforma fornece 20 créditos mensais de Cloud por workspace, mas após a franquia pode descontar créditos existentes. Não há comprovação de consumo zero nem controle da aplicação capaz de interromper automaticamente a cobrança do backend gerenciado.
 
-Portanto **a garantia de custo operacional adicional zero não foi certificada**. Nenhuma despesa ou valor de consumo foi estimado a partir da tabela de tarifas; compras automáticas desativadas não significam uso gratuito ilimitado. Esta divergência precisa ser resolvida antes de aceite financeiro/produção e de fases posteriores. Cost Guardian de IA permanece não implementado nesta fase; constraint de orçamento zero protege apenas a configuração do aplicativo, não a cobrança da plataforma.
+Portanto **a garantia de custo operacional adicional zero não foi certificada**. Nenhuma despesa ou valor de consumo foi estimado a partir da tabela de tarifas; compras automáticas desativadas não significam uso gratuito ilimitado. O administrador assumiu o monitoramento do Lovable existente. Essa decisão não concede orçamento a novas integrações ou ampliações de infraestrutura. Cost Guardian de IA permanece não implementado nesta fase; constraint de orçamento zero protege apenas a configuração do aplicativo, não a cobrança da plataforma.
+
+## Verificação da Fase 2 — 26/11/2026
+
+O Lovable publica franquia temporária de 20 créditos Cloud e 4 créditos de IA por workspace elegível. Concluída a franquia, o consumo pode reduzir créditos gerais. A documentação descreve pausa do Cloud e interrupção da IA no esgotamento, sem evidência de teto configurável no nível da franquia Run. O teto de auto top-up limita compras automáticas, e a recarga desativada não impede débito de créditos existentes. O compute de Server Functions segue limites diários da hospedagem. A API de modelos segue sujeita ao gate do gateway e ao custo zero. [Análise financeira](COST_FEASIBILITY.md)
 
 ## Proibições
 

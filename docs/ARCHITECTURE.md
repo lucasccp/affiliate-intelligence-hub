@@ -2,6 +2,12 @@
 
 **Status: arquitetura da Fase 0 preservada como referência; fundação da Fase 1 implementada conforme atualização abaixo.**
 
+## Parecer da Fase 2 de descoberta — 26/11/2026
+
+Preservar TanStack Start e Server Functions, Lovable Cloud com Auth/PostgreSQL, RLS e isolamento multi-nicho. O administrador controla o custo do Lovable existente. Supabase Free externo é opção de outra configuração, com migração manual e validação própria, fora desta etapa.
+
+A documentação de APIs externas sustenta HTTP autenticado em Server Functions. O bloco gerenciado de AGENTS.md exige gateway Lovable para modelos. Cloudflare REST direto permanece sem autorização nessa arquitetura. Validar roteamento oficial, orçamento e franquia por conta antes de IA. A execução determinística planejada (jobs, aprovações e reservas concorrentes) continua pendente. A arquitetura candidata mantém provedores desacoplados, contingência manual/template e worker local opcional fora de SSR. [Viabilidade](PHASE_02_FEASIBILITY.md) · [Custos](COST_FEASIBILITY.md)
+
 ## Atualização da Fase 1
 
 - Lovable Cloud conectado com PostgreSQL e Auth. Não é a oferta externa Supabase Free do briefing; o custo é baseado em créditos da plataforma. Nenhum hard cap Cloud foi encontrado, portanto o gate financeiro de custo zero continua não certificado.

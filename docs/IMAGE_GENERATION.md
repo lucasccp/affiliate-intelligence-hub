@@ -26,6 +26,10 @@ Preço monetário publicado serve para entender consumo e risco, **não autoriza
 
 Não projetar quantidade diária garantida de imagens: resolução, passos, entradas, variante e texto usam a mesma franquia da conta. A fórmula de tiles e parâmetros aceitos deve ser validada contra o schema/modelo antes de estimar reserva; os valores desta tabela não são um estimador implementado.
 
+## Descoberta da Fase 2 — 26/11/2026
+
+Schnell é candidato para gerar, com schema sem imagem de referência. Klein 4B documenta geração e edição e tem pesos Apache 2.0. Klein 9B aceita múltiplas referências, mas a licença local é não comercial. Para execução hospedada, validar os termos daquela oferta e acesso da conta, inclusive dimensões, entradas, consumo por tile/MP e direitos de uso. Nenhuma variante foi habilitada. Nano Banana segue bloqueado. [Klein 9B no Cloudflare](https://developers.cloudflare.com/workers-ai/models/flux-2-klein-9b/) · [Licenças BFL](https://bfl.ai/models/flux-2-klein) · [Viabilidade](PHASE_02_FEASIBILITY.md)
+
 ## Fluxo futuro
 
 Briefing aprovado → conferir uso/licença e fidelidade requerida → selecionar capacidade elegível → verificar cache → reservar no Cost Guardian → gerar/importar/renderizar → validar saída → armazenar artefato privado → revisão → publicar apenas versão autorizada.

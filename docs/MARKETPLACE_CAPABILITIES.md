@@ -1,28 +1,39 @@
 # Capacidades de marketplaces
 
-**Matriz de planejamento, não catálogo de integrações verificadas.** O briefing não identifica programas, país, contas ou marketplaces autorizados. Não há endpoints, logins, descoberta ou links reais nesta entrega.
+Pesquisa pública oficial em 26/11/2026 para o Brasil. Status conforme a [matriz da Fase 2](PHASE_02_FEASIBILITY.md#classificação-de-capacidades). Nenhuma conta, credencial, parceria ou chamada comercial foi verificada. Aprovação como afiliado e acesso à API são verificações distintas.
 
-## Matriz por capacidade
+## Mercado Livre Afiliados e Criadores
 
-| Capacidade | Caminho preferencial futuro | Limitação / alternativa |
+| Capacidade | Estado | Evidência, limites e alternativa |
 | --- | --- | --- |
-| Descoberta de produtos | API/feed oficial gratuito e autorizado | Importação CSV/JSON manual validada |
-| Descoberta de promoções | Feed/API oficial com preço e validade | Cadastro manual com fonte e horário |
-| Histórico e desconto | Histórico oficial ou próprio com base comparável | Não afirmar desconto sem referência verificável |
-| Sazonalidade | Calendário determinístico + dados permitidos | Hipótese separada de promoção confirmada |
-| Link afiliado | Ferramenta/API oficial da conta habilitada | Importar link gerado pelo administrador |
-| Imagem de produto | Material oficial permitido pelo programa | Upload licenciado; não copiar indiscriminadamente |
-| Disponibilidade e frete | API oficial, escopo e região | Exibir desconhecido/condicional quando indisponível |
-| Conversões/comissões | Relatório oficial com autorização | Importação manual com proveniência |
-| Publicação/distribuição | Capability do canal, não do marketplace | Rascunho exportável e publicação humana |
+| Cadastro e aprovação | `requires_approval` | Candidatura com conta Mercado Livre e perfil/canais informados conforme o programa. Avaliação e condições variam por perfil. Usar o portal oficial e confirmar a aprovação. [Cadastro](https://www.mercadolivre.com.br/a/store/programa-de-criadores-cadastro) · [FAQ](https://www.mercadolivre.com.br/l/primeiros-passos-perguntas-frequentes-para-afiliados) |
+| Busca, mais vendidos e tendências | `requires_credentials` para recursos de desenvolvedor, `unverified` para seu uso em afiliados | Documentação de desenvolvedores descreve consulta de itens/catálogo, ranking de até 20 por categoria e tendências de busca com Bearer OAuth. Isso não comprova permissão de busca geral ou reutilização para afiliados. Curadoria pelo portal no piloto. [Busca](https://developers.mercadolivre.com.br/buscador-de-produtos) · [Mais vendidos](https://developers.mercadolivre.com.br/pt_br/mais-vendidos-no-mercado-livre) · [Tendências](https://developers.mercadolivre.com.br/pt_br/publicacao-de-produtos/tendencias) · [OAuth](https://developers.mercadolivre.com.br/pt_br/gerenciamento-de-pagamentos/gestao-de-identidades-e-acessos-oauth-e-tokens) |
+| Promoções e cupons de afiliados | `manual_only` no piloto | APIs de promoções e cupons documentadas para vendedores têm escopo próprio. Usar campanha, preço, validade e cupom publicados no portal de afiliados quando disponíveis. [Promoções de vendedor](https://developers.mercadolivre.com.br/pt_br/gerenciar-ofertas) · [Cupons de vendedor](https://developers.mercadolivre.com.br/pt_br/produto-consulta-de-usuarios/cupons-do-vendedor) |
+| Links, comissões e relatórios | `manual_only` no piloto | Central oficial para links e acompanhamento. Comissão depende de atribuição, elegibilidade e condições da compra. A página pública informa janela de atribuição de 24h, sem promessa de comissão. Importar links oficiais e extrato autorizado, sem remontar URLs. [Portal](https://www.mercadolivre.com.br/l/visite-o-portal-de-afiliados) · [Atribuição](https://www.mercadolivre.com.br/l/afiliados-janela-de-atribuicao) |
+| API própria de afiliado, feeds, retenção, limites e custos | `unverified` | Fontes públicas consultadas não comprovam API/feeds de afiliado para esta conta nem limites, retenção para republicação ou custo de uma API de afiliado. Guardar apenas dados autorizados. |
+| Divulgação por canal | `requires_approval` | Verificar mídia cadastrada e regras para grupos, mensagens e páginas. A abertura direta da página de compartilhamento retornou HTTP 403. A evidência indexada orienta consultar o portal, sem validar um destino específico. [Políticas](https://www.mercadolivre.com.br/l/afiliados-revise-as-politicas) · [Onde compartilhar](https://www.mercadolivre.com.br/l/afiliados-onde-compartilhar-links) |
 
-Nenhuma linha da matriz é marcada como integrada. Amazon, Mercado Livre, Shopee ou outros programas, se escolhidos posteriormente, exigem análise própria; não afirmar acesso a API de afiliados com base no nome da empresa.
+## Shopee Criadores e Afiliados
 
-## Registro de avaliação por programa
+| Capacidade | Estado | Evidência, limites e alternativa |
+| --- | --- | --- |
+| Cadastro e aprovação | `requires_approval` | Conta ativa, 18 anos, CPF/CNPJ válido e cadastro de pagamento conforme PF/PJ. A ajuda cita Maree ativa para PF e dados previdenciários para pagamento quando aplicáveis. Acesso à plataforma para aprovados. [Pré-requisitos](https://help.shopee.com.br/portal/10/article/163025) · [Inscrição](https://help.shopee.com.br/portal/10/article/124092) |
+| Links, produtos/ofertas e promoções | `manual_only` no piloto | Usar plataforma oficial para curadoria e links do programa. Conferir validade, elegibilidade e cupom divulgado por campanha antes de publicar. [Plataforma](https://help.shopee.com.br/portal/10/article/127648) · [Termos](https://help.shopee.com.br/portal/10/article/124094) |
+| Comissões e relatórios | `manual_only` no piloto | Painel acompanha cliques, pedidos, comissão estimada e conversões, com exportação de performance. Distinguir comissão estimada de aprovada e usar somente exportação permitida. Taxa depende do programa/campanha. [Plataforma](https://help.shopee.com.br/portal/10/article/127648) · [Termos](https://help.shopee.com.br/portal/10/article/124094) |
+| Open API, busca, mais vendidos, tendências, promoções, cupons, links, conversões e feed via API | `unverified` | O endereço público Open API retornou a página do portal sem contrato legível nesta consulta. Confirmar na conta app/credenciais, operações, escopo, quotas, custo, disponibilidade de feed e termos de cache. Open Platform de vendedores é outro produto. [Portal Open API](https://affiliate.shopee.com.br/open_api) |
+| Armazenamento e divulgação | `requires_approval` para mídias, `unverified` para retenção via API | Os termos vinculam links a mídias registradas e aprovadas e limitam conteúdo e tráfego inválido. Sem TTL documentado para a API brasileira consultada, evitar espelhamento e retenção de materiais sem autorização. [Termos](https://help.shopee.com.br/portal/10/article/124094) |
 
-Campos obrigatórios: programa/país, conta aprovada, documentação oficial, capacidade, método de acesso, uso comercial permitido, autenticação, escopos, preço/franquia, rate limits, restrições de conteúdo/imagens, exigências de divulgação, data e status. Verificar regras de encurtamento, redirecionamento e alteração de links em cada programa.
+## Amazon Associados Brasil
 
-Status inicial `unverified`; pode mudar para `manual_only`, `blocked`, `eligible` ou `configured` com evidência. Scraping não é substituto automático de API: termos, proteção de dados e limites podem proibir. Não contratar scraping/proxy nem contornar bloqueios, CAPTCHA ou autenticação.
+| Capacidade | Estado | Evidência, limites e alternativa |
+| --- | --- | --- |
+| Inscrição e análise | `requires_approval` | Declarar URLs exatas das mídias, com conteúdo apto à análise. A revisão é feita após pelo menos três vendas qualificadas em 180 dias. [Revisão da candidatura](https://associados.amazon.com.br/help/node/topic/G8TW5AE9XL2VX9VM) |
+| Creators API | `requires_approval` | Associado aceito, credenciais próprias e 10 vendas qualificadas nos últimos 30 dias para elegibilidade documentada. A documentação direciona migração da PA-API para Creators API. Confirmar acesso e taxa da conta no portal. [Cadastro na API](https://associados.amazon.com.br/creatorsapi/docs/en-us/onboarding/register-for-creators-api) · [Elegibilidade](https://associados.amazon.com.br/creatorsapi/docs/en-us/troubleshooting/error-codes-and-messages) |
+| Busca e catálogo | `requires_credentials` | Creators API documenta SearchItems, GetItems e navegação por nós. Confirmar se o uso, os campos e a mídia pretendidos são autorizados. SiteStripe é a alternativa oficial de links para associados elegíveis. [Creators API](https://associados.amazon.com.br/creatorsapi/docs/en-us) · [SiteStripe](https://associados.amazon.com.br/home/tools/sitestripe) |
+| Ofertas, mais vendidos, tendências, cupons e feeds | `requires_credentials` para recursos de ofertas e nós disponíveis. `unverified` para ranking histórico, cupons e feeds específicos da conta. | O guia distingue recursos de ofertas e nós de navegação. Feed sujeito a disponibilidade e licença. Confirmar campos e condições por mercado. Curadoria manual e registro de validade quando permitido. [Boas práticas](https://associados.amazon.com.br/creatorsapi/docs/en-us/concepts/best-programming-practices) · [Políticas](https://associados.amazon.com.br/help/operating/policies) |
+| Links, comissões e relatórios | `manual_only` para o piloto | Gerar links oficiais com SiteStripe e consultar/exportar relatórios permitidos na Central. Comissão depende de categoria, transação qualificada e regras do programa. API de catálogo não comprova relatório de comissões. [Central](https://associados.amazon.com.br/) · [Políticas e comissões](https://associados.amazon.com.br/help/operating/policies) |
+| Retenção, imagens e divulgação | `requires_approval` para uso previsto | Aplicar licença local. Não armazenar imagem do catálogo. A licença limita URLs de imagem e cache de outros dados a até 24 h, com atualização após expirar. O guia recomenda TTL de 1 h para Offers/BrowseNodeInfo, 24 h para os demais campos e proíbe cache de dados de clientes. Confirmar requisitos de timestamp/aviso de preço, divulgação da afiliação e mídia aprovada. Não ampliar retenção a partir do guia. [Políticas](https://associados.amazon.com.br/help/operating/policies) · [Cache](https://associados.amazon.com.br/creatorsapi/docs/en-us/concepts/best-programming-practices) |
+| Limites e custos | `requires_credentials` para limites da conta, `unverified` para custo efetivo da operação | Quotas TPS/TPD dependem de desempenho e podem ser revogadas. A documentação descreve teto de 10 TPS e perda de acesso após 30 dias consecutivos sem vendas qualificadas. Nenhuma tarifa por chamada foi identificada nas fontes consultadas. Revalidar a conta antes de automatizar. [Quotas](https://associados.amazon.com.br/creatorsapi/docs/en-us/concepts/api-rates) |
 
 ## Qualidade da oferta
 

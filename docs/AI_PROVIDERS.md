@@ -28,6 +28,12 @@ Enquanto isso, o administrador pode produzir material na ferramenta que já poss
 
 Futuro catálogo allowlist registra ID oficial, licença, tamanho de contexto, limites de tokens, unidade/tarifa, disponibilidade Free, necessidade de método de pagamento, data de verificação e estado da conta. Ausência de qualquer prova obrigatória bloqueia a chamada. Texto compete com imagens no mesmo bucket diário.
 
+## Descoberta da Fase 2 — 26/11/2026
+
+A OpenAI documenta Sign in with ChatGPT para identidade em sites de parceiros e um preview distinto de uso de plano via Responses para apps elegíveis abertos/locais. Apps comerciais ou hospedados remotamente seguem processo separado. Codex CLI/SDK têm caminhos oficiais para sessões e automação Codex, sem evidência de elegibilidade do Hub como aplicação de inferência hospedada. ChatGPTPlanProvider continua bloqueado. [Preview OSS](https://developers.openai.com/siwc/token-sharing-open-source) · [Website](https://developers.openai.com/siwc/website)
+
+Llama 3.2 3B e Mistral Small 3.1 24B são candidatos públicos para comparação, sem seleção ou teste. A inferência só entra após confirmar o trajeto oficial via gateway, modelo/conta Free e reservas comuns de texto/imagem. [Matriz Cloudflare e OpenAI](PHASE_02_FEASIBILITY.md)
+
 ## Qualidade e segurança
 
 Tratar fontes como dados não confiáveis. Não permitir que um prompt altere orçamento, autoridade ou ferramentas. Saída estruturada precisa passar schema; análise separa fato, hipótese e fonte. Erros de schema recebem retry limitado somente quando há saldo; depois revisão manual/pausa. Cache respeita escopo, versão de configurações e expiração.

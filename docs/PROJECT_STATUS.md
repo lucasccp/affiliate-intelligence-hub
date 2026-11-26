@@ -1,6 +1,12 @@
 # Status do projeto
 
-Referência: 25/11/2026 (UTC) · **Fase 1 implementada com ressalvas de aceite** · Fases seguintes não autorizadas.
+Referência: 25/11/2026 (UTC) · **Fase 1 implementada com ressalvas de aceite** · Registro da entrega original da Fase 1.
+
+## Fase 2 de descoberta — 26/11/2026
+
+Checkpoint independente com instalação congelada, build, TypeScript e lint aprovados. Nove testes locais passaram. Os sete testes de integração com banco constam como aprovados na entrega anterior e foram excluídos nesta execução. Esta etapa atualizou documentação e matrizes. A implementação determinística prevista no roadmap continua pendente.
+
+O administrador assumiu os custos do Lovable existente. Recomenda-se manter o backend atual e aplicar R$ 0,00 de custo adicional a novos serviços e provedores. **Fase 3: BLOCKED.** Falta um transporte oficial elegível para Cloudflare Workers AI, confirmação da conta Free e controle determinístico de franquia compartilhada. IA, publicação e conexões comerciais seguem sem implementação. [Checkpoint](PHASE_01_VALIDATION.md) · [Viabilidade](PHASE_02_FEASIBILITY.md) · [Custos](COST_FEASIBILITY.md)
 
 ## Entrega
 
@@ -43,7 +49,7 @@ Não há garantia financeira zero certificada para Cloud; não há teste ponta a
 | --- | --- | --- |
 | Stack do briefing diverge da plataforma | Supabase Edge Functions não são a fronteira de servidor disponível | Preservar TanStack; revisar divergência antes de Fase 1 |
 | Gateway gerenciado não comprova caminho gratuito para os provedores desejados | Adaptadores Cloudflare/locais podem não ser habilitáveis neste ambiente | Validar transporte suportado e custo zero antes de IA; manter manual/templates se não houver |
-| Cloud não equivale ao plano externo Free e não tem hard cap confirmado | Pode consumir créditos existentes após franquia | Ressalva financeira explícita; não certificar custo zero nem avançar para produção/fases seguintes |
+| Cloud não equivale ao plano externo Free e não tem hard cap confirmado | Pode consumir créditos existentes após franquia | Ressalva registrada. Administrador controla Cloud existente. Gate financeiro continua para novas integrações. |
 | Modelos exigem pagamento ou mudam tarifa | Catálogo não garante gratuidade | Allowlist, fonte oficial e fail-closed |
 | Consumo fora do Hub na mesma conta | Ledger local pode superestimar saldo | Reconciliação da conta inteira, margem e pausa quando informação insuficiente |
 | Assinatura não inclui API genérica | ChatGPTPlanProvider pode não ser elegível | Importação manual; sem cookies/endpoints privados |

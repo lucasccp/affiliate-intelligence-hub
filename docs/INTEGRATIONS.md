@@ -2,9 +2,11 @@
 
 Na Fase 0, somente documentação pública foi consultada. Na Fase 1, Lovable Cloud foi conectado para Auth/PostgreSQL e login por e-mail/senha, Google e Lovable foi habilitado. Marketplaces, canais e IA continuam sem conexões reais. OAuth social está configurado, mas roundtrip externo de Google/Lovable não foi testado.
 
+Em 26/11/2026, a Fase 2 documentou as capacidades públicas de Cloudflare, OpenAI, Mercado Livre, Shopee, Amazon, WhatsApp, Instagram e Telegram. Acesso de conta, permissões por destino e elegibilidade comercial permanecem condicionados aos gates da matriz. Operação inicial manual para marketplaces e canais. Comunicação promocional tarifada e qualquer fallback pago ficam bloqueados. [Viabilidade](PHASE_02_FEASIBILITY.md) · [Marketplaces](MARKETPLACE_CAPABILITIES.md)
+
 ## Registro obrigatório de capacidades
 
-Cada adaptador futuro mantém: provedor, capacidade, fonte oficial, data de verificação, plano/conta, escopos, rate limits, unidade de consumo, requisitos de aprovação e status (`unverified`, `blocked`, `manual_only`, `eligible`, `configured`). Existência de API não significa acesso para a conta do administrador.
+Cada adaptador futuro mantém: provedor, capacidade, fonte oficial, data de verificação, plano/conta, escopos, rate limits, unidade de consumo, requisitos de aprovação e status (`supported`, `requires_approval`, `requires_credentials`, `manual_only`, `unavailable`, `unverified`, `paid_blocked`). Existência de API não significa acesso para a conta do administrador.
 
 Não registrar endpoint presumido. Endpoint, SDK, licença, autenticação e formato só entram no código após confirmação na documentação oficial da capacidade específica.
 
@@ -16,7 +18,7 @@ Não registrar endpoint presumido. Endpoint, SDK, licença, autenticação e for
 | GitHub | Não verificar/vincular conta por suposição; repositório da plataforma não comprova integração de automação |
 | Ollama / ComfyUI | Opcional, hardware existente; não configurados e não presumidos acessíveis pela hospedagem |
 | Marketplaces | Somente desenho de capacidades; nenhum programa/conta identificado como habilitado |
-| Canais | Provedores e contas ainda não definidos; publicação automática não validada |
+| Canais | Telegram e Instagram têm APIs oficiais e requisitos de conta. WhatsApp tem Groups API restrita e marketing tarifado. Nenhuma publicação testada. |
 
 ## Processo futuro
 
