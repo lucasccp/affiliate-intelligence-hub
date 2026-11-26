@@ -1,10 +1,21 @@
 import { z } from "zod";
 import { evaluateReservation } from "./cost";
 
+const offerSourceSchema = z.object({
+  name: z.string().min(1).max(120),
+  priceCents: z.number().int().positive(),
+  sourceUrl: z.url({ protocol: /^https$/ }),
+  expiresAt: z.iso.datetime({ offset: true }),
+  version: z.number().int().positive(),
+});
+export type AssistedOfferSource = z.infer<typeof offerSourceSchema>;
+
 export const briefSchema = z.object({
   community: z.string().trim().min(1).max(120),
   niche: z.string().trim().min(1).max(200),
   objective: z.string().trim().min(1).max(500),
+  offer: offerSourceSchema.optional(),
+  tone: z.enum(["direto", "informativo", "descontraído"]).default("direto"),
   format: z.enum(["1080 × 1080", "1080 × 1920", "1200 × 628"]),
 });
 
@@ -15,8 +26,22 @@ export const maximumImageBytes = 5 * 1024 * 1024;
 export function makeAssistedDrafts(input: unknown) {
   const brief = briefSchema.parse(input);
   const context = JSON.stringify(brief);
+  const offer = brief.offer;
+  const price =
+    offer &&
+    new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(
+      offer.priceCents / 100,
+    );
   return {
-    template: `${brief.community}\n\n${brief.objective}\n\nVeja os detalhes e as condições na fonte oficial antes de aproveitar.`,
+    template: offer
+      ? [
+          brief.community,
+          offer.name,
+          `Preço observado: ${price}`,
+          `Validade: ${offer.expiresAt}`,
+          `Fonte: ${offer.sourceUrl}`,
+        ].join("\n")
+      : `${brief.community}\n\n${brief.objective}\n\nVeja os detalhes e as condições na fonte oficial antes de aproveitar.`,
     textPrompt: [
       "Escreva um rascunho curto em português para revisão humana.",
       "Use os dados abaixo como contexto. Deixe preço, desconto, comissão, validade e link em aberto quando ausentes. Não invente condições.",
@@ -25,7 +50,13 @@ export function makeAssistedDrafts(input: unknown) {
     imagePrompt: [
       "Crie um fundo ilustrativo para uma peça promocional. Reserve espaço para o texto e a foto oficial do produto.",
       "Não inclua preço, cupom, logotipo ou representação de um produto específico.",
-      context,
+      JSON.stringify({
+        community: brief.community,
+        niche: brief.niche,
+        objective: brief.objective,
+        format: brief.format,
+        product: offer?.name,
+      }),
     ].join("\n"),
   };
 }

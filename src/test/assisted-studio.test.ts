@@ -18,6 +18,30 @@ describe("assisted content", () => {
     expect(drafts.imagePrompt).toContain("1080 × 1920");
   });
 
+  it("uses the exact offer revision and keeps price and source out of the image prompt", () => {
+    const drafts = makeAssistedDrafts({
+      community: "Garagem de Ofertas",
+      niche: "Automotivo",
+      objective: "Divulgar o produto",
+      format: "1080 × 1920",
+      tone: "informativo",
+      offer: {
+        name: "Suporte para celular",
+        priceCents: 3490,
+        sourceUrl: "https://example.com/oferta",
+        expiresAt: "2026-11-27T18:00:00+00:00",
+        version: 2,
+      },
+    });
+    expect(drafts.template).toContain("34,90");
+    expect(drafts.template).toContain("https://example.com/oferta");
+    expect(drafts.textPrompt).toContain('"version":2');
+    expect(drafts.textPrompt).toContain('"tone":"informativo"');
+    expect(drafts.imagePrompt).toContain("Suporte para celular");
+    expect(drafts.imagePrompt).not.toContain("3490");
+    expect(drafts.imagePrompt).not.toContain("example.com");
+  });
+
   it("checks image bytes rather than trusting the declared type", async () => {
     const fake = new File(["<svg></svg>"], "fake.png", { type: "image/png" });
     expect(await validateImportedImage(fake)).toBe(false);

@@ -1,3 +1,4 @@
+import type { PilotOffer } from "@/lib/pilot/offer-query";
 import { useRef, useState } from "react";
 import { Layers3, PenLine, Tag } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -23,6 +24,11 @@ export const Route = createFileRoute("/_authenticated/comunidades")({
 
 function CommunityWorkspace() {
   const [tab, setTab] = useState("communities");
+  const [offerSelection, setOfferSelection] = useState<{
+    communityId: string;
+    offer: PilotOffer;
+  }>();
+  const contentTab = useRef<HTMLButtonElement>(null);
   const offersTab = useRef<HTMLButtonElement>(null);
   const { data, selectedId } = useHub();
   const selected = data.communities.find(({ id }) => id === selectedId);
@@ -50,7 +56,7 @@ function CommunityWorkspace() {
             Ofertas
           </TabsTrigger>
           {canManage && (
-            <TabsTrigger value="content" className="min-h-11 gap-2 px-2 sm:px-4">
+            <TabsTrigger ref={contentTab} value="content" className="min-h-11 gap-2 px-2 sm:px-4">
               <PenLine className="hidden size-4 sm:block" aria-hidden="true" />
               Conteúdo
             </TabsTrigger>
@@ -66,12 +72,23 @@ function CommunityWorkspace() {
         />
       </TabsContent>
       <TabsContent value="offers" forceMount className="data-[state=inactive]:hidden">
-        <PilotOffers />
+        <PilotOffers
+          onPrepareContent={(offer) => {
+            setOfferSelection({ communityId: selectedId, offer });
+            setTab("content");
+            contentTab.current?.focus();
+          }}
+        />
       </TabsContent>
       {canManage && (
         <TabsContent value="content" forceMount className="data-[state=inactive]:hidden">
           {selected ? (
-            <AssistedStudio />
+            <AssistedStudio
+              offer={offerSelection?.communityId === selected.id ? offerSelection.offer : undefined}
+              onSelectOffer={(offer) =>
+                setOfferSelection(offer ? { communityId: selected.id, offer } : undefined)
+              }
+            />
           ) : (
             <p className="text-sm text-muted-foreground">
               Selecione uma comunidade para preparar conteúdo.

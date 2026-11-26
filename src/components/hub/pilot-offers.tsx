@@ -12,19 +12,14 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { canExportOffer, manualOfferSchema } from "@/lib/pilot/offer";
-import {
-  approvePilotOffer,
-  exportPilotOffer,
-  listPilotOffers,
-  savePilotOffer,
-} from "@/lib/pilot/offer.functions";
+import { approvePilotOffer, exportPilotOffer, savePilotOffer } from "@/lib/pilot/offer.functions";
 import { useHub } from "./app-context";
 
-type Offer = Awaited<ReturnType<typeof listPilotOffers>>[number];
+import { pilotOfferQuery, type PilotOffer as Offer } from "@/lib/pilot/offer-query";
 
 const priceFormatter = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 
-export function PilotOffers() {
+export function PilotOffers({ onPrepareContent }: { onPrepareContent: (offer: Offer) => void }) {
   const { data, selectedId } = useHub();
   const community = data.communities.find((item) => item.id === selectedId);
   if (!community) {
@@ -38,6 +33,7 @@ export function PilotOffers() {
     <OfferPanel
       key={`${data.workspace.id}:${community.id}`}
       scope={{ workspaceId: data.workspace.id, communityId: community.id }}
+      onPrepareContent={onPrepareContent}
       canManage={data.role === "owner" || data.role === "admin"}
     />
   );
@@ -51,17 +47,16 @@ function localDate(value: string) {
 function OfferPanel({
   scope,
   canManage,
+  onPrepareContent,
 }: {
   scope: { workspaceId: string; communityId: string };
   canManage: boolean;
+  onPrepareContent: (offer: Offer) => void;
 }) {
   const [editing, setEditing] = useState<Offer | null>(null);
   const [editorOpen, setEditorOpen] = useState(false);
   const [feedback, setFeedback] = useState("");
-  const offers = useQuery({
-    queryKey: ["pilot-offers", scope.workspaceId, scope.communityId],
-    queryFn: () => listPilotOffers({ data: scope }),
-  });
+  const offers = useQuery(pilotOfferQuery(scope));
   const action = useMutation({
     mutationFn: (run: () => Promise<void>) => run(),
     onError: (error) => setFeedback(error.message),
@@ -231,6 +226,15 @@ function OfferPanel({
             </details>
             {canManage && (
               <div className="flex flex-wrap gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() =>
+                    onPrepareContent({ id, revision, current_version, approved_version })
+                  }
+                >
+                  Criar conteúdo
+                </Button>
                 <Button
                   variant="outline"
                   size="sm"

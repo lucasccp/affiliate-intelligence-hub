@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+import { pilotOfferQuery, type PilotOffer } from "@/lib/pilot/offer-query";
 import { useEffect, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,14 +13,63 @@ import {
 } from "@/lib/pilot/assisted";
 import { useHub } from "./app-context";
 
-export function AssistedStudio() {
+export function AssistedStudio({
+  offer,
+  onSelectOffer,
+}: {
+  offer: PilotOffer | undefined;
+  onSelectOffer: (offer?: PilotOffer) => void;
+}) {
   const { data, selectedId } = useHub();
   const community = data.communities.find(({ id }) => id === selectedId);
   if (!community || (data.role !== "owner" && data.role !== "admin")) return null;
-  return <Studio key={community.id} community={community.name} niche={community.niche} />;
+  return (
+    <Studio
+      key={`${data.workspace.id}:${community.id}:${offer?.id ?? "avulso"}:${offer?.current_version ?? 0}`}
+      community={community.name}
+      niche={community.niche}
+      scope={{ workspaceId: data.workspace.id, communityId: community.id }}
+      offer={offer}
+      onSelectOffer={onSelectOffer}
+    />
+  );
 }
 
-function Studio({ community, niche }: { community: string; niche: string }) {
+function Studio({
+  community,
+  niche,
+  scope,
+  offer,
+  onSelectOffer,
+}: {
+  community: string;
+  niche: string;
+  scope: { workspaceId: string; communityId: string };
+  offer: PilotOffer | undefined;
+  onSelectOffer: (offer?: PilotOffer) => void;
+}) {
+  const offers = useQuery(pilotOfferQuery(scope));
+  const current = offers.data?.find(({ id }) => id === offer?.id);
+  const [now, setNow] = useState(Date.now);
+  const expires = offer ? Date.parse(offer.revision.expires_at) : undefined;
+  useEffect(() => {
+    if (expires === undefined || !Number.isFinite(expires) || now >= expires) return;
+    const delay = Math.min(Math.max(expires - Date.now(), 0), 2_147_483_647);
+    const timer = window.setTimeout(() => setNow(Date.now()), delay);
+    return () => window.clearTimeout(timer);
+  }, [expires, now]);
+
+  function offerWarning(at: number) {
+    if (!offer || expires === undefined) return "";
+    if (offers.isError || !current) return "Não foi possível confirmar a revisão da oferta.";
+    if (current.current_version !== offer.current_version)
+      return "A oferta mudou. Selecione a revisão atual para preparar um novo rascunho.";
+    if (!Number.isFinite(expires) || at >= expires)
+      return "A oferta venceu. Revise a validade em Ofertas.";
+    return "";
+  }
+
+  const warning = offerWarning(now);
   const [drafts, setDrafts] = useState<ReturnType<typeof makeAssistedDrafts>>();
   const [manual, setManual] = useState("");
   const [imported, setImported] = useState("");
@@ -37,12 +88,25 @@ function Studio({ community, niche }: { community: string; niche: string }) {
 
   function prepare(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const blocked = offerWarning(Date.now());
+    if (blocked) {
+      setFeedback(blocked);
+      return;
+    }
     const fields = new FormData(event.currentTarget);
     const brief = briefSchema.safeParse({
       community,
       niche,
       objective: fields.get("objective"),
       format: fields.get("format"),
+      tone: fields.get("tone"),
+      offer: offer && {
+        name: offer.revision.name,
+        priceCents: offer.revision.price_cents,
+        sourceUrl: offer.revision.source_url,
+        expiresAt: offer.revision.expires_at,
+        version: offer.current_version,
+      },
     });
     if (!brief.success) {
       setFeedback("Informe um objetivo com até 500 caracteres e escolha o formato.");
@@ -53,6 +117,11 @@ function Studio({ community, niche }: { community: string; niche: string }) {
   }
 
   async function copy(value: string) {
+    const blocked = offerWarning(Date.now());
+    if (blocked) {
+      setFeedback(blocked);
+      return;
+    }
     try {
       await navigator.clipboard.writeText(value);
       setFeedback("Copiado.");
@@ -73,6 +142,50 @@ function Studio({ community, niche }: { community: string; niche: string }) {
         Use templates, leve os prompts à ferramenta de sua escolha e revise materiais importados
         nesta sessão.
       </p>
+      <label className="block space-y-1">
+        Oferta de referência
+        <select
+          className="block w-full rounded-md border bg-background px-3 py-2"
+          value={offer?.id ?? ""}
+          onChange={(event) =>
+            onSelectOffer(offers.data?.find(({ id }) => id === event.target.value))
+          }
+        >
+          <option value="">Conteúdo avulso</option>
+          {offer && !current && <option value={offer.id}>{offer.revision.name}</option>}
+          {offers.data?.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.revision.name}
+            </option>
+          ))}
+        </select>
+      </label>
+      {offer && (
+        <div className="space-y-1 rounded-lg border bg-muted p-3 text-sm">
+          <p className="font-medium">
+            {offer.revision.name} · revisão {offer.current_version}
+          </p>
+          <p className="whitespace-pre-wrap [overflow-wrap:anywhere]">
+            {offer.revision.draft_text}
+          </p>
+          {current?.current_version === offer.current_version &&
+            current.approved_version !== offer.current_version && (
+              <p className="text-muted-foreground">
+                Oferta aguardando aprovação. O conteúdo é um rascunho.
+              </p>
+            )}
+          {warning && (
+            <p role="alert" className="font-medium">
+              {warning}
+            </p>
+          )}
+          {current && current.current_version !== offer.current_version && (
+            <Button type="button" variant="outline" onClick={() => onSelectOffer(current)}>
+              Usar revisão {current.current_version}
+            </Button>
+          )}
+        </div>
+      )}
       <form onSubmit={prepare} className="space-y-3">
         <label className="block space-y-1">
           Objetivo da peça
@@ -86,7 +199,15 @@ function Studio({ community, niche }: { community: string; niche: string }) {
             ))}
           </select>
         </label>
-        <Button>Preparar conteúdo</Button>
+        <label className="block space-y-1">
+          Tom do texto
+          <select name="tone" className="block rounded-md border bg-background px-3 py-2">
+            <option value="direto">Direto</option>
+            <option value="informativo">Informativo</option>
+            <option value="descontraído">Descontraído</option>
+          </select>
+        </label>
+        <Button disabled={Boolean(warning)}>Preparar conteúdo</Button>
       </form>
       {drafts && (
         <div className="grid gap-3 lg:grid-cols-3">
@@ -102,7 +223,11 @@ function Studio({ community, niche }: { community: string; niche: string }) {
                 {label}
                 <Textarea readOnly value={value} rows={6} />
               </label>
-              <Button variant="outline" onClick={() => void copy(value)}>
+              <Button
+                variant="outline"
+                disabled={Boolean(warning)}
+                onClick={() => void copy(value)}
+              >
                 Copiar {label.toLowerCase()}
               </Button>
             </div>
@@ -136,7 +261,11 @@ function Studio({ community, niche }: { community: string; niche: string }) {
           <div className="space-y-2">
             <p className="text-sm font-medium">Rascunho importado · aguardando revisão</p>
             <p className="whitespace-pre-wrap break-words text-sm">{imported}</p>
-            <Button variant="outline" onClick={() => void copy(imported)}>
+            <Button
+              variant="outline"
+              disabled={Boolean(warning)}
+              onClick={() => void copy(imported)}
+            >
               Copiar rascunho importado
             </Button>
           </div>
