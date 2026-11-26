@@ -59,3 +59,6 @@ Documentar produto, decisões técnicas, dados conceituais, agentes, workflows, 
 ## Indicadores futuros
 
 Ofertas válidas, taxa de aprovação, tempo de descoberta a publicação, falhas por canal, cliques com fonte conhecida, conversões e comissões quando fornecidas oficialmente. Consumo em Neurons e reservas são indicadores operacionais; valores não são receita. Dados ausentes permanecem desconhecidos, não viram zero nem conversão estimada apresentada como real.
+
+## Ampliação V4.0 — 26/11/2026
+Requisitos futuros aprovados para planejamento, não implementação: R09 descoberta independente de geração de links, ranking e fonte; R10 cupons com elegibilidade/validade/preço efetivo; R11 extensão assistida autorizada, importação individual/lote e revisão; R12 links por campanha/canal e redirecionamento somente permitido; R13 vitrine pesquisável e expiração; R14 múltiplos destinos, saúde de conexão, comentário→DM oficial; R15 fila operacional com regras, preview e limites; R16 vídeo local, PWA, novos marketplaces, WordPress e colaboração opcional. Aceite e ordem no PROJECT_MASTER_GUIDE.md e ROADMAP.md. Benchmark não comprova APIs ou permissões. Custo adicional zero e multi-nicho permanecem obrigatórios.
