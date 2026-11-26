@@ -66,3 +66,9 @@ Não há garantia financeira zero certificada para Cloud; não há teste ponta a
 Fundação funcional validada em contas de teste, não na conta pessoal do administrador. Seed fica disponível no workspace criado no seu cadastro. O administrador aceitou a fundação e controla o Lovable existente. A falta de bloqueio Cloud confirmado permanece registrada. Validação de entrega e utilização de links de e-mail depende de uma caixa de e-mail real acessível ao administrador; não solicitamos senhas nem forjamos sessões de recuperação. O piloto da Fase 2 está em implementação conforme a seção acima. Critérios de produto e restrições permanecem no PRD e política financeira.
 
 - Consulta de viabilidade de gateway da Fase 3 (somente leitura, NÃO COMPROVADA): [docs/PHASE_03_GATEWAY_FEASIBILITY.md](PHASE_03_GATEWAY_FEASIBILITY.md)
+
+## Fase 3 assistida — 26/11/2026
+
+Escopo assistido explicitamente autorizado e implementado em branch própria. Painel em Comunidades oferece template, prompts copiáveis e importação manual para revisão na sessão. Simulação demonstra franquia compartilhada com margem e bloqueio. O aceite determinístico do piloto foi reportado pelo administrador. A aprovação persistida segue restrita ao fluxo de ofertas. Inferência real permanece bloqueada.
+
+**APPROVED_WITH_WARNINGS.** Instalação congelada, build e TypeScript passaram. 18 testes locais aprovados e lint com zero erros e oito avisos. Preview autenticado do novo painel e suítes de banco ficaram fora da execução. Nenhuma alteração gerenciada, integração paga ou ativação da Fase 4. [Checkpoint](PHASE_03_ASSISTED_VALIDATION.md)
