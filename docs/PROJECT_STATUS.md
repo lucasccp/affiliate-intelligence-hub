@@ -101,3 +101,7 @@ A entrega começa pela entrada de uma URL HTTPS de anúncio e preenchimento assi
 ## Checkpoint da Fase 3.1 — 26/11/2026
 
 Cadastro por link HTTPS implementado no Piloto de ofertas. O operador confere e preenche a oferta antes de criar o rascunho. O painel reaproveita a aprovação por revisão e o preparo de mensagem por template. Build, TypeScript e 25 testes locais passaram. O lint apontou oito avisos existentes e zero erros. O aceite autenticado aguarda o preview da develop no Lovable. [Checkpoint](PHASE_03_1_VALIDATION.md)
+
+### Revalidação da Fase 3.1 — 26/11/2026
+
+A versão publicada da develop em `1b71ea9` passou em 25 testes locais, build e TypeScript. O lint retornou zero erros e oito avisos. Os 13 testes de banco ficaram sem execução. A captura da tela do operador confirma o preenchimento da fonte com um link encurtado. O restante do aceite autenticado segue pendente no Lovable. [Evidências e roteiro](PHASE_03_1_VALIDATION.md)
