@@ -4,11 +4,11 @@ Referência: 25/11/2026 (UTC) · **Fase 1 aceita pelo administrador em 26/11/202
 
 ## Piloto determinístico da Fase 2
 
-Regras locais de oferta, template, versão de aprovação e avaliação de franquia compartilhada preparadas. A migration 0005 e os tipos do piloto foram sincronizados pelo Lovable. A interface e a validação transacional aguardam correções gerenciadas. O administrador controla o Lovable existente. O piloto usa R$ 0,00 de custo adicional. IA real segue fora desta etapa. [Escopo e solicitação ao Lovable](PHASE_02_PILOT.md)
+O Lovable sincronizou as migrations 0005 e 0006 e os tipos da Fase 2. Em Comunidades, o seletor global abre o piloto da comunidade selecionada. Gestores podem cadastrar uma oferta, revisar o texto do template, editar com versionamento, aprovar e exportar a revisão vigente via RPC autenticada. O piloto usa R$ 0,00 de custo adicional. [Escopo](PHASE_02_PILOT.md)
 
 ## Checkpoint de 26/11/2026
 
-**Fase 3: BLOCKED.** Autorização recebida. A descoberta da Fase 2 está documentada em branch própria. O piloto permanece parcial, com regras TypeScript e testes locais. O checkout revisado passou em instalação congelada, build, TypeScript e 15 testes. Lint com zero erros e oito avisos. Integração com banco excluída. Faltam migrations e tipos gerenciados, interface e validação das transações e do isolamento do piloto. O acesso ao Lovable e a elegibilidade de custo e transporte da IA continuam pendentes. [Relatório do checkpoint](PHASE_02_VALIDATION.md)
+**Fase 2 (piloto): APPROVED_WITH_WARNINGS para revisão. Fase 3: BLOCKED.** As correções transacionais foram revisadas no commit `d5928b4`. O Lovable relatou 28 testes com contas isoladas e removidas. O Codex executou instalação congelada, build, TypeScript, lint com zero erros e oito avisos e 15 testes locais. A suíte de banco não foi reexecutada pelo Codex e o fluxo autenticado em navegador ainda requer validação de desenvolvimento. IA real exige transporte oficial e comprovação de custo adicional zero. [Relatório](PHASE_02_VALIDATION.md)
 
 ## Entrega
 
@@ -18,7 +18,7 @@ Aplicação administrativa pt-BR com temas claro/escuro, sidebar recolhível/mob
 
 ## Não implementado
 
-Agentes executáveis, Cost Guardian de inferência, geração por IA, ofertas, aprovações, publicações, cliques/comissões, scheduler, worker local e conexões de marketplace/canal. Nenhum mock apresentado como integração. Canais e marketplaces cadastrados são somente destinos planejados; modo automático não executa tarefas. Nenhum Realtime, polling ou cron instalado.
+Agentes executáveis, Cost Guardian de inferência real, geração por IA, publicações, cliques/comissões, scheduler, worker local e conexões de marketplace/canal. Nenhum mock apresentado como integração. Canais e marketplaces cadastrados são somente destinos planejados; modo automático não executa tarefas. Nenhum Realtime, polling ou cron instalado.
 
 Não há garantia financeira zero certificada para Cloud; não há teste ponta a ponta do recebimento/uso de e-mails de confirmação/recuperação nem roundtrip Google/Lovable. Não implementados convites, colaboração ou concessão de novos papéis pela interface.
 
