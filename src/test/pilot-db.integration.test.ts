@@ -218,6 +218,7 @@ describe.skipIf(!enabled)("Phase 2 pilot database chain", () => {
           _data: offer("Job"),
         })
       ).data ?? "";
+    expect((await userA.rpc("pilot_approve_offer", { _offer: id, _version: 1 })).error).toBeNull();
     const j1 = await userA.rpc("pilot_enqueue_job", {
       _offer: id,
       _step: "export_artifact",
@@ -264,6 +265,60 @@ describe.skipIf(!enabled)("Phase 2 pilot database chain", () => {
     expect(artifacts.data).toHaveLength(1);
   }, 20000);
 
+  it("refuses job completion for unapproved, edited or expired revisions", async () => {
+    const save = async (name: string, offerId: string | null, ms?: number) =>
+      (
+        await userA.rpc("pilot_save_offer", {
+          _workspace: wsA,
+          _community: pilotA,
+          _offer: offerId as unknown as string,
+          _data: offer(name, ms),
+        })
+      ).data ?? "";
+    const run = async (offerId: string, version: number, owner: string) => {
+      const job =
+        (
+          await userA.rpc("pilot_enqueue_job", {
+            _offer: offerId,
+            _step: "export_artifact",
+            _version: version,
+          })
+        ).data ?? "";
+      expect(
+        (await userA.rpc("pilot_claim_job", { _job: job, _lease_owner: owner, _lease_seconds: 60 }))
+          .data?.id,
+      ).toBe(job);
+      return job;
+    };
+    const unapproved = await save("Sem aprovação", null);
+    const j1 = await run(unapproved, 1, "u1");
+    expect(
+      (await userA.rpc("pilot_complete_job", { _job: j1, _lease_owner: "u1" })).error?.message,
+    ).toContain("not exportable");
+    const edited = await save("Editada", null);
+    await userA.rpc("pilot_approve_offer", { _offer: edited, _version: 1 });
+    const j2 = await run(edited, 1, "e1");
+    await save("Editada v2", edited);
+    expect(
+      (await userA.rpc("pilot_complete_job", { _job: j2, _lease_owner: "e1" })).error?.message,
+    ).toContain("not exportable");
+    const expiring = await save("Expira", null, 2500);
+    await userA.rpc("pilot_approve_offer", { _offer: expiring, _version: 1 });
+    const j3 = await run(expiring, 1, "x1");
+    await new Promise((r) => setTimeout(r, 3000));
+    expect(
+      (await userA.rpc("pilot_complete_job", { _job: j3, _lease_owner: "x1" })).error?.message,
+    ).toContain("not exportable");
+    expect((await userA.rpc("pilot_export_offer", { _offer: expiring })).error).not.toBeNull();
+    expect((await userA.rpc("pilot_export_offer", { _offer: unapproved })).error).not.toBeNull();
+    expect((await userA.rpc("pilot_export_offer", { _offer: edited })).error).not.toBeNull();
+    const artifacts = await userA
+      .from("pilot_artifacts")
+      .select("id")
+      .in("offer_id", [unapproved, edited, expiring]);
+    expect(artifacts.data).toEqual([]);
+  }, 20000);
+
   it("shares one allowance across text and image, dedupes, races safely and keeps uncertain usage", async () => {
     const reserve = (key: string, units: number, modality = "text", cents = 0) =>
       userA.rpc("pilot_reserve_quota", {
@@ -281,6 +336,44 @@ describe.skipIf(!enabled)("Phase 2 pilot database chain", () => {
     const okKey = race[0]?.error ? "i1" : "t1";
     const again = await reserve(okKey, 50, okKey === "t1" ? "text" : "image");
     expect(again.error).toBeNull();
+    expect(again.data?.id).toBe(race.find((r) => !r.error)?.data?.id);
+    const otherModality = okKey === "t1" ? "image" : "text";
+    const sameModality = okKey === "t1" ? "text" : "image";
+    expect((await reserve(okKey, 49, sameModality)).error?.message).toContain(
+      "idempotency_conflict",
+    );
+    expect((await reserve(okKey, 50, otherModality)).error?.message).toContain(
+      "idempotency_conflict",
+    );
+    expect((await reserve(okKey, 50, sameModality, 1)).error?.message).toContain("cost_policy");
+    const second = await userA.rpc("save_community", {
+      _workspace: wsA,
+      _id: null as unknown as string,
+      _data: {
+        name: "Outra",
+        slug: `outra-${crypto.randomUUID().slice(0, 8)}`,
+        niche: "Livros",
+        language: "pt-BR",
+        currency: "BRL",
+        timezone: "America/Sao_Paulo",
+        daily_offer_limit: 5,
+        status: "draft",
+        automation_mode: "assisted",
+        categories: [],
+        marketplaces: [],
+        channels: [],
+      },
+    });
+    expect(second.error).toBeNull();
+    const crossCommunity = await userA.rpc("pilot_reserve_quota", {
+      _account: account,
+      _community: second.data ?? "",
+      _modality: sameModality,
+      _operation_key: okKey,
+      _units: 50,
+      _additional_cents: 0,
+    });
+    expect(crossCommunity.error?.message).toContain("idempotency_conflict");
     let acc = (await userA.from("pilot_quota_accounts").select("*").eq("id", account).single())
       .data;
     expect(acc?.reserved).toBe(50);
