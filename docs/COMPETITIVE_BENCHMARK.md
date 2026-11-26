@@ -39,3 +39,10 @@ Prints fornecidos pelo usuário: /grupos mostra grupos de disparo, destinos, mar
 | Aquisição | Evidência autenticada ausente. | Páginas ponte são hipótese do usuário. | Tratar como hipótese da fase de landing pages, sem compra de produto premium. |
 
 Fontes revisitadas da DivulgaLinks são declarações públicas do fornecedor. Evidência SenaFlow vem do inventário de prints e do relato documentado acima, com contexto autenticado fora desta pesquisa. Nenhuma evidência de interface confirma acesso oficial a endpoints, quotas, retenção ou autorização comercial. Faltam capturas sanitizadas do trial DivulgaLinks e confirmação oficial de uso por conta. [Chrome Web Store](https://chromewebstore.google.com/detail/divulgalinks-captura-de-o/mkcedooeompagkmpkfcedpjhdbejhick) · [Privacidade divulgada](https://pro.divulgalinks.com.br/extension/privacy) · [Matriz oficial](MARKETPLACE_CAPABILITIES.md)
+
+
+### Mercado Livre na SenaFlow — 26/11/2026
+
+O operador observou a entrada em lote de produtos da página Ofertas do Mercado Livre. A coleta inicial trouxe os produtos da listagem sem separação por nicho. As capturas de configuração mostram campos obrigatórios de tag de afiliado e cookie de sessão. A interface declara que usa o cookie para gerar links rastreados. As capturas não demonstram o mecanismo interno de coleta, o uso do cookie nessa coleta, exclusividade dessa abordagem ou permissão do Mercado Livre.
+
+Para o Hub, o requisito é capturar as ofertas visíveis por ação explícita na Fase 10.1, sujeito às permissões da fonte, e aplicar filtros de comunidade após a importação na Fase 11. Usar links de afiliado já gerados oficialmente. As capturas privadas ficam fora do repositório.

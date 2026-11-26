@@ -105,3 +105,8 @@ Cadastro por link HTTPS implementado no Piloto de ofertas. O operador confere e 
 ### Revalidação da Fase 3.1 — 26/11/2026
 
 A versão publicada da develop em `1b71ea9` passou em 25 testes locais, build e TypeScript. O lint retornou zero erros e oito avisos. Os 13 testes de banco ficaram sem execução. A captura da tela do operador confirma o preenchimento da fonte com um link encurtado. O restante do aceite autenticado segue pendente no Lovable. [Evidências e roteiro](PHASE_03_1_VALIDATION.md)
+
+
+## Requisito de captura em lote — 26/11/2026
+
+Aprovado para planejamento: a Fase 10.1 prevê captura das ofertas visíveis após ação do operador, com validação inicial em listagem sintética e captura real condicionada às permissões do Mercado Livre. A Fase 11 filtra o lote importado pelas regras de cada comunidade e exige seleção humana para criar rascunhos. A evidência da SenaFlow está registrada no benchmark. O requisito segue planejado, com R$ 0,00 adicional e execução sujeita à ordem e aos aceites do roadmap. [Benchmark](COMPETITIVE_BENCHMARK.md) · [Manual mestre](PROJECT_MASTER_GUIDE.md) · [Roadmap](ROADMAP.md)

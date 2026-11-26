@@ -17,8 +17,8 @@ Atualização 26/11/2026. Fonte de prompts e aceite: [PROJECT_MASTER_GUIDE.md](P
 | 8 | Brand Studio | Lovable + Codex. | Planejada |
 | 9 | Landing Page Builder | Lovable + Codex. | Planejada |
 | 10 | Channel Hub | Lovable + Codex. | Planejada |
-| 10.1 | Affiliate Capture Extension (antecipada) | Codex + Lovable se backend gerenciado necessário. | Planejada |
-| 11 | Offer Hunter | Codex + Lovable. | Planejada |
+| 10.1 | Extensão de captura individual e em lote | Codex + Lovable se backend gerenciado necessário. | Planejada. Listagem sintética primeiro. Captura das Ofertas do Mercado Livre condicionada às permissões da fonte. |
+| 11 | Offer Hunter e filtragem de lotes por comunidade | Codex + Lovable. | Planejada. Aplicar regras de nicho após importação e confirmar os candidatos para rascunho. |
 | 12 | Affiliate Intelligence | Lovable + Codex. | Planejada |
 | 13 | Content Engine | Lovable + Codex. | Planejada |
 | 14 | Automation & Publisher | Codex + Lovable. | Planejada |
