@@ -64,3 +64,5 @@ Não há garantia financeira zero certificada para Cloud; não há teste ponta a
 ## Aceite e próxima fase
 
 Fundação funcional validada em contas de teste, não na conta pessoal do administrador. Seed fica disponível no workspace criado no seu cadastro. O administrador aceitou a fundação e controla o Lovable existente. A falta de bloqueio Cloud confirmado permanece registrada. Validação de entrega e utilização de links de e-mail depende de uma caixa de e-mail real acessível ao administrador; não solicitamos senhas nem forjamos sessões de recuperação. O piloto da Fase 2 está em implementação conforme a seção acima. Critérios de produto e restrições permanecem no PRD e política financeira.
+
+- Consulta de viabilidade de gateway da Fase 3 (somente leitura, NÃO COMPROVADA): [docs/PHASE_03_GATEWAY_FEASIBILITY.md](PHASE_03_GATEWAY_FEASIBILITY.md)
