@@ -51,3 +51,5 @@ use the editor.
 - Enforce operational ceilings and immutable workspace ownership in database triggers as well as input schemas; direct authenticated Data API calls must preserve the same invariants.
 - Exclude platform-generated integration and migration artifacts from source linting rather than editing them; the platform owns their formatting and generation.
 - Run integration tests only with explicit test accounts and clean them up with checked results; no end-to-end test may alter an existing person's data.
+
+- Before any project task, read `docs/PROJECT_MASTER_GUIDE.md`, `docs/PROJECT_STATUS.md`, `docs/ROADMAP.md` and relevant phase documents. Follow the V4 execution routing and explicit phase authorization; report the next tool and copy-ready prompt. For marketplace research read `docs/COMPETITIVE_BENCHMARK.md`; never treat competitor behavior as official API permission or export marketplace sessions.
