@@ -1,12 +1,15 @@
 import { z } from "zod";
 
-const sourceUrl = z
-  .url({ protocol: /^https$/ })
+export const offerSourceUrlSchema = z
+  .string()
+  .trim()
   .max(2048)
+  .pipe(z.url({ protocol: /^https$/ }))
   .refine((value) => {
+    if (!/^https:\/\//i.test(value) || /[\s\\]/u.test(value)) return false;
     const url = new URL(value);
     return !url.username && !url.password;
-  }, "A fonte não pode incluir credenciais.");
+  }, "Informe um link HTTPS sem credenciais.");
 
 export const manualOfferSchema = z
   .object({
@@ -16,7 +19,7 @@ export const manualOfferSchema = z
       .min(1)
       .max(120)
       .regex(/^[^\r\n\u2028\u2029]+$/u),
-    sourceUrl,
+    sourceUrl: offerSourceUrlSchema,
     priceCents: z.number().int().positive().max(100_000_000),
     observedAt: z.iso.datetime(),
     expiresAt: z.iso.datetime(),

@@ -1,3 +1,4 @@
+import { offerSourceUrlSchema } from "@/lib/pilot/offer";
 import { describe, expect, it } from "vitest";
 import { evaluateReservation } from "@/lib/pilot/cost";
 import { canExportOffer, renderOfferDraft } from "@/lib/pilot/offer";
@@ -73,5 +74,23 @@ describe("shared account allowance", () => {
         now,
       ),
     ).toEqual({ allowed: false, reason: "unverified_allowance" });
+  });
+});
+
+describe("assisted capture source", () => {
+  it("preserves an HTTPS announcement link and its tracking parameters", () => {
+    const url = "https://example.com/produto?ref=garagem#detalhes";
+    expect(offerSourceUrlSchema.parse(` ${url} `)).toBe(url);
+  });
+
+  it("rejects insecure, malformed and credential-bearing links", () => {
+    for (const url of [
+      "http://example.com",
+      "https:example.com",
+      "https://u:p@example.com",
+      "https://example.com/a b",
+    ]) {
+      expect(offerSourceUrlSchema.safeParse(url).success).toBe(false);
+    }
   });
 });

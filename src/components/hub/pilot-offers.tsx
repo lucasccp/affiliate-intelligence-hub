@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Link2, Plus } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -11,7 +11,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { canExportOffer, manualOfferSchema, parseOfferPrice } from "@/lib/pilot/offer";
+import {
+  canExportOffer,
+  manualOfferSchema,
+  offerSourceUrlSchema,
+  parseOfferPrice,
+} from "@/lib/pilot/offer";
 import { approvePilotOffer, exportPilotOffer, savePilotOffer } from "@/lib/pilot/offer.functions";
 import { useHub } from "./app-context";
 
@@ -55,6 +60,21 @@ function OfferPanel({
 }) {
   const [editing, setEditing] = useState<Offer | null>(null);
   const [editorOpen, setEditorOpen] = useState(false);
+  const [captureUrl, setCaptureUrl] = useState<string | null>(null);
+  const [enteringUrl, setEnteringUrl] = useState(false);
+
+  function startCapture(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const fields = new FormData(event.currentTarget);
+    const parsed = offerSourceUrlSchema.safeParse(fields.get("announcement"));
+    if (!parsed.success) {
+      setFeedback("Cole um link HTTPS válido do anúncio, sem usuário ou senha.");
+      return;
+    }
+    setCaptureUrl(parsed.data);
+    setEnteringUrl(false);
+    setFeedback("");
+  }
   const [feedback, setFeedback] = useState("");
   const offers = useQuery(pilotOfferQuery(scope));
   const action = useMutation({
@@ -90,6 +110,7 @@ function OfferPanel({
       await savePilotOffer({ data: { ...scope, id: editing?.id ?? null, offer: parsed.data } });
       setEditing(null);
       setEditorOpen(false);
+      setCaptureUrl(null);
       setFeedback("Rascunho salvo.");
       await offers.refetch();
     });
@@ -117,7 +138,11 @@ function OfferPanel({
         onOpenChange={(open) => {
           if (action.isPending) return;
           setEditorOpen(open);
-          if (!open) setEditing(null);
+          if (!open) {
+            setEditing(null);
+            setEnteringUrl(false);
+            setCaptureUrl(null);
+          }
         }}
       >
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -125,70 +150,120 @@ function OfferPanel({
             Piloto de ofertas
           </h2>
           {canManage && (
-            <DialogTrigger asChild>
-              <Button onClick={() => setFeedback("")}>
-                <Plus aria-hidden="true" />
-                Nova oferta
+            <div className="flex flex-wrap gap-2">
+              <Button
+                onClick={() => {
+                  setCaptureUrl(null);
+                  setEnteringUrl(true);
+                  setFeedback("");
+                  setEditorOpen(true);
+                }}
+              >
+                <Link2 aria-hidden="true" />
+                Cadastrar por link
               </Button>
-            </DialogTrigger>
+              <DialogTrigger asChild>
+                <Button variant="outline" onClick={() => setFeedback("")}>
+                  <Plus aria-hidden="true" />
+                  Nova oferta
+                </Button>
+              </DialogTrigger>
+            </div>
           )}
         </div>
         {canManage && (
           <DialogContent className="max-h-[85dvh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle className="font-display">
-                {editing ? "Editar oferta" : "Nova oferta"}
+                {editing
+                  ? "Editar oferta"
+                  : enteringUrl || captureUrl
+                    ? "Cadastrar por link"
+                    : "Nova oferta"}
               </DialogTitle>
               <DialogDescription>
-                Informe o preço observado, a fonte e a validade.
+                {enteringUrl
+                  ? "Cole o link HTTPS do anúncio para começar."
+                  : captureUrl
+                    ? "Origem manual assistida. Confira o anúncio e preencha os dados da oferta."
+                    : "Informe o preço observado, a fonte e a validade."}
               </DialogDescription>
             </DialogHeader>
-            <form
-              key={editing?.id ?? "new"}
-              onSubmit={submit}
-              className="grid min-w-0 gap-3 sm:grid-cols-2"
-            >
-              <label className="space-y-1">
-                Nome
-                <Input name="name" required maxLength={120} defaultValue={editing?.revision.name} />
-              </label>
-              <label className="space-y-1">
-                Fonte HTTPS
-                <Input
-                  name="source"
-                  type="url"
-                  required
-                  maxLength={2048}
-                  defaultValue={editing?.revision.source_url}
-                />
-              </label>
-              <label className="space-y-1">
-                Preço (R$)
-                <Input
-                  name="price"
-                  inputMode="decimal"
-                  required
-                  defaultValue={(editing && (editing.revision.price_cents / 100).toFixed(2)) || ""}
-                />
-              </label>
-              <label className="space-y-1">
-                Validade (horário local)
-                <Input
-                  name="expires"
-                  type="datetime-local"
-                  required
-                  defaultValue={(editing && localDate(editing.revision.expires_at)) || ""}
-                />
-              </label>
-              <div className="flex flex-wrap gap-2">
-                <Button disabled={action.isPending}>
-                  {editing ? "Salvar nova revisão" : "Criar rascunho"}
-                </Button>
-              </div>
-              <p role="status" className="text-sm sm:col-span-2">
-                {feedback}
-              </p>
-            </form>
+            {enteringUrl ? (
+              <form onSubmit={startCapture} noValidate className="space-y-3">
+                <label className="block space-y-1">
+                  Link do anúncio
+                  <Input
+                    name="announcement"
+                    type="url"
+                    inputMode="url"
+                    autoFocus
+                    required
+                    maxLength={2048}
+                    defaultValue={captureUrl ?? ""}
+                    placeholder="https://…"
+                  />
+                </label>
+                <Button>Continuar</Button>
+                <p role="status" className="text-sm">
+                  {feedback}
+                </p>
+              </form>
+            ) : (
+              <form
+                key={editing?.id ?? "new"}
+                onSubmit={submit}
+                className="grid min-w-0 gap-3 sm:grid-cols-2"
+              >
+                <label className="space-y-1">
+                  Nome
+                  <Input
+                    name="name"
+                    required
+                    maxLength={120}
+                    defaultValue={editing?.revision.name}
+                  />
+                </label>
+                <label className="space-y-1">
+                  Fonte HTTPS
+                  <Input
+                    name="source"
+                    type="url"
+                    required
+                    maxLength={2048}
+                    defaultValue={editing?.revision.source_url ?? captureUrl ?? ""}
+                  />
+                </label>
+                <label className="space-y-1">
+                  Preço (R$)
+                  <Input
+                    name="price"
+                    inputMode="decimal"
+                    required
+                    defaultValue={
+                      (editing && (editing.revision.price_cents / 100).toFixed(2)) || ""
+                    }
+                  />
+                </label>
+                <label className="space-y-1">
+                  Validade interna (horário local)
+                  <Input
+                    name="expires"
+                    type="datetime-local"
+                    required
+                    defaultValue={(editing && localDate(editing.revision.expires_at)) || ""}
+                  />
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  <Button disabled={action.isPending}>
+                    {editing ? "Salvar nova revisão" : "Criar rascunho"}
+                  </Button>
+                </div>
+                <p role="status" className="text-sm sm:col-span-2">
+                  {feedback}
+                </p>
+              </form>
+            )}
           </DialogContent>
         )}
       </Dialog>
@@ -245,6 +320,8 @@ function OfferPanel({
                   size="sm"
                   disabled={action.isPending}
                   onClick={() => {
+                    setCaptureUrl(null);
+                    setEnteringUrl(false);
                     setEditing({ id, revision, current_version, approved_version });
                     setFeedback("");
                     setEditorOpen(true);

@@ -92,8 +92,12 @@ O administrador informou que executou no celular o teste de abertura do WhatsApp
 
 ## Prioridade operacional — 26/11/2026
 
-O administrador priorizou o fluxo de ofertas para WhatsApp e adiou integrações de IA. A próxima etapa é a Fase 3.1, captura assistida por URL e preparação de ofertas, com R$ 0,00 de custo adicional. A aprovação desta ordem não inicia a implementação. Os IDs e escopos das fases posteriores continuam como referência.
+O administrador priorizou o fluxo de ofertas para WhatsApp e adiou integrações de IA. A Fase 3.1 implementou o cadastro assistido por URL em `develop` com R$ 0,00 de custo adicional. O aceite autenticado aguarda validação no preview. Os IDs e escopos das fases posteriores continuam como referência.
 
 A entrega começa pela entrada de uma URL HTTPS de anúncio e preenchimento assistido dos dados confirmados pelo operador, usando a fundação do piloto. O objetivo é reduzir a digitação e reutilizar os templates de WhatsApp ligados à revisão aprovada. A captura de campos em páginas, extensão, API de marketplace, busca automática e envio direto a grupos dependem de capacidade oficial e autorização própria.
 
 [Roadmap](ROADMAP.md) · [Prompt da Fase 3.1](PROJECT_MASTER_GUIDE.md#fase-31--captura-assistida-por-url-e-preparo-para-whatsapp)
+
+## Checkpoint da Fase 3.1 — 26/11/2026
+
+Cadastro por link HTTPS implementado no Piloto de ofertas. O operador confere e preenche a oferta antes de criar o rascunho. O painel reaproveita a aprovação por revisão e o preparo de mensagem por template. Build, TypeScript e 25 testes locais passaram. O lint apontou oito avisos existentes e zero erros. O aceite autenticado aguarda o preview da develop no Lovable. [Checkpoint](PHASE_03_1_VALIDATION.md)
