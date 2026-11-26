@@ -59,3 +59,7 @@ Fundação funcional validada em contas de teste, não na conta pessoal do admin
 
 ## Atualização de planejamento V4.0 — 26/11/2026
 Fase 1 permanece implementada com ressalvas; Fase 2 não iniciada conforme estado registrado. Revisão documental autorizada pelo usuário para incorporar benchmark DivulgaLinks. Trial de 14 dias informado pelo usuário; prints ainda pendentes. Roadmap alinhado ao manual mestre, Fase 2.1 pesquisa de marketplaces e benchmark após Fase 2, Fase 10.1 extensão antecipada antes de Offer Hunter, fases 16–20 expansão. Novos requisitos: cupons, links, vitrine, engagement, fila e tracking, vídeo, PWA, expansão e WordPress. Nenhuma implementação, teste novo, conexão, mudança financeira ou migration nesta revisão. Próxima ação: Codex, diagnóstico via PROMPTS.md e autorização explícita da Fase 2; pesquisa 2.1 em seguida após gate. Hard cap Cloud e e-mails continuam pendentes. Ver COMPETITIVE_BENCHMARK.md para checklist de prints.
+
+## Consolidação V4.0 — SenaFlow (26/11/2026)
+
+Consolidação documental SenaFlow incorporada aos 15 documentos de planejamento, incluindo benchmark, prompts e instruções de continuidade. Nenhuma implementação, migration, integração ou cobrança autorizada. Fase 1 com ressalvas; próxima Fase 2 de pesquisa mediante autorização. Testes de aplicação não reexecutados por alteração exclusivamente documental. Páginas ponte são hipótese de aquisição; capacidades concorrentes não são confirmação oficial.
