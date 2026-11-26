@@ -54,3 +54,7 @@ Auditar reserva, liberação, reconciliação, bloqueio, tentativa e mudança de
 ## Riscos financeiros residuais
 
 Custo zero não significa infraestrutura ilimitada nem operação sem energia/internet/trabalho humano. Recursos locais só são opção se não exigirem compra autorizada adicional. Custos do ambiente Lovable e da assinatura existente são externos ao orçamento operacional planejado; nenhuma gratuidade da hospedagem foi certificada. Se executar uma fase exigir compra de créditos ou upgrade, interromper e explicar o impedimento.
+
+## Consolidação V4.0 — SenaFlow (26/11/2026)
+
+Benchmark não autoriza contratar SenaFlow, premium, proxies, encurtadores, APIs, conectores ou extensão publicada com taxa. Instalação local MV3 opcional, páginas ponte no app existente, templates e FFmpeg local somente recursos já disponíveis. Busca manual, convites, coleta agendada, fila, storage e métricas também consomem backend: verificar limites e pausar se custo não demonstrado. Sem garantia de execução contínua gratuita. Nenhuma mudança no gate financeiro.
