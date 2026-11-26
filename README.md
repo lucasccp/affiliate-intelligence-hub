@@ -47,3 +47,7 @@ Testes de integração reais: `bunx vitest run src/test/hub-rls.integration.test
 ## Próximo passo
 
 Revisar a Fase 1 e suas ressalvas no status. Confirmação e recuperação por e-mail exigem endereço real e ainda não foram verificadas ponta a ponta. O limite financeiro Cloud permanece pendente. Não avançar à Fase 2, habilitar IA ou alterar faturamento automaticamente.
+
+## Consolidação V4.0 — SenaFlow (26/11/2026)
+
+Planejamento vigente: [manual mestre V4.0](docs/PROJECT_MASTER_GUIDE.md), [roadmap](docs/ROADMAP.md), [benchmark](docs/COMPETITIVE_BENCHMARK.md). SenaFlow inspira grupos, coleta, fila, convites, extensão e páginas ponte: requisitos futuros. Codex lê AGENTS.md, manual mestre e status antes de executar; autorizar uma fase por vez. Próxima Fase 2, pesquisa e viabilidade; gate financeiro pendente.
