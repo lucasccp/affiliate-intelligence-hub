@@ -1,6 +1,10 @@
-# Affiliate Intelligence Hub V3.0 — Manual mestre de continuidade
+# Affiliate Intelligence Hub V4.0 — Manual mestre de continuidade
 
 Referência: 26/11/2026. Este documento consolida os requisitos e prompts planejados, adaptados à arquitetura real encontrada no GitHub. Não é prova de implementação. O estado vivo é [PROJECT_STATUS.md](PROJECT_STATUS.md); regras obrigatórias em [AGENTS.md](../AGENTS.md). Não avance automaticamente. Leia também [PRD](PRD.md), [ARCHITECTURE](ARCHITECTURE.md), [DATABASE](DATABASE.md), [ROADMAP](ROADMAP.md), [SECURITY](SECURITY.md), [INTEGRATIONS](INTEGRATIONS.md), [ZERO_COST_POLICY](ZERO_COST_POLICY.md), [AI_PROVIDERS](AI_PROVIDERS.md), [IMAGE_GENERATION](IMAGE_GENERATION.md), [MARKETPLACE_CAPABILITIES](MARKETPLACE_CAPABILITIES.md) e [README](../README.md).
+
+## Atualização V4.0 — benchmark
+
+Leia [COMPETITIVE_BENCHMARK.md](COMPETITIVE_BENCHMARK.md). O trial do concorrente é fonte de evidência funcional, não autorização técnica. Fase 2 permanece próxima; Fase 2.1 pesquisa marketplace/benchmark antes da Fase 3. Fase 10.1 antecipa extensão antes de Offer Hunter. IDs existentes preservados; ordem explícita no ROADMAP. Novos módulos são planejados, não implementados.
 
 ## Como retomar sem o chat
 1. Abra o repositório no Codex ou Lovable.
@@ -30,7 +34,7 @@ Lovable Cloud tem risco de consumir créditos existentes após franquia; auto to
 Nicho Automotivo; slug garagem-de-ofertas; pt-BR, BRL, America/Sao_Paulo; 20 ofertas únicas/dia no máximo (600 em 30 dias, não meta); assisted e draft inicialmente. Categorias estética, acessórios internos, acessórios externos, ferramentas, eletrônicos automotivos, organização veicular, manutenção e cuidados, acessórios motociclistas. ML/Shopee/Amazon; WA/IG/Telegram/landing. Marca sugerida #FF7621 #111318 #F5F5F5, slogan Seu carro merece mais. Seu bolso agradece. Score mínimo 75, dedupe 7 dias por produto, 3 ciclos de descoberta (06h,12h,17h), classificação 06h30, conteúdo 06h45, janelas 07–09 3 ofertas, 09–12 4, 12–14 4, 14–18 4, 18–21 5; resumo 21h30. Telegram e landing automáticos apenas elegíveis; WA/IG assistidos; IG 1–2 posts e 3–5 stories/dia como hipótese editável. Até 3 fundos novos + 1 imagem de campanha/dia, reutilizar fundos premium/detailing/acessórios/ferramentas/eletrônicos/promo; 4 gerações vs 20 por dia, não equivalência de consumo. Testar Radar Tech e nicho livre sem herdar categorias. Cadastros oficiais: https://www.mercadolivre.com.br/afiliados, https://affiliate.shopee.com.br/, https://associados.amazon.com.br/. Aprovação e acesso API não presumidos. Cloudflare https://developers.cloudflare.com/workers-ai/ e /pricing/ e /models/; confirmar URLs e dados atuais.
 
 ## Regras comuns — prefixo obrigatório de todos os prompts
-Atue como engenheiro sênior do Affiliate Intelligence Hub V3.0. Leia AGENTS.md, PROJECT_STATUS.md, este guia e documentos relevantes. Inspecione código, schema e estado real antes de alterar. Execute somente a fase explicitamente autorizada, incrementalmente, preserve design e arquitetura real; não recrie funcionalidades. Lovable é responsável por alterações gerenciadas (migrations, arquivos gerados, secrets, gateway e conectores); solicite ação no editor quando necessário. Sem force push. Orçamento adicional R$0, sem APIs pagas, bypass de plataforma, scraping proibido, segredos no repo ou mocks apresentados como reais. Respeite isolamento workspace/comunidade, RLS, validação, acessibilidade, idempotência, limites, direitos de conteúdo e auditoria. Não implemente chamadas externas antes de comprovar elegibilidade, custo e autorização. Execute testes/lint/build/typecheck possíveis; não execute testes destrutivos nem use dados reais sem autorização. Documente arquivos alterados, resultados, riscos, decisões e limitações em PROJECT_STATUS.md e documentos pertinentes. Classifique APPROVED / APPROVED_WITH_WARNINGS / BLOCKED. Gate financeiro não pode ser ignorado. Pare e aguarde autorização para próxima fase.
+Atue como engenheiro sênior do Affiliate Intelligence Hub V4.0. Leia AGENTS.md, PROJECT_STATUS.md, este guia e documentos relevantes. Inspecione código, schema e estado real antes de alterar. Execute somente a fase explicitamente autorizada, incrementalmente, preserve design e arquitetura real; não recrie funcionalidades. Lovable é responsável por alterações gerenciadas (migrations, arquivos gerados, secrets, gateway e conectores); solicite ação no editor quando necessário. Sem force push. Orçamento adicional R$0, sem APIs pagas, bypass de plataforma, scraping proibido, segredos no repo ou mocks apresentados como reais. Respeite isolamento workspace/comunidade, RLS, validação, acessibilidade, idempotência, limites, direitos de conteúdo e auditoria. Não implemente chamadas externas antes de comprovar elegibilidade, custo e autorização. Execute testes/lint/build/typecheck possíveis; não execute testes destrutivos nem use dados reais sem autorização. Documente arquivos alterados, resultados, riscos, decisões e limitações em PROJECT_STATUS.md e documentos pertinentes. Classifique APPROVED / APPROVED_WITH_WARNINGS / BLOCKED. Gate financeiro não pode ser ignorado. Pare e aguarde autorização para próxima fase.
 
 ## Roteamento obrigatório de execução
 
@@ -38,7 +42,7 @@ O Codex é o ponto de entrada para diagnóstico, autorização, revisão e acomp
 
 Em todo diagnóstico, autorização e checkpoint, informar: fase atual e status; próxima fase e gate; ferramenta de início (Codex ou Lovable); sequência de ferramentas e motivo; ação do usuário; prompt exato pronto para copiar na ferramenta indicada, limitado ao escopo autorizado. Se a próxima etapa exigir Lovable, parar antes da alteração gerenciada e fornecer prompt específico para o editor, com critérios de aceite e instrução de sincronização. Depois da sincronização, fornecer prompt de retomada no Codex. Não executar outra fase sem autorização. Se bloqueado, indicar ferramenta e prompt para resolver o bloqueio, sem habilitar serviços pagos.
 
-Checkpoint e recuperação de contexto: Codex. Revisão técnica após Lovable: Codex. Fases 0 e 1 são históricas (Lovable); não reexecutar sem autorização. Fase 2 e 6: Codex. Fases 3–5 e 7–15: híbridas, com Codex como ponto de entrada e Lovable somente quando necessário. Esta regra detalha a ordem das linhas Ferramenta, não altera os requisitos de produto.
+Checkpoint e recuperação de contexto: Codex. Revisão técnica após Lovable: Codex. Fases 0 e 1 são históricas (Lovable); não reexecutar sem autorização. Fases 2, 2.1, 6 e 18: Codex. Fases 3–5, 7–10, 10.1, 11–17 e 19–20: híbridas, com Codex como ponto de entrada e Lovable somente quando necessário. Esta regra detalha a ordem das linhas Ferramenta, não altera os requisitos de produto.
 
 ## Prompts de implementação (usar com regras comuns e roteamento obrigatório)
 
@@ -68,6 +72,14 @@ Ferramenta: Codex.
 
 **Aceite:** Criar docs/PHASE_01_VALIDATION.md, PHASE_02_FEASIBILITY.md, COST_FEASIBILITY.md; atualizar arquitetura, integrações, política, provedores, imagens, marketplaces e status. Parecer APPROVED/APPROVED_WITH_WARNINGS/BLOCKED para Fase 3, com gate financeiro obrigatório.
 
+
+### Fase 2.1 — Marketplace Integration Research e benchmark
+
+Ferramenta: Codex.
+
+**Prompt:** Leia COMPETITIVE_BENCHMARK.md, relatórios da Fase 2 e evidências sanitizadas fornecidas pelo usuário. Investigue documentação oficial atual Shopee Affiliate API, Mercado Livre afiliados/developers e Amazon Creators API/links oficiais; diferencie busca, rankings, enriquecimento, cupons, comissão e link. Compare fluxos do DivulgaLinks e extensão pública, permissões e comportamento observável sem copiar código nem acessar sessão/endpoint privado. Registre evidência, hipótese, fonte, data, custo, termos, aprovação, retenção, canais e alternativa manual. Proponha contratos DiscoveryProvider, ProductProvider, AffiliateLinkProvider independentes e CouponProvider opcional. POC somente local com fixtures sintéticas e contratos, sem credenciais, scraping proibido ou chamadas externas não autorizadas. Defina extensão Manifest V3 assistida, mínimo privilégio e captura por ação do usuário; não exportar cookies/sessões. Priorize Shopee se elegível, ML importação assistida, Amazon links oficiais. Atualize benchmark, MARKETPLACE_CAPABILITIES, INTEGRATIONS, arquitetura e status; não implementar Fase 3.
+
+**Aceite:** matriz por capacidade e marketplace, fluxos e lacunas verificáveis, plano de POC e parecer financeiro/técnico; ausência de prints ou acesso é pendência explícita, não confirmação fictícia.
 
 ### Fase 3 — AI Core e Cost Guardian
 
@@ -132,6 +144,8 @@ Ferramenta: Lovable + Codex.
 **Aceite:** Rascunho automático após marca, publicar somente autorizado; testar slug, isolamento, mobile, expiração e privacidade.
 
 
+**Ampliação V4.0:** Ampliar para Storefront Builder: vitrine pesquisável, categorias/filtros, destaque, cupons válidos, expiração automática quando scheduler elegível, SEO e disclosure; sem checkout próprio, dados de marketplace somente autorizados.
+
 ### Fase 10 — Channel Hub
 
 Ferramenta: Lovable + Codex.
@@ -140,6 +154,16 @@ Ferramenta: Lovable + Codex.
 
 **Aceite:** Testar permissões, credenciais inválidas, conexão real autorizada, modo manual e ausência de automação fictícia.
 
+
+**Ampliação V4.0:** Ampliar Channel Hub: múltiplas contas/destinos, healthcheck, status e reconciliação, limites por destino; Instagram Engagement Agent comentário por palavra-chave → resposta/DM somente com API oficial, permissões, janela e consentimento aplicáveis; sem spam. WhatsApp permanece manual/oficial elegível.
+
+### Fase 10.1 — Affiliate Capture Extension (antecipada)
+
+Ferramenta: Codex + Lovable se backend gerenciado necessário.
+
+**Prompt:** Implementar extensão própria Manifest V3 TypeScript, React side panel opcional, instalação local sem taxa de loja. Captura individual e lote apenas onde permitido, acionada pelo usuário, preview de título/preço/imagem/URL/cupom/fonte/data, seleção de comunidade, importação de link oficial já gerado, confirmação, dedupe e fila de revisão. Permissões por domínio mínimas e opcionais, sem cookies, sessão de marketplace, tokens privados, interceptação de credenciais ou endpoints não oficiais. Autenticação restrita do Hub com revogação, server routes TanStack autenticadas, validação Zod, RLS, SSRF, limites, idempotência e auditoria; sem service role na extensão. Se termos impedirem captura, usar formulário manual. Solicitar Lovable para schema gerenciado. Reusar importação no Offer Hunter.
+
+**Aceite:** instalação local, permissões revisadas, captura autorizada ou fixture identificada, importação manual, isolamento, revogação, duplicata, erros, nenhuma publicação automática; sem taxa ou integração não autorizada.
 
 ### Fase 11 — Offer Hunter
 
@@ -150,6 +174,8 @@ Ferramenta: Codex + Lovable.
 **Aceite:** Testar importação real, dedupe, fonte, validade, dados ausentes e restrições de armazenamento.
 
 
+**Ampliação V4.0:** Marketplace Intelligence Engine: separar DiscoveryProvider, ProductProvider, AffiliateLinkProvider e CouponProvider. Ranking com fonte/período/categoria; busca por URL/keyword, importação extensão/lote, catálogo normalizado. Coupon Intelligence: código, elegibilidade, mínimo, teto, validade, cumulatividade comprovada, preço efetivo determinístico, fonte e revalidação; tabelas propostas coupons, coupon_observations, offer_coupons. Sem inferir desconto ou disponibilidade.
+
 ### Fase 12 — Affiliate Intelligence
 
 Ferramenta: Lovable + Codex.
@@ -158,6 +184,8 @@ Ferramenta: Lovable + Codex.
 
 **Aceite:** Modo assisted padrão; automático somente após todos os gates, auditado. Testar score, cobertura, links, expiração e bloqueios.
 
+
+**Ampliação V4.0:** Link Intelligence: links oficiais/importados por conta, campanha/canal, validação de destino e atribuição quando comprovável; encurtador/redirecionamento próprio somente se permitido pelo programa, allowlist e sem open redirect, sem mascarar destino ou modificar tracking; fallback link direto. Eventos de clique com privacidade e dedupe, sem confundir clique e conversão.
 
 ### Fase 13 — Content Engine
 
@@ -177,6 +205,8 @@ Ferramenta: Codex + Lovable.
 **Aceite:** Testar cap 20 únicos, concorrência, dedupe cross-channel, pausa, isolamento, dry run e entrega incerta.
 
 
+**Ampliação V4.0:** Ampliar fila operacional com regras por marketplace/categoria/cupom/comissão, múltiplos destinos, preview, edição em lote, pausa, limite de frequência e saúde de conexão. Nenhum disparo sem aprovação e capacidade elegível.
+
 ### Fase 15 — Growth Analytics e Orquestrador
 
 Ferramenta: Codex + Lovable.
@@ -184,6 +214,48 @@ Ferramenta: Codex + Lovable.
 **Prompt:** Supervisor planeja dependências, chama serviços tipados pré-autorizados, valida, limita, audita e consolida; sem execução arbitrária. Criação: nicho > blueprint > comunidade > marca > imagens > landing > canais > campanha > busca > marketplaces > regras > pendências > aprovação > publicação/automação elegível. Operação: descobrir > normalizar > classificar > validar > score > link > conteúdo > imagem/reuso > compor > aprovar > agendar > publicar > métricas > recomendar. Estados pending/running/awaiting_provider/awaiting_credentials/awaiting_human_action/awaiting_approval/rate_limited/partially_ready/completed/failed/paused/cancelled; mapear aos estados existentes. Etapas independentes prosseguem; fila humana com instruções precisas. Command Center progresso/agentes/pendências/runs/eventos/falhas/limites/pausa. Métricas reais por comunidade/nicho/categoria/marketplace/produto/canal/hora/período/campanha/template/criativo: ofertas, aprovações, posts, cliques, conversões reportadas, comissões estimadas/pendentes/aprovadas/pagas/canceladas, erros, consumo, imagens novas/reusadas. CSV/JSON autorizado, dedupe/proveniência. Recomendações IA com dados mínimos e distinção observação/hipótese/recomendação; mudanças aprovadas. Campanhas orgânicas, QR/UTM, sem compra de ads. Tabelas workflows, workflow_runs, workflow_steps, workflow_dependencies, agent_runs, human_action_requests, orchestration_events, campaigns, conversions, commissions, performance_snapshots, growth_recommendations.
 
 **Aceite:** Testar três nichos, provedores indisponíveis, quota compartilhada, worker offline, marketplace sem API, conta não aprovada, canal desconectado, expiração, link inválido, storage, duplicata, pausa/retomada. Auditoria final segurança, performance, acessibilidade, dependências, custos, testes e operação; reportar manual/bloqueado/real.
+
+**Ampliação V4.0:** Ampliar analytics por origem, campanha, link, cupom, vitrine, destino e criativo; atribuição apenas quando comprovada. Colaboração futura: convites e papéis protegidos, autorização explícita e isolamento; não liberar papéis por metadata editável.
+
+### Fase 16 — Affiliate Capture Extension: evolução
+
+Ferramenta: Codex + Lovable se necessário.
+
+**Prompt:** Revisar Fase 10.1, ampliar fontes autorizadas, UX de lote, mapeamento de campos, recuperação offline sem segredos, testes de compatibilidade e auditoria. Publicação em loja somente com autorização e custo comprovadamente zero; instalação local padrão.
+
+**Aceite:** não duplicar extensão, regressão e segurança validadas.
+
+### Fase 17 — Video Studio
+
+Ferramenta: Codex + Lovable.
+
+**Prompt:** Roteiros, storyboard, legendas, slideshow vertical, narração local licenciada opcional e composição FFmpeg em worker local separado; imagens reais autorizadas, templates, preview, export, limites de storage/CPU, aprovação. Sem API de vídeo paga, sem fingir UGC real ou testemunho, sem voz/imagem sem autorização.
+
+**Aceite:** vídeo local exportável, fallback manual, licenças, limites e nenhuma cobrança.
+
+### Fase 18 — Mobile PWA
+
+Ferramenta: Codex.
+
+**Prompt:** PWA responsiva instalável, manifesto, fila e aprovação móvel, cache apenas de ativos públicos autorizados, limpeza no logout, sem cache de tokens/dados privados, offline claramente indicado. Notificações somente opt-in e elegíveis.
+
+**Aceite:** instalação e navegação móvel, isolamento, offline e logout seguros.
+
+### Fase 19 — Expansão de marketplaces
+
+Ferramenta: Codex + Lovable.
+
+**Prompt:** Investigar AliExpress e outras redes por capacidade oficial, região, aprovação, custos, termos e canais; implementar adaptadores elegíveis somente após autorização, sem alterar contratos centrais. Fallback manual, testes e matriz atualizada.
+
+**Aceite:** integração real autorizada ou bloqueio explícito; nenhum custo adicional.
+
+### Fase 20 — WordPress e integrações externas
+
+Ferramenta: Codex + Lovable.
+
+**Prompt:** Exportação de vitrine e integração WordPress opcional via API oficial, instalação existente sem hospedagem paga obrigatória, credencial restrita, revogação, validação, idempotência, expiração, logs e fallback export manual. Colaboração opcional com convites e papéis protegidos se ainda pendente.
+
+**Aceite:** publicação autorizada ou export manual, segurança e custo zero comprovados; sem contratação.
 
 ## Prompt de checkpoint entre fases — Codex
 Atue como revisor independente. Leia AGENTS.md, PROJECT_STATUS.md, PROJECT_MASTER_GUIDE.md, PRD, arquitetura, banco, segurança, política financeira e documentos da fase recém-entregue. Compare critérios de aceite com código, migrations gerenciadas e evidências; diferencie real, parcial, mock e não implementado. Verifique arquitetura, dependências, TypeScript, React, autenticação, RLS, FKs, isolamento, autorização, secrets, tratamento de erros, responsividade, acessibilidade, concorrência, idempotência, filas, limites, custo, permissões e licenças. Para Fase 1 verifique login/cadastro/reset/logout/perfil/workspace/CRUD/seletor/dashboard/configurações/seed Garagem/segundo nicho. Identifique APIs inventadas, bypass do AI Core, ledger separado texto/imagem, preços gerados por IA, produto alterado, Nano Banana habilitado indevidamente, compra automática ou exposição de tokens. Rode bun install --frozen-lockfile, bun run lint, bun run test, bun run build e verificação de tipos quando disponíveis; não alegue execução se não ocorreu. Testes de integração somente com contas temporárias autorizadas, limpeza verificada; sem acesso marque pendente. Corrija apenas escopo autorizado, preserve design e solicite Lovable para recursos gerenciados. Crie docs/PHASE_XX_VALIDATION.md com resumo, critérios, evidências, arquivos, testes, falhas, correções, riscos, pendências e parecer APPROVED/APPROVED_WITH_WARNINGS/BLOCKED. Atualize PROJECT_STATUS.md. Não avance automaticamente. Ressalvas financeiras bloqueiam habilitação de serviços e produção; investigação documental da Fase 2 pode ser autorizada separadamente.
@@ -195,7 +267,7 @@ Revise diff da última fase, AGENTS.md, status, arquitetura, custo, provedores, 
 Leia AGENTS.md, README.md, docs/PROJECT_MASTER_GUIDE.md, docs/PROJECT_STATUS.md, docs/ROADMAP.md, docs/ARCHITECTURE.md, docs/ZERO_COST_POLICY.md e documentos da fase atual. Inspecione branch, commits, alterações não commitadas, código e migrations relevantes. Determine última fase autorizada e concluída, funcionalidades reais, pendências, riscos, decisões, testes registrados e próximos critérios. Preserve arquitetura TanStack/Lovable gerenciada, multi-nicho, custo adicional zero, Cloudflare texto/imagem com quota compartilhada se elegível, OpenAI somente oficialmente autorizado, Nano Banana bloqueado, worker local opcional e fallback manual/templates. Não recrie projeto, não altere código nem avance fase. Resuma o estado, indique o próximo prompt deste guia e aguarde minha autorização.
 
 ## Marcos de entrega
-MVP 1 fases 0–3: base e controle de custo; MVP 2 fases 4–6: IA elegível e contingências; MVP 3 fases 7–10: fábrica de comunidades; MVP 4 fases 11–13: ofertas, afiliados e conteúdo; MVP 5 fases 14–15: automação e crescimento. Ordem não autoriza execução automática. Fases futuras dependem de viabilidade, contas aprovadas, permissões e quotas. Sem integração autorizada, entregar modo manual explicitamente identificado.
+MVP 1 fases 0–3 (inclui 2.1): base e controle de custo; MVP 2 fases 4–6: IA elegível e contingências; MVP 3 fases 7–10.1: fábrica de comunidades; MVP 4 fases 11–13: ofertas, afiliados e conteúdo; MVP 5 fases 14–15: automação e crescimento; MVP 6 fases 16–20: expansão operacional. Ordem não autoriza execução automática. Fases futuras dependem de viabilidade, contas aprovadas, permissões e quotas. Sem integração autorizada, entregar modo manual explicitamente identificado.
 
 ## Registro de decisões
 - 25/11/2026: fundação real usa Lovable Cloud/TanStack, divergente do briefing Supabase Free/Edge Functions; gate financeiro pendente.
