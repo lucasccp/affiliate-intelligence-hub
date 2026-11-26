@@ -1,6 +1,15 @@
 import { useState, type FormEvent } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { canExportOffer, manualOfferSchema } from "@/lib/pilot/offer";
 import {
@@ -12,6 +21,8 @@ import {
 import { useHub } from "./app-context";
 
 type Offer = Awaited<ReturnType<typeof listPilotOffers>>[number];
+
+const priceFormatter = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 
 export function PilotOffers() {
   const { data, selectedId } = useHub();
@@ -45,7 +56,7 @@ function OfferPanel({
   canManage: boolean;
 }) {
   const [editing, setEditing] = useState<Offer | null>(null);
-  const [formVersion, resetForm] = useState(0);
+  const [editorOpen, setEditorOpen] = useState(false);
   const [feedback, setFeedback] = useState("");
   const offers = useQuery({
     queryKey: ["pilot-offers", scope.workspaceId, scope.communityId],
@@ -78,7 +89,7 @@ function OfferPanel({
     action.mutate(async () => {
       await savePilotOffer({ data: { ...scope, id: editing?.id ?? null, offer: parsed.data } });
       setEditing(null);
-      resetForm((value) => value + 1);
+      setEditorOpen(false);
       setFeedback("Rascunho salvo.");
       await offers.refetch();
     });
@@ -100,68 +111,90 @@ function OfferPanel({
   }
 
   return (
-    <section
-      className="mt-6 space-y-4 rounded-lg border p-4"
-      aria-labelledby="pilot-offers-heading"
-    >
-      <h2 className="text-lg font-semibold" id="pilot-offers-heading">
-        Piloto de ofertas
-      </h2>
-      {canManage && (
-        <form key={formVersion} onSubmit={submit} className="grid gap-3 sm:grid-cols-2">
-          <label className="space-y-1">
-            Nome
-            <Input name="name" required maxLength={120} defaultValue={editing?.revision.name} />
-          </label>
-          <label className="space-y-1">
-            Fonte HTTPS
-            <Input
-              name="source"
-              type="url"
-              required
-              maxLength={2048}
-              defaultValue={editing?.revision.source_url}
-            />
-          </label>
-          <label className="space-y-1">
-            Preço (R$)
-            <Input
-              name="price"
-              inputMode="decimal"
-              required
-              defaultValue={(editing && (editing.revision.price_cents / 100).toFixed(2)) || ""}
-            />
-          </label>
-          <label className="space-y-1">
-            Validade (horário local)
-            <Input
-              name="expires"
-              type="datetime-local"
-              required
-              defaultValue={(editing && localDate(editing.revision.expires_at)) || ""}
-            />
-          </label>
-          <div className="flex flex-wrap gap-2">
-            <Button disabled={action.isPending}>
-              {editing ? "Salvar nova revisão" : "Criar rascunho"}
-            </Button>
-            {editing && (
-              <Button
-                type="button"
-                variant="outline"
-                disabled={action.isPending}
-                onClick={() => {
-                  setEditing(null);
-                  resetForm((value) => value + 1);
-                }}
-              >
-                Cancelar edição
+    <section className="space-y-4" aria-labelledby="pilot-offers-heading">
+      <Dialog
+        open={editorOpen}
+        onOpenChange={(open) => {
+          if (action.isPending) return;
+          setEditorOpen(open);
+          if (!open) setEditing(null);
+        }}
+      >
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-lg font-semibold" id="pilot-offers-heading">
+            Piloto de ofertas
+          </h2>
+          {canManage && (
+            <DialogTrigger asChild>
+              <Button onClick={() => setFeedback("")}>
+                <Plus aria-hidden="true" />
+                Nova oferta
               </Button>
-            )}
-          </div>
-        </form>
+            </DialogTrigger>
+          )}
+        </div>
+        {canManage && (
+          <DialogContent className="max-h-[85dvh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>{editing ? "Editar oferta" : "Nova oferta"}</DialogTitle>
+              <DialogDescription>
+                Informe o preço observado, a fonte e a validade.
+              </DialogDescription>
+            </DialogHeader>
+            <form
+              key={editing?.id ?? "new"}
+              onSubmit={submit}
+              className="grid min-w-0 gap-3 sm:grid-cols-2"
+            >
+              <label className="space-y-1">
+                Nome
+                <Input name="name" required maxLength={120} defaultValue={editing?.revision.name} />
+              </label>
+              <label className="space-y-1">
+                Fonte HTTPS
+                <Input
+                  name="source"
+                  type="url"
+                  required
+                  maxLength={2048}
+                  defaultValue={editing?.revision.source_url}
+                />
+              </label>
+              <label className="space-y-1">
+                Preço (R$)
+                <Input
+                  name="price"
+                  inputMode="decimal"
+                  required
+                  defaultValue={(editing && (editing.revision.price_cents / 100).toFixed(2)) || ""}
+                />
+              </label>
+              <label className="space-y-1">
+                Validade (horário local)
+                <Input
+                  name="expires"
+                  type="datetime-local"
+                  required
+                  defaultValue={(editing && localDate(editing.revision.expires_at)) || ""}
+                />
+              </label>
+              <div className="flex flex-wrap gap-2">
+                <Button disabled={action.isPending}>
+                  {editing ? "Salvar nova revisão" : "Criar rascunho"}
+                </Button>
+              </div>
+              <p role="status" className="text-sm sm:col-span-2">
+                {feedback}
+              </p>
+            </form>
+          </DialogContent>
+        )}
+      </Dialog>
+      {!editorOpen && (
+        <p role="status" className="text-sm">
+          {feedback}
+        </p>
       )}
-      <p role="status">{feedback}</p>
       {offers.isPending && <p>Carregando ofertas…</p>}
       {offers.isError && <p role="alert">Não foi possível carregar as ofertas.</p>}
       {offers.data?.length === 0 && <p>Nenhuma oferta cadastrada.</p>}
@@ -178,12 +211,22 @@ function OfferPanel({
           new Date(),
         );
         return (
-          <article key={id} className="space-y-2 rounded-md border p-3">
-            <h3 className="font-medium">{revision.name}</h3>
+          <article key={id} className="space-y-2 rounded-xl border bg-card p-4">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <h3 className="min-w-0 break-words font-medium">{revision.name}</h3>
+              <p className="shrink-0 font-semibold tabular-nums">
+                {priceFormatter.format(revision.price_cents / 100)}
+              </p>
+            </div>
             <p className="text-sm">
               Revisão {current_version} · {approved ? "Aprovada" : "Aguardando aprovação"}
             </p>
-            <p className="whitespace-pre-wrap break-all text-sm">{revision.draft_text}</p>
+            <details className="text-sm">
+              <summary className="cursor-pointer py-1 text-muted-foreground">Ver rascunho</summary>
+              <p className="mt-2 whitespace-pre-wrap [overflow-wrap:anywhere]">
+                {revision.draft_text}
+              </p>
+            </details>
             {canManage && (
               <div className="flex flex-wrap gap-2">
                 <Button
@@ -192,7 +235,8 @@ function OfferPanel({
                   disabled={action.isPending}
                   onClick={() => {
                     setEditing({ id, revision, current_version, approved_version });
-                    resetForm((value) => value + 1);
+                    setFeedback("");
+                    setEditorOpen(true);
                   }}
                 >
                   Editar

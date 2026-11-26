@@ -8,7 +8,7 @@ Referência: 25/11/2026 (UTC) · **Fundação implementada na main, com ressalva
 
 - **Fase 2:** piloto de ofertas em Comunidades com criação, template, edição versionada, aprovação e exportação autenticada. O administrador relatou aceite do roteiro no preview, sem SHA informado. [Checkpoint do piloto](PHASE_02_VALIDATION.md) · [Aceite reportado](PHASE_03_ENTRY_CHECKPOINT.md)
 - **Fase 2.1:** pesquisa de marketplaces e benchmark concluída com ressalvas. [Checkpoint](PHASE_02_1_VALIDATION.md)
-- **Fase 3 assistida:** templates, prompts copiáveis, importação local e simulação de franquia. Painel acima do Piloto de ofertas. Materiais importados ficam na sessão. Validação autenticada do painel aguarda execução no preview. [Checkpoint](PHASE_03_ASSISTED_VALIDATION.md)
+- **Fase 3 assistida:** templates, prompts copiáveis, importação local e simulação de franquia. Aba Conteúdo em Comunidades. Gestão, Ofertas e Conteúdo têm navegação própria. Materiais importados ficam na sessão. Validação autenticada do painel aguarda execução no preview. [Checkpoint](PHASE_03_ASSISTED_VALIDATION.md)
 - **Inferência real:** Fases 4 e 5 bloqueadas até comprovação de rota e custo zero. [Parecer de gateway](PHASE_03_GATEWAY_FEASIBILITY.md)
 
 ## Entrega

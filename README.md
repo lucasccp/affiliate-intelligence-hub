@@ -8,7 +8,7 @@ Fábrica inteligente de comunidades de ofertas para programas de afiliados, com 
 
 ## Branch de desenvolvimento
 
-Use `develop` como referência única para código, documentação e preview no Lovable. As branches de fase preservam o histórico das entregas. Para testar, confirme a sincronização da branch e o ambiente do banco. Em Comunidades, selecione Garagem de Ofertas com uma conta de teste proprietária ou administradora. O painel Conteúdo assistido aparece acima do Piloto de ofertas.
+Use `develop` como referência única para código, documentação e preview no Lovable. As branches de fase preservam o histórico das entregas. Para testar, confirme a sincronização da branch e o ambiente do banco. Em Comunidades, selecione Garagem de Ofertas com uma conta de teste proprietária ou administradora. Use as abas Ofertas e Conteúdo para alternar entre o piloto e o painel assistido.
 
 [Status atual](docs/PROJECT_STATUS.md) · [Checkpoint da Fase 3 assistida](docs/PHASE_03_ASSISTED_VALIDATION.md)
 

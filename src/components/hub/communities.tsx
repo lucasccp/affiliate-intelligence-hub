@@ -25,10 +25,10 @@ import { deleteCommunity, type Community } from "@/lib/hub.functions";
 import { communityPageQuery } from "@/lib/hub-query";
 import { canManage, statuses, statusLabels, modeLabels } from "@/lib/hub-schema";
 import { useHub } from "./app-context";
-import { PageHeading, StatusBadge, CommunityEmpty } from "./shared";
+import { StatusBadge, CommunityEmpty } from "./shared";
 import { CommunityForm } from "./community-form";
 
-export function Communities() {
+export function Communities({ onOpenOffers }: { onOpenOffers: () => void }) {
   const { data, selectedId, setSelectedId } = useHub();
   const queryClient = useQueryClient();
   const [search, setSearch] = useState("");
@@ -68,18 +68,13 @@ export function Communities() {
   }
   return (
     <>
-      <PageHeading
-        title="Comunidades"
-        description="Cada nicho tem seu próprio espaço para crescer."
-      >
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
         {editable && (
           <Button onClick={() => setEditor({ community: null })}>
             <Plus />
             Nova comunidade
           </Button>
         )}
-      </PageHeading>
-      <div className="flex flex-wrap justify-between items-center gap-3 mb-5">
         <div className="relative w-full sm:w-72">
           <Search className="absolute left-3 top-2.5 text-muted-foreground" size={15} />
           <Input
@@ -167,11 +162,7 @@ export function Communities() {
                             aria-label={`Abrir ${c.name}`}
                             onClick={() => {
                               setSelectedId(c.id);
-                              requestAnimationFrame(() =>
-                                document
-                                  .getElementById("pilot-offers-heading")
-                                  ?.scrollIntoView({ behavior: "smooth" }),
-                              );
+                              onOpenOffers();
                             }}
                           >
                             {c.name}

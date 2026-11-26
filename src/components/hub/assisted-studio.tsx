@@ -62,7 +62,10 @@ function Studio({ community, niche }: { community: string; niche: string }) {
   }
 
   return (
-    <section className="mt-6 space-y-4 rounded-lg border p-4" aria-labelledby="assisted-heading">
+    <section
+      className="space-y-5 rounded-xl border bg-card p-4 sm:p-6"
+      aria-labelledby="assisted-heading"
+    >
       <h2 id="assisted-heading" className="text-lg font-semibold">
         Conteúdo assistido
       </h2>
