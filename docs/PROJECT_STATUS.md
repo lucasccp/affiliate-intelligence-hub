@@ -1,6 +1,10 @@
 # Status do projeto
 
-Referência: 25/11/2026 (UTC) · **Fase 1 implementada com ressalvas de aceite** · Fases seguintes não autorizadas.
+Referência: 25/11/2026 (UTC) · **Fase 1 aceita pelo administrador em 26/11/2026** · Execução determinística da Fase 2 autorizada.
+
+## Piloto determinístico da Fase 2
+
+Regras locais de oferta, template, versão de aprovação e avaliação de franquia compartilhada preparadas. Persistência, interface e testes transacionais aguardam schema gerenciado. O administrador controla o Lovable existente. O piloto usa R$ 0,00 de custo adicional. IA real segue fora desta etapa. [Escopo e solicitação ao Lovable](PHASE_02_PILOT.md)
 
 ## Entrega
 
@@ -55,4 +59,4 @@ Não há garantia financeira zero certificada para Cloud; não há teste ponta a
 
 ## Aceite e próxima fase
 
-Fundação funcional validada em contas de teste, não na conta pessoal do administrador. Seed fica disponível no workspace criado no seu cadastro. Aceite financeiro permanece pendente por inexistência de bloqueio Cloud confirmado. Validação de entrega e utilização de links de e-mail depende de uma caixa de e-mail real acessível ao administrador; não solicitamos senhas nem forjamos sessões de recuperação. Nenhuma Fase 2 foi iniciada. Critérios de produto e restrições permanecem no PRD e política financeira.
+Fundação funcional validada em contas de teste, não na conta pessoal do administrador. Seed fica disponível no workspace criado no seu cadastro. O administrador aceitou a fundação e controla o Lovable existente. A falta de bloqueio Cloud confirmado permanece registrada. Validação de entrega e utilização de links de e-mail depende de uma caixa de e-mail real acessível ao administrador; não solicitamos senhas nem forjamos sessões de recuperação. O piloto da Fase 2 está em implementação conforme a seção acima. Critérios de produto e restrições permanecem no PRD e política financeira.
